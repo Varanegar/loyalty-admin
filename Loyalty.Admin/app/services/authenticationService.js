@@ -59,7 +59,7 @@
                         scope: $rootScope.privateOwnerId + ',' + $rootScope.dataOwnerId
                     }),
                 }).then(successCallback, function fail(response) {
-                    //todo: $rootScope.showErrMsg(response);
+                    $rootScope.showAjaxError(response);
 
                     return response;
                 });

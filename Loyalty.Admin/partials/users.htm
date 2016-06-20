@@ -1,11 +1,10 @@
 ﻿<script type="text/x-kendo-template" id="toolbar-template">
     <div class="toolbar">
-        <button type="button" data-bind="click: addUser" class="k-button k-button-icontext add-user">
+        <button type="button" data-ng-click="addUser()" class="k-button k-button-icontext add-user">
             <span class="k-icon k-add"></span>افزودن
         </button>
     </div>
 </script>
-
 
 <div ng-controller="userscontroller">
     <kendo-grid options="userGridOptions">

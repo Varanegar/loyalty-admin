@@ -10,6 +10,7 @@
     <link href="content/css/bootstrap-rtl.min.css" rel="stylesheet" />
     <!--http://angular-ui.github.io/-->
     <link href="content/css/ui-bootstrap-csp.css" rel="stylesheet" />
+    <link href="content/toaster/toaster.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="content/KendoUI/kendo.common-material.min.css" />
     <link rel="stylesheet" href="content/KendoUI/kendo.rtl.min.css" />
@@ -22,7 +23,8 @@
 </head>
 
 <body data-ng-app="membersApp" data-ng-controller="maincontroller">
-
+    <!--<toaster-container toaster-options="{'time-out': 5000, 'position-class': 'toast-bottom-full-width'}"></toaster-container>-->
+    <toaster-container toaster-options="{'close-button':false,'newest-on-top': true,'progress-bar': true,'position-class':'toast-bottom-left','prevent-duplicates':true,'on-click':null,'show-duration': '300','hide-duration':'1000','time-out':'5000','extended-time-out':'1000','show-easing':'swing','hide-easing':'linear','show-method':'fadeIn','hide-method':'fadeOut'}"></toaster-container>
     <div class="navbar navbar-inverse navbar-fixed-top header-menu">
         <div class="container">
             <div class="navbar-header">
@@ -75,6 +77,8 @@
     <script src="scripts/angularjs/i18n/angular-locale_fa-ir.js"></script>
     <script src="scripts/angularjs/angular-ui/ui-bootstrap.min.js"></script>
     <script src="scripts/angularjs/angular-ui/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="scripts/toaster/toaster.min.js"></script>
 
     <script src="scripts/bootstrap/bootstrap.min.js"></script>
     <script src="scripts/kendo/kendo.all.min.js"></script>

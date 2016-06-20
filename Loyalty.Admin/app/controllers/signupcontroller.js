@@ -31,8 +31,8 @@
                 email: $scope.email,
                 password: $scope.password,
                 confirmPassword: $scope.confirmPassword
-            }, function () {
-                //todo: $rootScope.showSuccessMsg();
+            }, function (res) {                
+                $rootScope.showAjaxError(res);
 
                 $location.path('/login');
             });

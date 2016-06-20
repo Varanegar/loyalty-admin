@@ -28,7 +28,7 @@
                 });
             }
             else
-                alert('نام کاربری');//todo: $rootScope.showErrMsg('نام کاربری');
+                $rootScope.showError('', 'نام کاربری');
         }
 
         $scope.login = function () {

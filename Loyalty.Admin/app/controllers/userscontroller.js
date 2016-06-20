@@ -1,45 +1,72 @@
 ﻿(function () {
     'use strict';
-
     angular
            .module('membersApp')
            .controller('userscontroller', userscontroller);
 
-    userscontroller.$inject = ['$scope'];
+    userscontroller.$inject = ['$scope', '$location', '$rootScope', 'toaster'];
 
-    function userscontroller($scope) {
+    function userscontroller($scope, $location, $rootScope, toaster) {
         $scope.userGridOptions = {
-            dataSource: {
-                type: "odata",
+            dataSource: new kendo.data.DataSource({
                 transport: {
-                    read: "//demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+                    read: {
+                        url: $rootScope.urls.usersUrl,
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "Get",
+                        beforeSend: $rootScope.gridAuthHeader
+                    },
+                    parameterMap: function (options, operation) {
+                        if (operation == "read")
+                            return kendo.stringify(options);
+                    }
                 },
-                pageSize: 5,
-                serverPaging: true,
-                serverSorting: true
-            },
+                batch: true,
+                pageSize: 20,
+                requestEnd: $rootScope.onGridRequestEnd,
+                schema: {
+                    model: {
+                        id: "id",
+                        fields: {
+                            id: { editable: false, nullable: true },
+                            userName: { editable: false },
+                            email: { editable: false },
+                            mobile: { editable: false },
+                        }
+                    }
+                }
+            }),
+            navigatable: true,
+            resizable: true,
             sortable: true,
-            pageable: true,
-            dataBound: function () {
-                this.expandRow(this.tbody.find("tr.k-master-row").first());
+            filterable: {
+                extra: false,
+                operators: {
+                    string: {
+                        startswith: "شروع با",
+                        eq: "مساوی با",
+                        neq: "نامساوی",
+                        contains: "شامل"
+                    }
+                }
             },
-            columns: [{
-                field: "FirstName",
-                title: "First Name",
-                width: "120px"
-            }, {
-                field: "LastName",
-                title: "Last Name",
-                width: "120px"
-            }, {
-                field: "Country",
-                width: "120px"
-            }, {
-                field: "City",
-                width: "120px"
-            }, {
-                field: "Title"
-            }]
+            pageable: true,
+            toolbar: kendo.template($("#toolbar-template").html()),
+            height: 500,
+            editable: false,
+            dataBinding: $rootScope.onGridDataBinding,
+            columns: [
+                { field: "rowNo", title: "#", width: 70, template: "#= renderNumber(data) #", filterable: false, },
+                { field: "userName", title: "نام کاربری", width: 200 },
+                { field: "email", title: "ایمیل", width: 250 },
+                { field: "mobile", title: "شماره تلفن", width: 150 },
+                { command: { text: "ویرایش", click: self.showEdit }, title: " ", width: "180px" }
+            ]
         };
+
+        $scope.addUser = function () {
+            $location.path('/userManager/edit');
+        }
     }
 })();

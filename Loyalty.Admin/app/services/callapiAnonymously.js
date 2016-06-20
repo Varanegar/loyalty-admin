@@ -28,7 +28,7 @@
                     'DataOwnerCenterKey': $rootScope.dataOwnerCenterId,
                 },
             }).then(success, function fail(response) {
-                //todo: $rootScope.showErrMsg(response);
+                $rootScope.showError(response);
 
                 if (fail)
                     return fail;
