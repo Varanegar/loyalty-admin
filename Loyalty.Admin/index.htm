@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="content/css/bootstrap.css" rel="stylesheet" />
+    <link href="content/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="content/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <!--http://angular-ui.github.io/-->
+    <link href="content/css/ui-bootstrap-csp.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="content/KendoUI/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="content/KendoUI/kendo.rtl.min.css" />
+    <link rel="stylesheet" href="content/KendoUI/kendo.material.min.css" />
+    <link rel="stylesheet" href="content/KendoUI/kendo.material.mobile.min.css" />
+
+    <link href="content/css/site.css" rel="stylesheet" />
+
+    <title>مدیریت باشگاه مشتریان</title>
+</head>
+
+<body data-ng-app="membersApp" data-ng-controller="maincontroller">
+
+    <div class="navbar navbar-inverse navbar-fixed-top header-menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#/" class="navbar-brand">مدیریت باشگاه مشتریان</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li data-ng-show="showlogin()"><a href="#login" class="glyphicon glyphicon-log-in"> ورود </a></li>
+
+                    <li class="exit-menu-item" data-ng-show="!(showlogin())">
+                        <a href="#" data-ng-click="logout()" class="glyphicon glyphicon-log-out"> خروج </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-12">
+                <!--به مدیریت باشگاه مشتریان خوش آمدید-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-view></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr />
+                <footer>
+                    <p>&copy; {{dateNow}} - باشگاه مشتریان</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/jquery/jquery-2.2.4.min.js"></script>
+
+    <script src="scripts/angularjs/angular.js"></script>
+    <script src="scripts/angularjs/angular-route.js"></script>
+    <script src="scripts/angularjs/angular-cookies.min.js"></script>
+    <script src="scripts/angularjs/angular-animate.js"></script>
+    <script src="scripts/angularjs/i18n/angular-locale_fa-ir.js"></script>
+    <script src="scripts/angularjs/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="scripts/angularjs/angular-ui/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="scripts/kendo/kendo.all.min.js"></script>
+    <script src="scripts/kendo/kendo.messages.fa-IR.js"></script>
+    <script src="scripts/kendo/kendo.angular.min.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/configs/routeConfig.js"></script>
+
+    <script src="app/services/authenticationService.js"></script>
+
+    <script src="app/services/callapi.js"></script>
+    <script src="app/services/callapiAnonymously.js"></script>
+
+    <script src="app/controllers/maincontroller.js"></script>
+    <script src="app/controllers/logincontroller.js"></script>
+    <script src="app/controllers/restorePasswordcontroller.js"></script>
+    <script src="app/controllers/signupcontroller.js"></script>
+    <script src="app/controllers/userscontroller.js"></script>
+
+</body>
+</html>

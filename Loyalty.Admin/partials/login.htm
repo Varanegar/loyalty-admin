@@ -1,0 +1,43 @@
+﻿<form name="loginform" class="login-form" data-ng-controller="logincontroller">
+    <div class="login-div">
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control email-txt" type="text" data-ng-model="email" placeholder="نام کاربری یا ایمیل" required />
+
+                <span style="color:red" ng-show="loginform.email.$dirty && loginform.email.$invalid">
+                    <span ng-show="loginform.email.$error.required">لطفا نام کاربری را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control" type="password" data-ng-model="password" placeholder="رمزعبور" required />
+
+                <span style="color:red" ng-show="loginform.password.$dirty && loginform.password.$invalid">
+                    <span ng-show="loginform.password.$error.required">لطفا رمزعبور را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <a data-ng-click="requestRestorePassCode()" ng-disabled="flLoading" class="lnk-restore-password">فراموشی رمز عبور!</a>
+            </div>
+
+            <div class="col-md-6">
+                <a href="#signup" ng-disabled="flLoading" class="lnk-signup">ثبت نام</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" data-ng-click="login()" ng-disabled="loginform.$invalid || flLoading" class="btn btn-success btn-lg btn-login">
+                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> ورود
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>

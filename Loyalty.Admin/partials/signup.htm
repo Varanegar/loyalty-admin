@@ -1,0 +1,76 @@
+﻿<form name="signupform" class="signup-form" data-ng-controller="signupcontroller">
+    <div class="signup-div">
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control fullname-txt" type="text" data-ng-model="fullname" placeholder="نام و نام خانوادگی" required />
+
+                <span style="color:red" ng-show="signupform.fullname.$dirty && signupform.fullname.$invalid">
+                    <span ng-show="signupform.fullname.$error.required">لطفا نام و نام خانوادگی را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control username-txt" type="text" data-ng-model="username" placeholder="نام کاربری" required />
+
+                <span style="color:red" ng-show="signupform.username.$dirty && signupform.username.$invalid">
+                    <span ng-show="signupform.username.$error.required">لطفا نام کاربری را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control mobile-txt" type="text" data-ng-model="mobile" placeholder="موبایل" required />
+
+                <span style="color:red" ng-show="signupform.mobile.$dirty && signupform.mobile.$invalid">
+                    <span ng-show="signupform.mobile.$error.required">لطفا موبایل را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control email-txt" type="email" data-ng-model="email" placeholder="ایمیل" required />
+
+                <span style="color:red" ng-show="signupform.email.$dirty && signupform.email.$invalid">
+                    <span ng-show="signupform.email.$error.required">لطفا ایمیل را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control" type="password" data-ng-model="password" placeholder="رمزعبور" required />
+
+                <span style="color:red" ng-show="signupform.password.$dirty && signupform.password.$invalid">
+                    <span ng-show="signupform.password.$error.required">لطفا رمزعبور را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="form-control" type="password" data-ng-model="confirmPassword" placeholder="تکرار رمزعبور" required />
+
+                <span style="color:red" ng-show="signupform.confirmPassword.$dirty && signupform.confirmPassword.$invalid">
+                    <span ng-show="signupform.confirmPassword.$error.required">لطفا تکرار رمزعبور را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" data-ng-click="signup()" ng-disabled="signupform.$invalid || flLoading" class="btn btn-success btn-lg btn-signup">
+                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ثبت
+                </button>
+
+                <button type="button" data-ng-click="cancelSignup()" class="btn btn-warning btn-lg btn-cancel-restore-pass">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> انصراف
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
