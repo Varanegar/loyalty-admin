@@ -1,7 +1,7 @@
 ﻿
 angular.module('membersApp')
        .config(function ($routeProvider) {
-
+           debugger
            $routeProvider
            .when("/login", {
                templateUrl: "partials/login.htm",
@@ -18,10 +18,12 @@ angular.module('membersApp')
             .when("/userManager", {
                 templateUrl: "partials/users.htm",
                 controller: "userscontroller",
+                authorize: true,
             })
-           .when("/userManager/edit", {
+           .when("/userManager/edit/:uid", {
                templateUrl: "partials/editUser.htm",
                controller: "userscontroller",
+               authorize: true,
            })
            .otherwise({
                redirectTo: "/",

@@ -2,19 +2,19 @@
     'use strict';
 
     var app = angular.module('membersApp', [
-        // Angular modules
-        'ngAnimate',
-        'ngRoute',
-        'ngCookies',
-        'kendo.directives',
-        'toaster',
-        // Custom modules
+     // Angular modules
+     'ngAnimate',
+     'ngRoute',
+     'ngCookies',
+     'kendo.directives',
+     'toaster',
+     // Custom modules
 
-        // 3rd Party Modules
+     // 3rd Party Modules
 
     ]);
 
-    app.run(function ($rootScope, $cookieStore, toaster) {
+    app.run(function ($rootScope, $cookieStore, $location, toaster) {
         var baseBackendUrl = 'http://localhost:59822';
 
         $rootScope.privateOwnerId = '79A0D598-0BD2-45B1-BAAA-0A9CF9EFF240';
@@ -56,17 +56,6 @@
                 showSuccess('', 'اطلاعات ثبت شد.');
         }
 
-        var rowNumber = 0;
-        function resetRowNumber(e) {
-            rowNumber = 0;
-        }
-        function renderNumber(data) {
-            return ++rowNumber;
-        }
-        $rootScope.onGridDataBinding = function () {
-            rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
-        }
-        
         $rootScope.showError = function (title, message) {
             toaster.pop('error', title, message);
             //unfreezUI();
@@ -82,7 +71,6 @@
             req.setRequestHeader('DataOwnerCenterKey', $rootScope.dataOwnerCenterId);
         };
 
-
         $rootScope.showAjaxError = function (jqXHR) {
 
             var title = jqXHR.status,
@@ -95,7 +83,9 @@
 
             if (jqXHR.status == 400) {
                 title = '400';
-                message = jqXHR.responseJSON.message;
+
+                if (jqXHR.responseJSON)
+                    message = jqXHR.responseJSON.message;
             }
 
             if (jqXHR.status == 401) {
@@ -106,7 +96,7 @@
                 title = '403';
                 message = errorMessage.unAuthorized;
             }
-            if (jqXHR.status == 400 && jqXHR.responseJSON.modelState != undefined) {
+            if (jqXHR.status == 400 && jqXHR.responseJSON && jqXHR.responseJSON.modelState != undefined) {
                 title = 'خطا';
                 var modelState = jqXHR.responseJSON.modelState;
                 var errorsString = "";
@@ -119,7 +109,7 @@
                 }
                 message = errorsString;
             }
-            if (jqXHR.status == 400 && jqXHR.responseJSON.modelState == undefined) {
+            if (jqXHR.status == 400 && jqXHR.responseJSON && jqXHR.responseJSON.modelState == undefined) {
                 title = 'خطا';
                 message = jqXHR.responseJSON.message;
             }
@@ -128,6 +118,37 @@
 
             console.log(title + ': ' + message);
         }
+
+        $rootScope.$on("$routeChangeStart", function (evt, to, from) {
+            if (to.authorize === true) {
+                to.resolve = to.resolve || {};
+                if (!to.resolve.authorizationResolver) {
+                    to.resolve.authorizationResolver = function () {
+                        if (!$rootScope.token() != "")
+                            throw new AuthorizationError();
+
+                        return true;
+                    };
+                }
+            }
+        });
+
+        $rootScope.$on("$routeChangeError", function (evt, to, from, error) {
+            if (error instanceof AuthorizationError) {
+                $location.path("/login").search("returnTo", to.originalPath);
+
+                $rootScope.showError('', 'لطفا ابتدا لاگین نمایید');
+            }
+        });
+
+        // Custom error type
+        function AuthorizationError(description) {
+            this.message = "Forbidden";
+            this.description = description || "User authentication required.";
+        }
+
+        AuthorizationError.prototype = Object.create(Error.prototype);
+        AuthorizationError.prototype.constructor = AuthorizationError;
 
     });
 

@@ -41,6 +41,9 @@
                 $scope.flLoading = false;
 
                 $location.path('/');
+
+            }, function (fail) {
+                $scope.flLoading = false;
             });
         }
     }

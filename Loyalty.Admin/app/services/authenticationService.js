@@ -16,6 +16,8 @@
 
         service.clearCredentials = clearCredentials;
 
+        service.authorize = authorize;
+
         return service;
 
         function serializeData(data) {
@@ -44,7 +46,7 @@
             return (source);
         }
 
-        function login(username, password, successCallback) {
+        function login(username, password, successCallback, fail) {
             $timeout(function () {
                 $http({
                     method: "post",
@@ -58,10 +60,10 @@
                         password: password,
                         scope: $rootScope.privateOwnerId + ',' + $rootScope.dataOwnerId
                     }),
-                }).then(successCallback, function fail(response) {
+                }).then(successCallback, function (response) {
                     $rootScope.showAjaxError(response);
 
-                    return response;
+                    return fail(response);
                 });
             }, 10000);
         }
@@ -88,6 +90,13 @@
             $cookieStore.remove('globals');
 
             $http.defaults.headers.common.Authorization = 'Bearer';
+        }
+
+        function authorize() {
+            if (!$rootScope.token() != "")
+                throw new AuthorizationError();
+
+            return true;
         }
     }
 

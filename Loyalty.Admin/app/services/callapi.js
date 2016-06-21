@@ -1,21 +1,47 @@
-﻿
-angular.module('membersApp')
-       .service('$callApi', function () {
+﻿(function () {
+    'use strict';
 
-           this.call = function ($http, url, method, success, fail) {
-               if ($rootScope.token == undefined || $rootScope.token === '') 
-                   $location.path("/login");
+    angular
+       .module('membersApp')
+       .factory('callApi', callApi);
 
-               $http({
-                   method: method,
-                   url: url,
+    callApi.$inject = ['$http', '$rootScope', '$location'];
 
-               }).then(success, function fail(response) {
-                   //$scope.myWelcome = response.statusText;
+    function callApi($http, $rootScope, $location) {
+        var service = {};
 
-                   return fail;
+        service.call = call;
 
-               });
-           }
-       });
+        return service;
 
+        function call(url, method, data, success, fail) {
+
+            if ($rootScope.token() == undefined || $rootScope.token() === '') {
+                $location.path("/login");
+
+                $rootScope.showError('', 'لطفا ابتدا لاگین نمایید');
+
+                return;
+            }
+
+            $http({
+                method: method,
+                url: url,
+                data: data,
+                dataType: "json",
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'OwnerKey': $rootScope.privateOwnerId,
+                    'DataOwnerKey': $rootScope.dataOwnerId,
+                    'DataOwnerCenterKey': $rootScope.dataOwnerCenterId,
+                    'Authorization': 'Bearer ' + $rootScope.token(),
+                },
+            }).then(success, function (response) {
+                $rootScope.showError(response);
+
+                if (fail)
+                    return fail;
+            });
+        }
+    }
+})();

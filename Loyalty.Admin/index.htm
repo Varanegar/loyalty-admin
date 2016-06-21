@@ -85,6 +85,19 @@
     <script src="scripts/kendo/kendo.messages.fa-IR.js"></script>
     <script src="scripts/kendo/kendo.angular.min.js"></script>
 
+    <script type="text/javascript">
+        var rowNumber = 0;
+        var resetRowNumber = function (e) {
+            rowNumber = 0;
+        }
+        var renderNumber = function (data) {
+            return rowNumber += 1;
+        }
+        var onGridDataBinding = function () {
+            rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+        }
+    </script>
+
     <script src="app/app.js"></script>
     <script src="app/configs/routeConfig.js"></script>
 
