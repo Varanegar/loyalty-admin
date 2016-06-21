@@ -13,7 +13,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 /* styles for validation helpers */
@@ -41,9 +41,9 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-.row {
+/*.row {
     margin-top: 10px;
-}
+}*/
 
 .login-form {
     float: right;
@@ -112,4 +112,25 @@ input.ng-invalid {
 
 input.ng-valid {
     border: none;
+}
+
+.ADMdtp-container .masterInput .iconContainer {
+    border-radius: 0 !important;
+    border-right: 0 !important;
+    border-left: 1px solid #ccc !important;
+}
+
+.ADMdtp-container .masterInput input {
+    border-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.ADMdtp-container.rtl .masterInput input {
+    direction: unset !important;
+}
+
+.ADMdtp-container .masterInput > .removeIcon {
+    right: unset !important;
+    left: 2.1em;
 }

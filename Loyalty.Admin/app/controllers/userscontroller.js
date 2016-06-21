@@ -9,11 +9,14 @@
     function userscontroller($scope, $location, $rootScope, toaster, callApi) {
         //$rootScope.showError('', 'asd');
 
+        $scope.selectedUser = {};
         $scope.usersDS = {
             transport: {
                 read: function (e) {
                     callApi.call($rootScope.urls.usersUrl, 'GET', null, function success(response) {
-                        e.success(response.data)
+                        e.success(response.data);
+                        if (response.data)
+                            $scope.selectedUser = response.data[0];
                     }, function error(response) {
                         $rootScope.showAjaxError(response);
                         console.log(response);
@@ -22,7 +25,6 @@
             }
         };
 
-        $scope.selectedUser = {};
         $scope.showSelectedUser = function () {
             var usr = $scope.selectedUser;
 
@@ -30,7 +32,7 @@
         }
         //event for user selection
         $scope.onDdlSelection = function (kendoEvent) {
-            
+
             var usr = $scope.selectedUser;
 
             var ddl = kendoEvent.sender;
@@ -110,5 +112,7 @@
 
             $location.path('/userManager/edit/' + dataItem.id);//
         }
+
+        $scope.testDate = '';
     }
 })();

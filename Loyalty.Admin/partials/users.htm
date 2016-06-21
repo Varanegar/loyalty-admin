@@ -7,6 +7,17 @@
 </script>
 
 <div ng-controller="userscontroller" class="k-rtl">
+
+    <kendo-grid options="userGridOptions"></kendo-grid>
+
+    <hr />
+    <div class="row">
+     <div class="col-xs-5">
+         <adm-dtp ng-model='testDate'></adm-dtp>
+     </div>   
+    </div>
+    <hr />
+
     <select kendo-drop-down-list
             k-data-source="usersDS"
             k-data-text-field="'userName'"
@@ -19,7 +30,13 @@
         <span class="k-icon k-add"></span>show
     </button>
 
-    <hr />
-    <kendo-grid options="userGridOptions"></kendo-grid>
+    <!--<div kendo-tree-view="tree"
+         k-data-source="treeData"
+         k-on-change="selectedItem = dataItem">
+        <span k-template>
+            {{dataItem.text}} <button class='k-button' ng-click='click(dataItem)'>Select</button>
+        </span>
+    </div>-->
+
 </div>
 

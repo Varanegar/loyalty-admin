@@ -6,11 +6,13 @@
      'ngAnimate',
      'ngRoute',
      'ngCookies',
-     'kendo.directives',
-     'toaster',
+
      // Custom modules
 
      // 3rd Party Modules
+     'kendo.directives',
+     'toaster',
+     'ADM-dateTimePicker',
 
     ]);
 
@@ -158,5 +160,18 @@
         //$httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';
         //$httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
         $httpProvider.defaults.useXDomain = true;
+    }]);
+
+    //see other options
+    //https://amirkabirdataminers.github.io/ADM-dateTimePicker/#/
+    //https://github.com/AmirkabirDataMiners/ADM-dateTimePicker
+    app.config(['ADMdtpProvider', function (ADMdtp) {
+        ADMdtp.setOptions({
+            calType: 'jalali',
+            format: 'YYYY/MM/DD',
+            autoClose: true,
+            multiple: false, //hide gregorian
+            default: 'today',
+        });
     }]);
 })();
