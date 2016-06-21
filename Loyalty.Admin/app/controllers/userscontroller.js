@@ -8,6 +8,35 @@
 
     function userscontroller($scope, $location, $rootScope, toaster, callApi) {
         //$rootScope.showError('', 'asd');
+
+        $scope.usersDS = {
+            transport: {
+                read: function (e) {
+                    callApi.call($rootScope.urls.usersUrl, 'GET', null, function success(response) {
+                        e.success(response.data)
+                    }, function error(response) {
+                        $rootScope.showAjaxError(response);
+                        console.log(response);
+                    });
+                },
+            }
+        };
+
+        $scope.selectedUser = {};
+        $scope.showSelectedUser = function () {
+            var usr = $scope.selectedUser;
+
+            $rootScope.showSuccess('', usr.userName);
+        }
+        //event for user selection
+        $scope.onDdlSelection = function (kendoEvent) {
+            
+            var usr = $scope.selectedUser;
+
+            var ddl = kendoEvent.sender;
+            var selectedData = ddl.dataItem(ddl.select());
+        }
+
         var ds = new kendo.data.DataSource({
             transport: {
                 read: function (e) {

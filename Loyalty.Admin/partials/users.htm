@@ -7,6 +7,19 @@
 </script>
 
 <div ng-controller="userscontroller" class="k-rtl">
+    <select kendo-drop-down-list
+            k-data-source="usersDS"
+            k-data-text-field="'userName'"
+            k-data-value-field="'id'"
+            k-ng-model="selectedUser"
+            k-on-change="onDdlSelection(kendoEvent)"
+            style="width: 100%"></select>
+
+    <button type="button" data-ng-click="showSelectedUser()" class="k-button k-button-icontext">
+        <span class="k-icon k-add"></span>show
+    </button>
+
+    <hr />
     <kendo-grid options="userGridOptions"></kendo-grid>
 </div>
 

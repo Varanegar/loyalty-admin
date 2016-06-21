@@ -1,7 +1,7 @@
 ﻿
 angular.module('membersApp')
        .config(function ($routeProvider) {
-           debugger
+           
            $routeProvider
            .when("/login", {
                templateUrl: "partials/login.htm",
