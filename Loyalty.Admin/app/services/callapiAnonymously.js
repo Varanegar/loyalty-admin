@@ -28,10 +28,10 @@
                     'DataOwnerCenterKey': $rootScope.dataOwnerCenterId,
                 },
             }).then(success, function fail(response) {
-                $rootScope.showError(response);
+                $rootScope.showAjaxError(response);
 
                 if (fail)
-                    return fail;
+                    return fail(response);
             });
         }
     }

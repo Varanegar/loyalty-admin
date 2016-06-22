@@ -37,10 +37,10 @@
                     'Authorization': 'Bearer ' + $rootScope.token(),
                 },
             }).then(success, function (response) {
-                $rootScope.showError(response);
-
+                $rootScope.showAjaxError(response);
+                
                 if (fail)
-                    return fail;
+                    return fail(response);
             });
         }
     }

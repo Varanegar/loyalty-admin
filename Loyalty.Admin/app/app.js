@@ -73,8 +73,12 @@
             req.setRequestHeader('DataOwnerCenterKey', $rootScope.dataOwnerCenterId);
         };
 
-        $rootScope.showAjaxError = function (jqXHR) {
+        $rootScope.errorMessage = {
+            unAuthorized: "شما مجوز لازم را برای این درخواست ندارید!",
+        };
 
+        $rootScope.showAjaxError = function (jqXHR) {
+            
             var title = jqXHR.status,
                 message = jqXHR.statusText
 
@@ -92,11 +96,11 @@
 
             if (jqXHR.status == 401) {
                 title = '401';
-                message = errorMessage.unAuthorized;
+                message = $rootScope.errorMessage.unAuthorized;
             }
             if (jqXHR.status == 403) {
                 title = '403';
-                message = errorMessage.unAuthorized;
+                message = $rootScope.errorMessage.unAuthorized;
             }
             if (jqXHR.status == 400 && jqXHR.responseJSON && jqXHR.responseJSON.modelState != undefined) {
                 title = 'خطا';

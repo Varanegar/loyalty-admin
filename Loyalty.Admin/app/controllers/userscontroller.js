@@ -18,7 +18,7 @@
                         if (response.data)
                             $scope.selectedUser = response.data[0];
                     }, function error(response) {
-                        $rootScope.showAjaxError(response);
+                        
                         console.log(response);
                     });
                 },
@@ -45,7 +45,7 @@
                     callApi.call($rootScope.urls.usersUrl, 'GET', null, function success(response) {
                         e.success(response.data)
                     }, function error(response) {
-                        $rootScope.showAjaxError(response);
+                        
                         console.log(response);
                     });
                 },
