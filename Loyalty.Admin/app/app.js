@@ -17,7 +17,7 @@
     ]);
 
     app.run(function ($rootScope, $cookieStore, $location, toaster) {
-        var baseBackendUrl = 'http://localhost:59822';
+        var baseBackendUrl = 'http://217.218.53.71:4444'; //'http://localhost:59822';//
 
         $rootScope.privateOwnerId = '79A0D598-0BD2-45B1-BAAA-0A9CF9EFF240';
         $rootScope.dataOwnerId = '3EEE33CE-E2FD-4A5D-A71C-103CC5046D0C';
@@ -42,8 +42,8 @@
         };
 
         $rootScope.urls = {
-            //loginUrl: baseBackendUrl + '/oauth/token',
-            loginUrl: baseBackendUrl + '/api/identityAccounts/login',
+            loginUrl: baseBackendUrl + '/oauth/token',
+            //loginUrl: baseBackendUrl + '/api/identityAccounts/login',
             sendPassCodeUrl: baseBackendUrl + '/api/identityAccounts/SendPassCode',
             resetPasswordByCodeUrl: baseBackendUrl + '/api/identityAccounts/ResetPasswordByCode',
             signupUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
@@ -114,6 +114,11 @@
             if (jqXHR.status == 400 && jqXHR.responseJSON && jqXHR.responseJSON.modelState == undefined) {
                 title = 'خطا';
                 message = jqXHR.responseJSON.message;
+            }
+
+            if (jqXHR.status == 400 && jqXHR.data && jqXHR.data.error != '') {
+                title = jqXHR.data.error;
+                message = jqXHR.data.error_description;
             }
 
             $rootScope.showError(title, message);

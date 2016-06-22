@@ -41,9 +41,9 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-/*.row {
+.row {
     margin-top: 10px;
-}*/
+}
 
 .login-form {
     float: right;
