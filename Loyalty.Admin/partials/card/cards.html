@@ -1,0 +1,25 @@
+﻿<div id="div-cards">
+
+    <div class="row">
+        <button kendo-button ng-click="addCard();">تخصیص کارت</button>
+        <div class="k-rtl" id="cards-grid"
+             kendo-grid="grid"
+             k-sortable="true"
+             k-pageable="true"
+             k-filterable="true"
+             k-editable="'inline'"
+             k-selectable="true"
+             k-columns='[
+                { field: "row", title: "ردیف" },
+                { field: "cardGroup", title: "گروه کارت" },
+                { field: "cardNumber", title: "شماره کارت"},
+                { field: "cardStatus", title: "وضعیت" }]'>
+            <style scoped>
+                .toolbar {
+                    padding: 15px;
+                    float: right;
+                }
+            </style>
+        </div>
+    </div>
+</div>

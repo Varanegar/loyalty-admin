@@ -1,0 +1,26 @@
+﻿<div id="div-customers">
+
+    <div class="row">
+        <button kendo-button ng-click="addCustomer();">افزودن</button>
+        <button kendo-button ng-click="cardInfo();">افزودن</button>
+        <div class="k-rtl" id="customers-grid"
+             kendo-grid="grid"
+             k-sortable="true"
+             k-pageable="true"
+             k-filterable="true"
+             k-editable="'inline'"
+             k-selectable="true"
+             k-columns='[
+                { field: "customerType", title: "نوع مشتری" },
+                { field: "customerName", title: "نام مشتری"},
+                { field: "mobileNumber", title: "تلفن همراه" },
+                { field: "cardNumber", title: "شماره کارت" }]'>
+            <style scoped>
+                .toolbar {
+                    padding: 15px;
+                    float: right;
+                }
+            </style>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+﻿<form name="editCustomer" data-ng-controller="customercontroller" role="form">
+    <div id="div-edit-customer">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات عمومی</a></li>
+            <li><a data-toggle="tab" data-target="#customer-extended-info">مشخصات تکمیلی</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="customer-general-info" class="tab-pane active">
+                <div class="form-group">
+                    <br />
+                    <!--<div class="btn-group" data-toggle="buttons">-->
+                    <label class="radio-inline">
+                        <input type="radio" name="customerType" value="person" id="person" autocomplete="off" checked> شخص
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="customerType" id="company" value="company" autocomplete="off"> شرکت
+                    </label>
+                    <!--</div>-->
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="firstname">نام:</label>
+                        <input id="firstname" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">نام خانوادگی:</label>
+                        <input id="lastname" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">نام شرکت:</label>
+                        <input id="companyName" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="mobileNumber">شماره موبایل:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">شماره کارت:</label>
+                        <input id="cardNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cardGroup">گروه کارت:</label>
+                        <select id="cardGroup" class="form-control">
+                            <option>
+                                گروه پیش فرض
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-default" ng-click="customers();">ذخیره</button>
+                        <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
+                    </div>
+                </div>
+            </div>
+            <div id="customer-extended-info" class="tab-pane">
+                <div class="form-group">
+                    <br />
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" value="male" id="male" autocomplete="off" checked>مذکر
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" id="famle" value="famle" autocomplete="off">مونث
+                    </label>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label for="mobileNumber">کد مشتری:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">شماره ملی:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">شماره موبایل:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">آدرس ایمیل:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">نام کاربری:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">شماره تلفن:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="mobileNumber">کشور:</label>
+                                    <select id="mobileNumber" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobileNumber">شهر:</label>
+                                    <select id="mobileNumber" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="mobileNumber">منطقه:</label>
+                                    <select id="mobileNumber" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobileNumber">محله:</label>
+                                    <select id="mobileNumber" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobileNumber">شرح آدرس:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">کد پستی:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">گروه مشتری:</label>
+                        <select id="mobileNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">سطح مشتری:</label>
+                        <select id="mobileNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">نام معرف:</label>
+                        <select id="mobileNumber" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    
+                    <div class="form-group">
+                        <label class="checkbox" for="mobileNumber">
+                            دریافت خبرنامه:
+                            <input type="checkbox" id="mobileNumber" />
+                        </label>
+                        <label class="checkbox" for="mobileNumber">
+                            دریافت پیامک تبلیغاتی:
+                            <input type="checkbox" id="mobileNumber" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">تاریخ تولد:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">تاریخ فارغ التحصیلی:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">تاریخ ازدواج:</label>
+                        <input id="mobileNumber" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-default" ng-click="customers();">ذخیره</button>
+                        <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
