@@ -1,5 +1,23 @@
 ﻿<form name="usereditform" class="user-edit-form" data-ng-controller="usereditcontroller">
     <div class="signup-div">
+        <div class="row">
+            <div class="col-md-12">
+                <input data-ng-disabled="dsblUserName" class="form-control username-txt" type="text" data-ng-model="username" placeholder="نام کاربری" required />
+
+                <span style="color:red" ng-show="usereditform.username.$dirty && usereditform.username.$invalid">
+                    <span ng-show="usereditform.username.$error.required">لطفا نام کاربری را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input data-ng-disabled="dsblEmail" class="form-control email-txt" type="email" data-ng-model="email" placeholder="ایمیل" required />
+
+                <span style="color:red" ng-show="usereditform.email.$dirty && usereditform.email.$invalid">
+                    <span ng-show="usereditform.email.$error.required">لطفا ایمیل را وارد نمایید</span>
+                </span>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -13,33 +31,13 @@
 
         <div class="row">
             <div class="col-md-12">
-                <input class="form-control username-txt" type="text" data-ng-model="username" placeholder="نام کاربری" required />
-
-                <span style="color:red" ng-show="usereditform.username.$dirty && usereditform.username.$invalid">
-                    <span ng-show="usereditform.username.$error.required">لطفا نام کاربری را وارد نمایید</span>
-                </span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
                 <input class="form-control mobile-txt" type="text" data-ng-model="mobile" placeholder="موبایل" required />
 
                 <span style="color:red" ng-show="usereditform.mobile.$dirty && usereditform.mobile.$invalid">
                     <span ng-show="usereditform.mobile.$error.required">لطفا موبایل را وارد نمایید</span>
                 </span>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <input class="form-control email-txt" type="email" data-ng-model="email" placeholder="ایمیل" required />
-
-                <span style="color:red" ng-show="usereditform.email.$dirty && usereditform.email.$invalid">
-                    <span ng-show="usereditform.email.$error.required">لطفا ایمیل را وارد نمایید</span>
-                </span>
-            </div>
-        </div>
+        </div>        
 
         <div class="row">
             <div class="col-md-12">
@@ -63,11 +61,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                <button type="button" data-ng-click="signup()" ng-disabled="usereditform.$invalid || flLoading" class="btn btn-success btn-lg btn-signup">
+                <button type="button" data-ng-click="save()" ng-disabled="usereditform.$invalid || flLoading" class="btn btn-success btn-lg btn-signup">
                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ثبت
                 </button>
 
-                <button type="button" data-ng-click="cancelSignup()" class="btn btn-warning btn-lg btn-cancel-restore-pass">
+                <button type="button" data-ng-click="cancel()" class="btn btn-warning btn-lg btn-cancel-restore-pass">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> انصراف
                 </button>
             </div>

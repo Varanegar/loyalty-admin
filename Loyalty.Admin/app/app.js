@@ -17,7 +17,7 @@
     ]);
 
     app.run(function ($rootScope, $cookieStore, $location, toaster) {
-        var baseBackendUrl = 'http://217.218.53.71:4444'; //'http://localhost:59822';//
+        var baseBackendUrl = 'http://localhost:59822';//'http://217.218.53.71:4444'; //
 
         $rootScope.privateOwnerId = '79A0D598-0BD2-45B1-BAAA-0A9CF9EFF240';
         $rootScope.dataOwnerId = '3EEE33CE-E2FD-4A5D-A71C-103CC5046D0C';
@@ -44,10 +44,19 @@
         $rootScope.urls = {
             loginUrl: baseBackendUrl + '/oauth/token',
             //loginUrl: baseBackendUrl + '/api/identityAccounts/login',
+
             sendPassCodeUrl: baseBackendUrl + '/api/identityAccounts/SendPassCode',
             resetPasswordByCodeUrl: baseBackendUrl + '/api/identityAccounts/ResetPasswordByCode',
             signupUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
             usersUrl: baseBackendUrl + '/api/accounts/users',
+
+            userUrl: baseBackendUrl + '/api/accounts/getUser',
+            saveUserUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
+
+            permissionCatalogsUrl: baseBackendUrl + '/api/accounts/permissionCatalogs',
+            permissionCatalogsOfUserUrl: baseBackendUrl + '/api/accounts/getPersmissionCatalogsOfUser',
+            savePermissionCatalogsUrl: baseBackendUrl + '/api/accounts/savePermissionCatalogs',
+
         };
 
         $rootScope.onGridRequestEnd = function (e) {
@@ -78,7 +87,7 @@
         };
 
         $rootScope.showAjaxError = function (jqXHR) {
-            
+
             var title = jqXHR.status,
                 message = jqXHR.statusText
 

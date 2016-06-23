@@ -16,15 +16,20 @@ angular.module('membersApp')
                controller: "signupcontroller"
            })
             .when("/userManager", {
-                templateUrl: "partials/users.htm",
+                templateUrl: "partials/userManager/users.htm",
                 controller: "userscontroller",
                 authorize: true,
             })
-           .when("/userManager/edit/:uid", {
-               templateUrl: "partials/editUser.htm",
-               controller: "userscontroller",
+           .when("/userManager/edit/:uid?", { 
+               templateUrl: "partials/userManager/editUser.htm",
+               controller: "usereditcontroller",
                authorize: true,
            })
+            .when("/userManager/permissions/", {
+                templateUrl: "partials/userManager/permissions.htm",
+                controller: "permissionscontroller",
+                authorize: true,
+            })
            .when("/editCustomer", {
                templateUrl: "partials/customer/editCustomer.html",
                controller: "customercontroller",

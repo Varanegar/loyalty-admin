@@ -47,25 +47,23 @@
         }
 
         function login(username, password, successCallback, fail) {
-            $timeout(function () {
-                $http({
-                    method: "post",
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                    },
-                    url: $rootScope.urls.loginUrl,
-                    data: serializeData({
-                        grant_type: 'password',
-                        username: username,
-                        password: password,
-                        scope: $rootScope.privateOwnerId + ',' + $rootScope.dataOwnerId
-                    }),
-                }).then(successCallback, function (response) {
-                    $rootScope.showAjaxError(response);
+            $http({
+                method: "post",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                url: $rootScope.urls.loginUrl,
+                data: serializeData({
+                    grant_type: 'password',
+                    username: username,
+                    password: password,
+                    scope: $rootScope.privateOwnerId + ',' + $rootScope.dataOwnerId
+                }),
+            }).then(successCallback, function (response) {
+                $rootScope.showAjaxError(response);
 
-                    return fail(response);
-                });
-            }, 10000);
+                return fail(response);
+            });
         }
 
         function setCredentials(username, password, token) {

@@ -1,0 +1,34 @@
+﻿<div ng-controller="permissionscontroller" class="k-rtl">
+    <div class="row">
+        <div class="col-xs-11">
+            <select kendo-combo-box
+                    k-placeholder="'کاربر مورد نظر راانتخاب نمایید'"
+                    k-data-text-field="'userName'"
+                    k-data-value-field="'id'"
+                    k-filter="'contains'"
+                    k-auto-bind="false"
+                    k-min-length="3"
+                    k-data-source="usersDS"
+                    ng-model="selectedUserId"
+                    k-on-change="onSelectUser(kendoEvent)"
+                    style="width: 100%"></select>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" ng-disabled="flgSave" data-ng-click="saveTreeFields()" class="btn btn-success" >
+                <span class="glyphicon glyphicon-save"></span>  ثبت
+            </button>
+        </div>
+    </div>
+    <hr />
+    <div kendo-tree-view="tree" k-options="permissionsOptions"></div>
+
+</div>
+
+<!--<select kendo-drop-down-list
+           k-placeholder="'کاربر مورد نظر راانتخاب نمایید'"
+           k-data-source="usersDS"
+           k-data-text-field="'userName'"
+           k-data-value-field="'id'"
+           k-ng-model="selectedUser"
+           k-on-change="onDdlSelection(kendoEvent)"
+           style="width: 100%"></select>-->
