@@ -65,8 +65,10 @@
             customerQuickSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
             customerGroupListUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/compress',
             customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
-
+            customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
+            customerCardSaveUrl: baseBackendUrl + '/api/loyalty/cards/save',
             cardSetUrl: baseBackendUrl + '/api/loyalty/cardsets',
+            
         };
 
         $rootScope.onGridRequestEnd = function (e) {

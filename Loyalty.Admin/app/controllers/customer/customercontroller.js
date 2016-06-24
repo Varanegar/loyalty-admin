@@ -68,7 +68,7 @@
                 }
             },
             pageable: true,
-            toolbar: kendo.template($("#toolbar-template").html()),
+            toolbar: kendo.template($("#customers-toolbar-template").html()),
             height: 500,
             //editable: false,
             dataBinding: onGridDataBinding,
@@ -82,7 +82,7 @@
                 { field: "mobile", title: "موبایل", width: 150 },
                 { field: "currentCardNo", title: "شماره کارت", width: 150 },
                 { field: "customerStatus", title: "وضعیت", width: 150 },
-                { command: { text: "ویرایش", click: $scope.showEdit }, title: " ", width: "180px" }
+                //{ command: { text: "ویرایش", click: $scope.showEdit }, title: " ", width: "180px" }
             ]
         };
 
@@ -98,11 +98,20 @@
         $scope.selectedCustomer = null;
         $scope.selectingCustomer = function (data, dataItem, columns) {
             $scope.selectedCustomer = dataItem;
+            $rootScope.currentCustomer = dataItem;
         };
 
         $scope.editCustomer = function () {
             if ($scope.selectedCustomer) {
                 $location.path('/customer/edit/' + $scope.selectedCustomer.uniqueId);
+            } else {
+                $rootScope.showError('خطا', 'لطفا یک مشتری انتخاب کنید.');
+            }
+        };
+
+        $scope.showCards = function () {
+            if ($scope.selectedCustomer) {
+                $location.path('/card/' + $scope.selectedCustomer.uniqueId);
             } else {
                 $rootScope.showError('خطا', 'لطفا یک مشتری انتخاب کنید.');
             }

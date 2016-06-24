@@ -44,9 +44,9 @@ angular.module('membersApp')
            })
            .when("/card/edit/:uid?", {
                templateUrl: "partials/card/editCard.html",
-               controller: "cardController",
+               controller: "editCardController",
            })
-           .when("/card", {
+           .when("/card/:uid", {
                templateUrl: "partials/card/cards.html",
                controller: "cardController",
            })
