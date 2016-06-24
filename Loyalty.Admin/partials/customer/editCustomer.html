@@ -3,6 +3,9 @@
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات عمومی</a></li>
             <li><a data-toggle="tab" data-target="#customer-extended-info">مشخصات تکمیلی</a></li>
+            <li><a data-toggle="tab" data-target="#customer-history">سابقه فعالیت</a></li>
+            <li><a data-toggle="tab" data-target="#customer-financial-history">سابقه فعالیت مالی</a></li>
+            <li><a data-toggle="tab" data-target="#customer-activity-history">سابقه فعالیت مشتری</a></li>
         </ul>
         <div class="tab-content">
             <div id="customer-general-info" class="tab-pane active">
@@ -58,10 +61,10 @@
                 <div class="form-group">
                     <br />
                     <label class="radio-inline">
-                        <input type="radio" name="gender" value="male" id="male" autocomplete="off" checked>مذکر
+                        <input type="radio" name="gender" value="male" id="male" autocomplete="off" checked>مرد
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="gender" id="famle" value="famle" autocomplete="off">مونث
+                        <input type="radio" name="gender" id="famle" value="famle" autocomplete="off">زن
                     </label>
                 </div>
                 <div class="col-md-4">
@@ -167,6 +170,15 @@
                         <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
                     </div>
                 </div>
+            </div>
+            <div id="customer-history" class="tab-pane">
+                <kendo-grid options="customerHistoryGridOptions"></kendo-grid>
+            </div>
+            <div id="customer-financial-history" class="tab-pane">
+                <kendo-grid options="customerFinancialHistoryGridOptions"></kendo-grid>
+            </div>
+            <div id="customer-activity-history" ckass="tab-pane">
+                <kendo-grid options="customerActivityHistoryGridOptions"></kendo-grid>
             </div>
         </div>
     </div>

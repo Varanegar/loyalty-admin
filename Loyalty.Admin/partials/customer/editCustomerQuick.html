@@ -1,0 +1,57 @@
+﻿<div id="customer-general-info" class="tab-pane active">
+    <div class="form-group">
+        <br />
+        <!--<div class="btn-group" data-toggle="buttons">-->
+        <label class="radio-inline">
+            <input type="radio" name="customerType" value="person" id="person" autocomplete="off" checked> شخص
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="customerType" id="company" value="company" autocomplete="off"> شرکت
+        </label>
+        <!--</div>-->
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="firstname">نام:</label>
+            <input ng-model="customer.firstName" id="firstname" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="lastname">نام خانوادگی:</label>
+            <input ng-model="customer.lastName" id="lastname" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="companyName">نام شرکت:</label>
+            <input ng-model="customer.companyName" id="companyName" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="mobileNumber">شماره موبایل:</label>
+            <input ng-model="customer.mobileNumber" id="mobileNumber" type="text" class="form-control" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="cardNumber">شماره کارت:</label>
+            <input ng-model="customer.cardNumber" id="cardNumber" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="cardGroup">گروه کارت:</label>
+            <select ng-model="customer.cardGroup" id="cardGroup" class="form-control">
+                <option>
+                    گروه پیش فرض
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="customerTier">سطح مشتری:</label>
+            <select ng-model="customer.customerTier" id="customerTier" class="form-control">
+                <option>
+                    سطح پیش فرض
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
+            <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
+        </div>
+    </div>
+</div>

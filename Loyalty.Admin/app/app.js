@@ -17,7 +17,7 @@
     ]);
 
     app.run(function ($rootScope, $cookieStore, $location, toaster) {
-        var baseBackendUrl = 'http://localhost:59822';//'http://217.218.53.71:4444'; //
+        var baseBackendUrl = 'http://217.218.53.71:4444'; //
 
         $rootScope.privateOwnerId = '79A0D598-0BD2-45B1-BAAA-0A9CF9EFF240';
         $rootScope.dataOwnerId = '3EEE33CE-E2FD-4A5D-A71C-103CC5046D0C';
@@ -57,6 +57,7 @@
             permissionCatalogsOfUserUrl: baseBackendUrl + '/api/accounts/getPersmissionCatalogsOfUser',
             savePermissionCatalogsUrl: baseBackendUrl + '/api/accounts/savePermissionCatalogs',
 
+            customersUrl: baseBackendUrl + '/api/customers/list'
         };
 
         $rootScope.onGridRequestEnd = function (e) {

@@ -15,11 +15,11 @@
         })();
 
         $scope.addCard = function () {
-            $location.path('/editCard');
+            $location.path('/card/edit');
         };
 
         $scope.cards = function () {
-            $location.path('/cards');
+            $location.path('/card');
         }
     }
 

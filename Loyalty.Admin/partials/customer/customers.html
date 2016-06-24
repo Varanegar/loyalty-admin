@@ -1,26 +1,20 @@
-﻿<div id="div-customers">
+﻿<script type="text/x-kendo-template" id="toolbar-template">
+    <div class="toolbar">
+        <button type="button" data-ng-click="addQuickCustomer()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>افزودن مشتری سریع
+        </button>
+        <button type="button" data-ng-click="addCustomer()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>افزودن
+        </button>
+        <button type="button" data-ng-click="showEdit()" class="k-button k-button-icontext">
+            <span class="k-icon k-edit"></span>ویرایش
+        </button>
+    </div>
+</script>
+
+<div id="div-customers">
 
     <div class="row">
-        <button kendo-button ng-click="addCustomer();">افزودن</button>
-        <button kendo-button ng-click="cardInfo();">افزودن</button>
-        <div class="k-rtl" id="customers-grid"
-             kendo-grid="grid"
-             k-sortable="true"
-             k-pageable="true"
-             k-filterable="true"
-             k-editable="'inline'"
-             k-selectable="true"
-             k-columns='[
-                { field: "customerType", title: "نوع مشتری" },
-                { field: "customerName", title: "نام مشتری"},
-                { field: "mobileNumber", title: "تلفن همراه" },
-                { field: "cardNumber", title: "شماره کارت" }]'>
-            <style scoped>
-                .toolbar {
-                    padding: 15px;
-                    float: right;
-                }
-            </style>
-        </div>
+        <kendo-grid options="customerGridOptions" k-on-change="onCustomerSelected(data, dataItem, columns)"></kendo-grid>
     </div>
 </div>
