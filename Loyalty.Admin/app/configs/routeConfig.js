@@ -14,23 +14,23 @@
                templateUrl: "partials/signup.htm",
                controller: "signupcontroller"
            })
-            .when("/userManager", {
-                templateUrl: "partials/userManager/users.htm",
-                controller: "userscontroller",
-                authorize: true,
-            })
-           .when("/userManager/edit/:uid?", { 
+           .when("/userManager", {
+               templateUrl: "partials/userManager/users.htm",
+               controller: "userscontroller",
+               authorize: true,
+           })
+           .when("/userManager/edit/:uid?", {
                templateUrl: "partials/userManager/editUser.htm",
                controller: "usereditcontroller",
                authorize: true,
            })
-            .when("/userManager/permissions/", {
-                templateUrl: "partials/userManager/permissions.htm",
-                controller: "permissionscontroller",
-                authorize: true,
-            })
+           .when("/userManager/permissions", {
+               templateUrl: "partials/userManager/permissions.htm",
+               controller: "permissionscontroller",
+               authorize: true,
+           })
            .when("/customer/list", {
-                templateUrl: "partials/customer/customers.html",
+               templateUrl: "partials/customer/customers.html",
                controller: "customercontroller",
            })
            .when("/customer/edit/:uid?", {
@@ -49,12 +49,13 @@
                templateUrl: "partials/card/cards.html",
                controller: "cardController",
            })
-           .when("/customers/groups", {
+           .when("/customer/groups", {
                templateUrl: "partials/customer/group.htm",
                controller: "customergroupcontroller",
                authorize: true,
            })
            .otherwise({
                redirectTo: "/",
+
            })
        });
