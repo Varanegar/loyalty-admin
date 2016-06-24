@@ -1,58 +1,56 @@
-﻿<form name="editCustomer" data-ng-controller="customercontroller" role="form">
+﻿<form name="editCustomer" data-ng-controller="editCustomerController" role="form">
     <div id="div-edit-customer">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات عمومی</a></li>
             <li><a data-toggle="tab" data-target="#customer-extended-info">مشخصات تکمیلی</a></li>
-            <li><a data-toggle="tab" data-target="#customer-history">سابقه فعالیت</a></li>
-            <li><a data-toggle="tab" data-target="#customer-financial-history">سابقه فعالیت مالی</a></li>
-            <li><a data-toggle="tab" data-target="#customer-activity-history">سابقه فعالیت مشتری</a></li>
+            <li ng-show="isEditMode()"><a data-toggle="tab" data-target="#customer-history">سابقه فعالیت</a></li>
+            <li ng-show="isEditMode()"><a data-toggle="tab" data-target="#customer-financial-history">سابقه فعالیت مالی</a></li>
+            <li ng-show="isEditMode()"><a data-toggle="tab" data-target="#customer-activity-history">سابقه فعالیت مشتری</a></li>
         </ul>
         <div class="tab-content">
             <div id="customer-general-info" class="tab-pane active">
                 <div class="form-group">
                     <br />
-                    <!--<div class="btn-group" data-toggle="buttons">-->
                     <label class="radio-inline">
-                        <input type="radio" name="customerType" value="person" id="person" autocomplete="off" checked> شخص
+                        <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
+                              name="customerType" ng-value="personTypeId" autocomplete="off" checked> شخص
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="customerType" id="company" value="company" autocomplete="off"> شرکت
+                        <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
+                              name="customerType" ng-value="companyTypeId" autocomplete="off"> شرکت
                     </label>
-                    <!--</div>-->
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="firstname">نام:</label>
-                        <input id="firstname" type="text" class="form-control" />
+                        <input ng-model="customer.firstName" id="firstname" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="lastname">نام خانوادگی:</label>
-                        <input id="lastname" type="text" class="form-control" />
+                        <input ng-model="customer.lastName" id="lastname" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="companyName">نام شرکت:</label>
-                        <input id="companyName" type="text" class="form-control" />
+                        <input ng-model="customer.companyName" id="companyName" type="text" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="mobileNumber">شماره موبایل:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <input ng-model="customer.mobile" id="mobileNumber" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="cardNumber">شماره کارت:</label>
-                        <input id="cardNumber" type="text" class="form-control" />
+                        <input ng-model="customer.currentCardNo" id="cardNumber" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="cardGroup">گروه کارت:</label>
-                        <select id="cardGroup" class="form-control">
-                            <option>
-                                گروه پیش فرض
-                            </option>
+                        <select ng-model="customer.currentCardSetId" id="cardGroup" class="form-control">
+                            <option ng-repeat="cg in cardSets" value="{{cg.uniqueId}}">{{cg.loyaltyCardSetName}}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-default" ng-click="customers();">ذخیره</button>
+                        <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
                         <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
                     </div>
                 </div>
@@ -70,28 +68,24 @@
                 <div class="col-md-4">
 
                     <div class="form-group">
-                        <label for="mobileNumber">کد مشتری:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="customerCode">کد مشتری:</label>
+                        <input ng-model="customer.customerCode" id="customerCode" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">شماره ملی:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="nationalCode">شماره ملی:</label>
+                        <input ng-model="customer.nationalCode" id="nationalCode" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="mobileNumber">شماره موبایل:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <input ng-model="customer.mobile" id="mobileNumber" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">آدرس ایمیل:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="email">آدرس ایمیل:</label>
+                        <input ng-model="customer.email" id="email" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">نام کاربری:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="mobileNumber">شماره تلفن:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="phone">شماره تلفن:</label>
+                        <input ng-model="customer.phone" id="phone" type="text" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -99,74 +93,94 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="mobileNumber">کشور:</label>
-                                    <select id="mobileNumber" class="form-control" />
+                                    <label for="country">کشور:</label>
+                                    <select id="country" class="form-control" ng-change="onCountryChanged()"
+                                            ng-model="customer.regionLevel1Id">
+                                        <option ng-repeat="c in countries" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mobileNumber">شهر:</label>
-                                    <select id="mobileNumber" class="form-control" />
+                                    <label for="city">شهر:</label>
+                                    <select id="city" class="form-control" ng-change="onCityChanged()"
+                                            ng-model="customer.regionLevel2Id" 
+                                            >
+                                        <option ng-repeat="c in cities" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="mobileNumber">منطقه:</label>
-                                    <select id="mobileNumber" class="form-control" />
+                                    <label for="region">منطقه:</label>
+                                    <select id="region" class="form-control" ng-change="onRegionChanged()"
+                                            ng-model="customer.regionLevel3Id" >
+                                        <option ng-repeat="c in regions" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mobileNumber">محله:</label>
-                                    <select id="mobileNumber" class="form-control" />
+                                    <label for="district">محله:</label>
+                                    <select id="district" class="form-control" 
+                                            ng-model="customer.regionLevel4Id" >
+                                        <option ng-repeat="c in districts" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="mobileNumber">شرح آدرس:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="address">شرح آدرس:</label>
+                        <input id="address" type="text" class="form-control" ng-model="customer.mainStreet" />
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">کد پستی:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="postalCode">کد پستی:</label>
+                        <input id="postalCode" type="text" class="form-control" ng-model="customer.postalCode" />
                     </div>
                     <div class="form-group">
                         <label for="mobileNumber">گروه مشتری:</label>
-                        <select id="mobileNumber" class="form-control" />
+                        <select id="mobileNumber" class="form-control" ng-model="customer.customerGroupId">
+                            <option ng-repeat="g in customerGroups" value="{{g.uniqueId}}">{{g.groupName}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="mobileNumber">سطح مشتری:</label>
-                        <select id="mobileNumber" class="form-control" />
+                        <select id="mobileNumber" class="form-control" ng-model="customer.currentTierId">
+                            <option ng-repeat="t in tiers" value="{{t.uniqueId}}">{{t.tierName}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">نام معرف:</label>
-                        <select id="mobileNumber" class="form-control" />
+                        <label for="reagent">نام معرف:</label>
+                        <select id="reagent" class="form-control" ng-model="customer.reagentId" />
                     </div>
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="form-group">
-                        <label class="checkbox" for="mobileNumber">
+                        <label class="checkbox" for="getNews">
                             دریافت خبرنامه:
-                            <input type="checkbox" id="mobileNumber" />
+                            <input type="checkbox" id="getNews" ng-model="customer.getNews" />
                         </label>
-                        <label class="checkbox" for="mobileNumber">
+                        <label class="checkbox" for="getMessage">
                             دریافت پیامک تبلیغاتی:
-                            <input type="checkbox" id="mobileNumber" />
+                            <input type="checkbox" id="getMessage" ng-model="customer.getMessage" />
                         </label>
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">تاریخ تولد:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="pBirthDay">تاریخ تولد:</label>
+                        <adm-dtp id="pBirthDay" ng-model="customer.pBirthDay"></adm-dtp>
+                        <!--<input id="pBirthDay" ng-model="customer.pBirthDay" type="text" class="form-control" />-->
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">تاریخ فارغ التحصیلی:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="pGraduateDate">تاریخ فارغ التحصیلی:</label>
+                        <adm-dtp id="pGraduateDate" ng-model="customer.pGraduateDate" ></adm-dtp>
+                        <!--<input id="pGraduateDate" ng-model="customer.pGraduateDate" type="text" class="form-control" />-->
                     </div>
                     <div class="form-group">
-                        <label for="mobileNumber">تاریخ ازدواج:</label>
-                        <input id="mobileNumber" type="text" class="form-control" />
+                        <label for="pMarriageDate">تاریخ ازدواج:</label>
+                        <adm-dtp id="pMarriageDate" ng-model="customer.pMarriageDate"></adm-dtp>
+                        <!--<input id="pMarriageDate" ng-model="customer.pMarriageDate" type="text" class="form-control" />-->
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-default" ng-click="customers();">ذخیره</button>
+                        <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
                         <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
                     </div>
                 </div>

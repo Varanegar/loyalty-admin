@@ -10,8 +10,8 @@
     function editCustomerQuickController($scope, $http, $rootScope, $location, authenticationService, callApi, callApiAnonymouslyService) {
         $scope.flLoading = false;
         (function initController() {
-            //$location.path('/editCustomerQuick');
         })();
+
 
         $scope.customer = {
 
@@ -29,7 +29,7 @@
         };
 
         $scope.customers = function () {
-            $location.path('/customer');
+            $location.path('/customer/list');
         }
     }
 })();

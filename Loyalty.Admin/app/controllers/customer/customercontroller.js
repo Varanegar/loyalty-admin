@@ -9,7 +9,7 @@
 
 
     function customercontroller($scope, $http, $rootScope, $location, authenticationService, callApi, callApiAnonymouslyService) {
-
+        
         $scope.flLoading = false;
         (function initController() {
             //$location.path('/customer');
@@ -101,9 +101,8 @@
         };
 
         $scope.editCustomer = function () {
-            debugger;
             if ($scope.selectedCustomer) {
-                $location.path('/customer/edit/' + $scope.selectedCustomer.id);
+                $location.path('/customer/edit/' + $scope.selectedCustomer.uniqueId);
             } else {
                 $rootScope.showError('خطا', 'لطفا یک مشتری انتخاب کنید.');
             }

@@ -57,10 +57,16 @@
             permissionCatalogsOfUserUrl: baseBackendUrl + '/api/accounts/getPersmissionCatalogsOfUser',
             savePermissionCatalogsUrl: baseBackendUrl + '/api/accounts/savePermissionCatalogs',
 
+            regionByParentIdUrl: baseBackendUrl + '/api/base/region/cityregions/byparentid/',
+
             customersUrl: baseBackendUrl + '/api/loyalty/customer/customers/compress',
-            customerByIdUrl: baseBackendUrl + '/api/customer/customers/',
+            customerByIdUrl: baseBackendUrl + '/api/loyalty/customer/customers/byid/',
             customerSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
-            customerQuickSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle'
+            customerQuickSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
+            customerGroupListUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/compress',
+            customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
+
+            cardSetUrl: baseBackendUrl + '/api/loyalty/cardsets',
         };
 
         $rootScope.onGridRequestEnd = function (e) {

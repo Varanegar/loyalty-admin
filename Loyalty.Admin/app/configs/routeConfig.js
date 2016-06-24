@@ -30,6 +30,10 @@ angular.module('membersApp')
                 controller: "permissionscontroller",
                 authorize: true,
             })
+           .when("/customer/list", {
+                templateUrl: "partials/customer/customers.html",
+                controller: "customercontroller",
+            })
            .when("/customer/edit/:uid?", {
                templateUrl: "partials/customer/editCustomer.html",
                controller: "editCustomerController",
@@ -37,10 +41,6 @@ angular.module('membersApp')
            .when("/customer/addQuick", {
                templateUrl: "partials/customer/editCustomerQuick.html",
                controller: "editCustomerQuickController",
-           })
-           .when("/customer", {
-               templateUrl: "partials/customer/customers.html",
-               controller: "customercontroller",
            })
            .when("/card/edit/:uid?", {
                templateUrl: "partials/card/editCard.html",
