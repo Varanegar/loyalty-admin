@@ -1,25 +1,21 @@
-﻿<div id="div-cards">
-
+﻿<script type="text/x-kendo-template" id="cards-toolbar-template">
+    <div class="toolbar">
+        <button type="button" data-ng-click="addCard()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>تخصیص کارت
+        </button>
+        <button type="button" data-ng-click="disposeCard()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>ابطال کارت
+        </button>
+        <button type="button" data-ng-click="toggleCardStatus()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>غیرفعال سازی
+        </button>
+        <button type="button" data-ng-click="customers()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>بستن
+        </button>
+    </div>
+</script>
+<div id="div-cards" class="k-rtl">
     <div class="row">
-        <button kendo-button ng-click="addCard();">تخصیص کارت</button>
-        <div class="k-rtl" id="cards-grid"
-             kendo-grid="grid"
-             k-sortable="true"
-             k-pageable="true"
-             k-filterable="true"
-             k-editable="'inline'"
-             k-selectable="true"
-             k-columns='[
-                { field: "row", title: "ردیف" },
-                { field: "cardGroup", title: "گروه کارت" },
-                { field: "cardNumber", title: "شماره کارت"},
-                { field: "cardStatus", title: "وضعیت" }]'>
-            <style scoped>
-                .toolbar {
-                    padding: 15px;
-                    float: right;
-                }
-            </style>
-        </div>
+        <kendo-grid options="cardGridOptions" k-on-change="selectingCard(data, dataItem, columns)"></kendo-grid>
     </div>
 </div>

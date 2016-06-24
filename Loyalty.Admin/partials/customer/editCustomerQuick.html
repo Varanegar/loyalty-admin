@@ -1,0 +1,55 @@
+﻿<div id="customer-general-info" class="tab-pane active" ng-controller="editCustomerQuickController">
+    <div class="form-group">
+        <br />
+        <label class="radio-inline">
+            <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
+                   name="customerType" ng-value="personTypeId" autocomplete="off" checked> شخص
+        </label>
+        <label class="radio-inline">
+            <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
+                   name="customerType" ng-value="companyTypeId" autocomplete="off"> شرکت
+        </label>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="firstname">نام:</label>
+            <input ng-model="customer.firstName" id="firstname" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="lastname">نام خانوادگی:</label>
+            <input ng-model="customer.lastName" id="lastname" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="companyName">نام شرکت:</label>
+            <input ng-model="customer.companyName" id="companyName" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="mobileNumber">شماره موبایل:</label>
+            <input ng-model="customer.mobile" id="mobileNumber" type="number" class="form-control" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="cardNumber">شماره کارت:</label>
+            <input ng-model="customer.currentCardNo" id="cardNumber" type="number" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="cardGroup">گروه کارت:</label>
+            <select ng-model="customer.currentCardSetId" id="cardGroup" class="form-control">
+                <option ng-repeat="cg in cardSets" value="{{cg.uniqueId}}">{{cg.loyaltyCardSetName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="mobileNumber">سطح مشتری:</label>
+            <select id="mobileNumber" class="form-control" ng-model="customer.currentTierId">
+                <option ng-repeat="t in tiers" value="{{t.uniqueId}}">{{t.tierName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
+            <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
+        </div>
+    </div>
+</div>

@@ -14,34 +14,38 @@
                templateUrl: "partials/signup.htm",
                controller: "signupcontroller"
            })
-           .when("/userManager", {
-               templateUrl: "partials/userManager/users.htm",
-               controller: "userscontroller",
-               authorize: true,
-           })
-           .when("/userManager/edit/:uid?", {
+            .when("/userManager", {
+                templateUrl: "partials/userManager/users.htm",
+                controller: "userscontroller",
+                authorize: true,
+            })
+           .when("/userManager/edit/:uid?", { 
                templateUrl: "partials/userManager/editUser.htm",
                controller: "usereditcontroller",
                authorize: true,
            })
-           .when("/userManager/permissions/", {
-               templateUrl: "partials/userManager/permissions.htm",
-               controller: "permissionscontroller",
-               authorize: true,
+            .when("/userManager/permissions/", {
+                templateUrl: "partials/userManager/permissions.htm",
+                controller: "permissionscontroller",
+                authorize: true,
+            })
+           .when("/customer/list", {
+                templateUrl: "partials/customer/customers.html",
+               controller: "customercontroller",
            })
-           .when("/editCustomer", {
+           .when("/customer/edit/:uid?", {
                templateUrl: "partials/customer/editCustomer.html",
-               controller: "customercontroller",
+               controller: "editCustomerController",
            })
-           .when("/customers", {
-               templateUrl: "partials/customer/customers.html",
-               controller: "customercontroller",
+           .when("/customer/addQuick", {
+               templateUrl: "partials/customer/editCustomerQuick.html",
+               controller: "editCustomerQuickController",
            })
-           .when("/editCard", {
+           .when("/card/edit/:uid?", {
                templateUrl: "partials/card/editCard.html",
-               controller: "cardController",
+               controller: "editCardController",
            })
-           .when("/cards", {
+           .when("/card/:uid", {
                templateUrl: "partials/card/cards.html",
                controller: "cardController",
            })
