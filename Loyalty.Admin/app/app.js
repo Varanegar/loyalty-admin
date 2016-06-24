@@ -17,7 +17,7 @@
     ]);
 
     app.run(function ($rootScope, $cookieStore, $location, toaster) {
-        var baseBackendUrl = 'http://localhost:59822';//'http://217.218.53.71:4444'; //
+        var baseBackendUrl = 'http://217.218.53.71:4444'; //''; //'http://localhost:59822';
 
         $rootScope.privateOwnerId = '79A0D598-0BD2-45B1-BAAA-0A9CF9EFF240';
         $rootScope.dataOwnerId = '3EEE33CE-E2FD-4A5D-A71C-103CC5046D0C';
@@ -57,6 +57,8 @@
             permissionCatalogsOfUserUrl: baseBackendUrl + '/api/accounts/getPersmissionCatalogsOfUser',
             savePermissionCatalogsUrl: baseBackendUrl + '/api/accounts/savePermissionCatalogs',
 
+            customerGroupsUrl: baseBackendUrl + '/api/loyalty/customer/customergroups',
+            customerGroupSaveUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/save',
         };
 
         $rootScope.onGridRequestEnd = function (e) {
@@ -170,6 +172,12 @@
         AuthorizationError.prototype = Object.create(Error.prototype);
         AuthorizationError.prototype.constructor = AuthorizationError;
 
+        $rootScope.newGuid = function () {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        }
     });
 
     app.config(['$httpProvider', function ($httpProvider) {

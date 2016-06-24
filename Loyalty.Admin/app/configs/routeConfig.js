@@ -1,5 +1,4 @@
-﻿
-angular.module('membersApp')
+﻿angular.module('membersApp')
        .config(function ($routeProvider) {
 
            $routeProvider
@@ -15,21 +14,21 @@ angular.module('membersApp')
                templateUrl: "partials/signup.htm",
                controller: "signupcontroller"
            })
-            .when("/userManager", {
-                templateUrl: "partials/userManager/users.htm",
-                controller: "userscontroller",
-                authorize: true,
-            })
-           .when("/userManager/edit/:uid?", { 
+           .when("/userManager", {
+               templateUrl: "partials/userManager/users.htm",
+               controller: "userscontroller",
+               authorize: true,
+           })
+           .when("/userManager/edit/:uid?", {
                templateUrl: "partials/userManager/editUser.htm",
                controller: "usereditcontroller",
                authorize: true,
            })
-            .when("/userManager/permissions/", {
-                templateUrl: "partials/userManager/permissions.htm",
-                controller: "permissionscontroller",
-                authorize: true,
-            })
+           .when("/userManager/permissions/", {
+               templateUrl: "partials/userManager/permissions.htm",
+               controller: "permissionscontroller",
+               authorize: true,
+           })
            .when("/editCustomer", {
                templateUrl: "partials/customer/editCustomer.html",
                controller: "customercontroller",
@@ -45,6 +44,11 @@ angular.module('membersApp')
            .when("/cards", {
                templateUrl: "partials/card/cards.html",
                controller: "cardController",
+           })
+           .when("/customers/groups", {
+               templateUrl: "partials/customer/group.htm",
+               controller: "customergroupcontroller",
+               authorize: true,
            })
            .otherwise({
                redirectTo: "/",
