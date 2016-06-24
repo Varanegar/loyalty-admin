@@ -173,6 +173,211 @@
         };
 
 
+        var customerActivityDataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    //callApi.call($rootScope.urls.customersUrl, 'POST', null, function (response) {
+                    //    console.log(response.data);
+                    //    e.success(response.data)
+                    //}, function (response) {
+                    //    console.log(response);
+                    //});
+                },
+                parameterMap: function (options, operation) {
+                    if (operation == "read")
+                        return kendo.stringify(options);
+                }
+            },
+            batch: true,
+            pageSize: 20,
+            requestEnd: $rootScope.onGridRequestEnd,
+            schema: {
+                model: {
+                    id: "id",
+                    fields: {
+                        id: { editable: false, nullable: true },
+                        date: { editable: false },
+                        action: { editable: false },
+                        location: { editable: false },
+                        user: { editable: false },
+                        terminal: { editable: false },
+                        description: { editable: false }
+                    }
+                }
+            }
+        });
+        $scope.customerActivityGridOptions = {
+            dataSource: customerActivityDataSource,
+            selectable: true,
+            // navigatable: true,
+            resizable: true,
+            sortable: true,
+            filterable: {
+                extra: false,
+                operators: {
+                    string: {
+                        startswith: "شروع با",
+                        eq: "مساوی با",
+                        neq: "نامساوی",
+                        contains: "شامل"
+                    }
+                }
+            },
+            pageable: true,
+            toolbar: null,
+            height: 500,
+            //editable: false,
+            dataBinding: onGridDataBinding,
+            columns: [
+                { field: "rowNo", title: "#", width: 70, template: "#: renderNumber(data) #", filterable: false, },
+                { field: "date", title: "تاریخ", width: 200 },
+                { field: "action", title: "اقدام", width: 250 },
+                { field: "location", title: "مکان", width: 150 },
+                { field: "user", title: "کاربر", width: 150 },
+                { field: "terminal", title: "ترمینال", width: 150 },
+                { field: "description", title: "توضیحات", width: 150 }
+            ]
+        };
+
+        var customerFinancialActivityDataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    //callApi.call($rootScope.urls.customersUrl, 'POST', null, function (response) {
+                    //    console.log(response.data);
+                    //    e.success(response.data)
+                    //}, function (response) {
+                    //    console.log(response);
+                    //});
+                },
+                parameterMap: function (options, operation) {
+                    if (operation == "read")
+                        return kendo.stringify(options);
+                }
+            },
+            batch: true,
+            pageSize: 20,
+            requestEnd: $rootScope.onGridRequestEnd,
+            schema: {
+                model: {
+                    id: "id",
+                    fields: {
+                        id: { editable: false, nullable: true },
+                        date: { editable: false },
+                        transaction: { editable: false },
+                        realPrice: { editable: false },
+                        unrealPrice: { editable: false },
+                        discount: { editable: false },
+                        location: { editable: false },
+                        user: { editable: false },
+                        terminal: { editable: false },
+                        description: { editable: false }
+                    }
+                }
+            }
+        });
+        $scope.customerFinancialActivityGridOptions = {
+            dataSource: customerActivityDataSource,
+            selectable: true,
+            // navigatable: true,
+            resizable: true,
+            sortable: true,
+            filterable: {
+                extra: false,
+                operators: {
+                    string: {
+                        startswith: "شروع با",
+                        eq: "مساوی با",
+                        neq: "نامساوی",
+                        contains: "شامل"
+                    }
+                }
+            },
+            pageable: true,
+            toolbar: null,
+            height: 500,
+            //editable: false,
+            dataBinding: onGridDataBinding,
+            columns: [
+                { field: "rowNo", title: "#", width: 70, template: "#: renderNumber(data) #", filterable: false, },
+                { field: "date", title: "تاریخ", width: 200 },
+                { field: "transaction", title: "تراکنش", width: 250 },
+                { field: "realPrice", title: "مبلغ خالص", width: 150 },
+                { field: "unrealPrice", title: "مبلغ ناخالص", width: 150 },
+                { field: "discount", title: "تخفیف", width: 150 },
+                { field: "location", title: "مکان", width: 150 },
+                { field: "user", title: "کاربر", width: 150 },
+                { field: "terminal", title: "ترمینال", width: 150 },
+                { field: "description", title: "توضیحات", width: 150 }
+            ]
+        };
+
+        var customerActivityHistoryDataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    //callApi.call($rootScope.urls.customersUrl, 'POST', null, function (response) {
+                    //    console.log(response.data);
+                    //    e.success(response.data)
+                    //}, function (response) {
+                    //    console.log(response);
+                    //});
+                },
+                parameterMap: function (options, operation) {
+                    if (operation == "read")
+                        return kendo.stringify(options);
+                }
+            },
+            batch: true,
+            pageSize: 20,
+            requestEnd: $rootScope.onGridRequestEnd,
+            schema: {
+                model: {
+                    id: "id",
+                    fields: {
+                        id: { editable: false, nullable: true },
+                        date: { editable: false },
+                        feature: { editable: false },
+                        initial: { editable: false },
+                        incremental: { editable: false },
+                        decremental: { editable: false },
+                        final: { editable: false }
+                    }
+                }
+            }
+        });
+        $scope.customerActivityHistoryGridOptions = {
+            dataSource: customerActivityDataSource,
+            selectable: true,
+            // navigatable: true,
+            resizable: true,
+            sortable: true,
+            filterable: {
+                extra: false,
+                operators: {
+                    string: {
+                        startswith: "شروع با",
+                        eq: "مساوی با",
+                        neq: "نامساوی",
+                        contains: "شامل"
+                    }
+                }
+            },
+            pageable: true,
+            toolbar: null,
+            height: 500,
+            //editable: false,
+            dataBinding: onGridDataBinding,
+            columns: [
+                { field: "rowNo", title: "#", width: 70, template: "#: renderNumber(data) #", filterable: false, },
+                { field: "date", title: "تاریخ", width: 200 },
+                { field: "feature", title: "ویژگی برنامه", width: 250 },
+                { field: "initial", title: "مقدار اولیه", width: 150 },
+                { field: "incremental", title: "مقدار افزایشی", width: 150 },
+                { field: "decremental", title: "مقدار کاهشی", width: 150 },
+                { field: "final", title: "مقدار نهایی", width: 150 }
+            ]
+        };
+
+
         (function initController() {
             $scope.flLoading = true;
 
