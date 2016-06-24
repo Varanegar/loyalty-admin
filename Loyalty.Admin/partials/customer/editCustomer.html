@@ -2,7 +2,6 @@
     <div id="div-edit-customer">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات عمومی</a></li>
-            <li><a data-toggle="tab" data-target="#customer-extended-info">مشخصات تکمیلی</a></li>
             <li ng-show="isEditMode()"><a data-toggle="tab" data-target="#customer-history">سابقه فعالیت</a></li>
             <li ng-show="isEditMode()"><a data-toggle="tab" data-target="#customer-financial-history">سابقه فعالیت مالی</a></li>
             <li ng-show="isEditMode()"><a data-toggle="tab" data-target="#customer-activity-history">سابقه فعالیت مشتری</a></li>
@@ -53,17 +52,6 @@
                         <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
                         <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
                     </div>
-                </div>
-            </div>
-            <div id="customer-extended-info" class="tab-pane">
-                <div class="form-group">
-                    <br />
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" value="male" id="male" autocomplete="off" checked>مرد
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" id="famle" value="famle" autocomplete="off">زن
-                    </label>
                 </div>
                 <div class="col-md-4">
 
