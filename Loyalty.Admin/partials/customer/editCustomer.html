@@ -1,5 +1,5 @@
 ﻿<form name="editCustomer" data-ng-controller="editCustomerController" role="form">
-    <div id="div-edit-customer">
+    <div id="div-edit-customer" class="k-rtl">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات عمومی</a></li>
             <li ng-show="isEditMode()"><a data-toggle="tab" data-target="#customer-history">سابقه فعالیت</a></li>
@@ -157,15 +157,16 @@
                         <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
                     </div>
                 </div>
-                <div id="customer-history" class="tab-pane">
-                    <kendo-grid options="customerHistoryGridOptions"></kendo-grid>
-                </div>
-                <div id="customer-financial-history" class="tab-pane">
-                    <kendo-grid options="customerFinancialHistoryGridOptions"></kendo-grid>
-                </div>
-                <div id="customer-activity-history" ckass="tab-pane">
-                    <kendo-grid options="customerActivityHistoryGridOptions"></kendo-grid>
-                </div>
             </div>
+            <div id="customer-history" class="tab-pane">
+                <kendo-grid options="customerActivityGridOptions"></kendo-grid>
+            </div>
+            <div id="customer-financial-history" class="tab-pane">
+                <kendo-grid options="customerFinancialActivityGridOptions"></kendo-grid>
+            </div>
+            <div id="customer-activity-history" ckass="tab-pane">
+                <kendo-grid options="customerActivityHistoryGridOptions"></kendo-grid>
+            </div>
+
         </div>
 </form>
