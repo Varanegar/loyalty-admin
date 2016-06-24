@@ -143,7 +143,6 @@
                 });
         };
 
-
         $scope.getCardGroups = function () {
             callApi.call($rootScope.urls.cardSetUrl, 'POST', null,
                 function (response) {

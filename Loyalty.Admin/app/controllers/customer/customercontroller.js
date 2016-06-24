@@ -78,9 +78,9 @@
                 { field: "customerCode", title: "کد مشتری", width: 250 },
                 { field: "customerName", title: "نام مشتری", width: 150 },
                 { field: "customerGroup", title: "گروه مشتری", width: 150 },
-                { field: "customerTier", title: "سطح مشتری", width: 150 },
-                { field: "customerMobile", title: "موبایل", width: 150 },
-                { field: "customerCardNumber", title: "شماره کارت", width: 150 },
+                { field: "customerTierName", title: "سطح مشتری", width: 150 },
+                { field: "mobile", title: "موبایل", width: 150 },
+                { field: "currentCardNo", title: "شماره کارت", width: 150 },
                 { field: "customerStatus", title: "وضعیت", width: 150 },
                 { command: { text: "ویرایش", click: $scope.showEdit }, title: " ", width: "180px" }
             ]
