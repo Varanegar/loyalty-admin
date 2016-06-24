@@ -12,14 +12,12 @@
                     <br />
                     <label class="radio-inline">
                         <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
-                              name="customerType" ng-value="personTypeId" autocomplete="off" checked> شخص
+                               name="customerType" ng-value="personTypeId" autocomplete="off" checked> شخص
                     </label>
                     <label class="radio-inline">
                         <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
-                              name="customerType" ng-value="companyTypeId" autocomplete="off"> شرکت
+                               name="customerType" ng-value="companyTypeId" autocomplete="off"> شرکت
                     </label>
-                </div>
-                <div class="col-md-4">
                     <div class="form-group">
                         <label for="firstname">نام:</label>
                         <input ng-model="customer.firstName" id="firstname" type="text" class="form-control" />
@@ -32,8 +30,6 @@
                         <label for="companyName">نام شرکت:</label>
                         <input ng-model="customer.companyName" id="companyName" type="text" class="form-control" />
                     </div>
-                </div>
-                <div class="col-md-4">
                     <div class="form-group">
                         <label for="mobileNumber">شماره موبایل:</label>
                         <input ng-model="customer.mobile" id="mobileNumber" type="text" class="form-control" />
@@ -48,13 +44,6 @@
                             <option ng-repeat="cg in cardSets" value="{{cg.uniqueId}}">{{cg.loyaltyCardSetName}}</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
-                        <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-
                     <div class="form-group">
                         <label for="customerCode">کد مشتری:</label>
                         <input ng-model="customer.customerCode" id="customerCode" type="text" class="form-control" />
@@ -75,8 +64,7 @@
                         <label for="phone">شماره تلفن:</label>
                         <input ng-model="customer.phone" id="phone" type="text" class="form-control" />
                     </div>
-                </div>
-                <div class="col-md-4">
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
@@ -90,8 +78,7 @@
                                 <div class="form-group">
                                     <label for="city">شهر:</label>
                                     <select id="city" class="form-control" ng-change="onCityChanged()"
-                                            ng-model="customer.regionLevel2Id" 
-                                            >
+                                            ng-model="customer.regionLevel2Id">
                                         <option ng-repeat="c in cities" value="{{c.uniqueId}}">{{c.groupName}}</option>
                                     </select>
                                 </div>
@@ -100,14 +87,14 @@
                                 <div class="form-group">
                                     <label for="region">منطقه:</label>
                                     <select id="region" class="form-control" ng-change="onRegionChanged()"
-                                            ng-model="customer.regionLevel3Id" >
+                                            ng-model="customer.regionLevel3Id">
                                         <option ng-repeat="c in regions" value="{{c.uniqueId}}">{{c.groupName}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="district">محله:</label>
-                                    <select id="district" class="form-control" 
-                                            ng-model="customer.regionLevel4Id" >
+                                    <select id="district" class="form-control"
+                                            ng-model="customer.regionLevel4Id">
                                         <option ng-repeat="c in districts" value="{{c.uniqueId}}">{{c.groupName}}</option>
                                     </select>
                                 </div>
@@ -139,8 +126,6 @@
                         <label for="reagent">نام معرف:</label>
                         <select id="reagent" class="form-control" ng-model="customer.reagentId" />
                     </div>
-                </div>
-                <div class="col-md-4">
 
                     <div class="form-group">
                         <label class="checkbox" for="getNews">
@@ -159,7 +144,7 @@
                     </div>
                     <div class="form-group">
                         <label for="pGraduateDate">تاریخ فارغ التحصیلی:</label>
-                        <adm-dtp id="pGraduateDate" ng-model="customer.pGraduateDate" ></adm-dtp>
+                        <adm-dtp id="pGraduateDate" ng-model="customer.pGraduateDate"></adm-dtp>
                         <!--<input id="pGraduateDate" ng-model="customer.pGraduateDate" type="text" class="form-control" />-->
                     </div>
                     <div class="form-group">
@@ -172,16 +157,15 @@
                         <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
                     </div>
                 </div>
-            </div>
-            <div id="customer-history" class="tab-pane">
-                <kendo-grid options="customerHistoryGridOptions"></kendo-grid>
-            </div>
-            <div id="customer-financial-history" class="tab-pane">
-                <kendo-grid options="customerFinancialHistoryGridOptions"></kendo-grid>
-            </div>
-            <div id="customer-activity-history" ckass="tab-pane">
-                <kendo-grid options="customerActivityHistoryGridOptions"></kendo-grid>
+                <div id="customer-history" class="tab-pane">
+                    <kendo-grid options="customerHistoryGridOptions"></kendo-grid>
+                </div>
+                <div id="customer-financial-history" class="tab-pane">
+                    <kendo-grid options="customerFinancialHistoryGridOptions"></kendo-grid>
+                </div>
+                <div id="customer-activity-history" ckass="tab-pane">
+                    <kendo-grid options="customerActivityHistoryGridOptions"></kendo-grid>
+                </div>
             </div>
         </div>
-    </div>
 </form>
