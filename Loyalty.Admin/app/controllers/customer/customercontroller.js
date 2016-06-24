@@ -18,11 +18,12 @@
         var customersDataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
-                    //callApi.call($rootScope.urls.customersUrl, 'GET', null, function (response) {
-                    //    e.success(response.data)
-                    //}, function (response) {
-                    //    console.log(response);
-                    //});
+                    callApi.call($rootScope.urls.customersUrl, 'POST', null, function (response) {
+                        console.log(response.data);
+                        e.success(response.data)
+                    }, function (response) {
+                        console.log(response);
+                    });
                 },
                 parameterMap: function (options, operation) {
                     if (operation == "read")
@@ -92,6 +93,20 @@
         $scope.addQuickCustomer = function () {
             $location.path('/customer/addQuick')
 
+        };
+
+        $scope.selectedCustomer = null;
+        $scope.selectingCustomer = function (data, dataItem, columns) {
+            $scope.selectedCustomer = dataItem;
+        };
+
+        $scope.editCustomer = function () {
+            debugger;
+            if ($scope.selectedCustomer) {
+                $location.path('/customer/edit/' + $scope.selectedCustomer.id);
+            } else {
+                $rootScope.showError('خطا', 'لطفا یک مشتری انتخاب کنید.');
+            }
         };
     }
 

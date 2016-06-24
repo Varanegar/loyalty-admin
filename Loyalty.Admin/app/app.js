@@ -57,7 +57,10 @@
             permissionCatalogsOfUserUrl: baseBackendUrl + '/api/accounts/getPersmissionCatalogsOfUser',
             savePermissionCatalogsUrl: baseBackendUrl + '/api/accounts/savePermissionCatalogs',
 
-            customersUrl: baseBackendUrl + '/api/customers/list'
+            customersUrl: baseBackendUrl + '/api/loyalty/customer/customers/compress',
+            customerByIdUrl: baseBackendUrl + '/api/customer/customers/',
+            customerSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
+            customerQuickSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle'
         };
 
         $rootScope.onGridRequestEnd = function (e) {

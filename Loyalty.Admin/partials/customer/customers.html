@@ -6,15 +6,15 @@
         <button type="button" data-ng-click="addCustomer()" class="k-button k-button-icontext">
             <span class="k-icon k-add"></span>افزودن
         </button>
-        <button type="button" data-ng-click="showEdit()" class="k-button k-button-icontext">
+        <button type="button" data-ng-click="editCustomer()" class="k-button k-button-icontext">
             <span class="k-icon k-edit"></span>ویرایش
         </button>
     </div>
 </script>
 
-<div id="div-customers">
+<div id="div-customers" class="k-rtl">
 
     <div class="row">
-        <kendo-grid options="customerGridOptions" k-on-change="onCustomerSelected(data, dataItem, columns)"></kendo-grid>
+        <kendo-grid options="customerGridOptions" k-on-change="selectingCustomer(data, dataItem, columns)"></kendo-grid>
     </div>
 </div>

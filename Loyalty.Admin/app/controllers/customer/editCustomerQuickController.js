@@ -13,16 +13,19 @@
             //$location.path('/editCustomerQuick');
         })();
 
-        $scope.customer = {};
+        $scope.customer = {
+
+        };
 
         $scope.save = function () {
             // TODO: fix save customer
-            //callApi.call('url', 'POST', JSON.stringify($scope.customer), function () {
-            //    // success 
-            //}, function () {
-            //    // faild
-            //});
-            $scope.customers();
+            callApi.call($rootScope.urls.customerQuickSaveUrl, 'POST', { data: JSON.stringify($scope.customer) }, function () {
+                // success 
+                $scope.customers();
+            }, function (error) {
+                // faild
+                console.log(error);
+            });
         };
 
         $scope.customers = function () {
