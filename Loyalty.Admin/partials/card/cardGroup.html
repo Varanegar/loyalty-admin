@@ -1,0 +1,18 @@
+﻿<script type="text/x-kendo-template" id="cardGroups-toolbar-template">
+    <div class="toolbar">
+        <button type="button" data-ng-click="addCard()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>تعریف کارت
+        </button>
+        <button type="button" data-ng-click="addCardGroup()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>افزودن گروه کارت
+        </button>
+        <button type="button" data-ng-click="editCardGroup()" class="k-button k-button-icontext">
+            <span class="k-icon k-edit"></span>ویرایش گروه کارت
+        </button>
+    </div>
+</script>
+<div id="div-cards" class="k-rtl">
+    <div class="row">
+        <kendo-grid options="cardGroupsGridOptions" k-on-change="selectingCardGroup(data, dataItem, columns)"></kendo-grid>
+    </div>
+</div>
