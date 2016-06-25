@@ -16,7 +16,7 @@
 
     ]);
 
-    app.run(function ($rootScope, $cookieStore, $location, toaster) {
+    app.run(function ($rootScope, $cookieStore, $location, toaster, callApi) {
         var baseBackendUrl = 'http://217.218.53.71:4444'; //''; //'http://localhost:59822';
 
         $rootScope.privateOwnerId = '79A0D598-0BD2-45B1-BAAA-0A9CF9EFF240';
@@ -68,9 +68,18 @@
             customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
             customerCardSaveUrl: baseBackendUrl + '/api/loyalty/cards/save',
             cardSetUrl: baseBackendUrl + '/api/loyalty/cardsets',
-            
+
             customerGroupsUrl: baseBackendUrl + '/api/loyalty/customer/customergroups',
             customerGroupSaveUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/save',
+
+            myWebpages: baseBackendUrl + '/api/accounts/myWebpages',
+            pages: {
+                usermanagement: { url: '/#/userManager', title: 'مدیریت کاربران', order: 1 },
+                permission: { url: '/#/userManager/permissions', title: 'مجوز دسترسی', order: 2 },
+                customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 3 },
+                customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 4 },
+                customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 5 },
+            }
         };
 
         $rootScope.onGridRequestEnd = function (e) {
@@ -189,6 +198,42 @@
                 return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
             }
             return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        }
+
+        $rootScope.sortHeaderMenu = function () {
+            var $wrapper = $('.header-menu ul.navbar-nav');
+
+            $wrapper.find('li').sort(function (a, b) {
+                return +a.dataset.order - +b.dataset.order;
+            }).appendTo($wrapper);
+        };
+        $rootScope.refreshMenu = function () {
+            callApi.call($rootScope.urls.myWebpages, "POST", {}, function (res) {
+                //Todo: beecaaaz server has no record! :D
+                if (res.data && res.data.length == 0) {
+                    res.data = [
+                        { resource: 'userManagement' },
+                        { resource: 'permission' },
+                        { resource: 'customerGroups' },
+                        { resource: 'customerList' },
+                        { resource: 'customerQuickAdd' },
+                    ];
+                }
+                res.data.forEach(function (itm) {
+                    if (itm.action !== '' && itm.action !== 'List') {
+
+                        var url = $rootScope.urls.pages[itm.resource.toLowerCase()].url;
+
+                        var title = $rootScope.urls.pages[itm.resource.toLowerCase()].title;
+
+                        var order = $rootScope.urls.pages[itm.resource.toLowerCase()].order;
+
+                        $(".header-menu .navbar-nav .exit-menu-item").before('<li class="pages-lnk" data-order=' + order + '><a href="' + url + '">' + title + '</a></li>');
+                    }
+                });
+
+                $rootScope.sortHeaderMenu()
+            });
         }
     });
 

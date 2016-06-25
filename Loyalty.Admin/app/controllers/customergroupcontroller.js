@@ -156,10 +156,6 @@
             callApi.call($rootScope.urls.customerGroupSaveUrl, 'POST', { customerGroupData: model }, function (response) {
                 $rootScope.showSuccess('', 'اطلاعات ثبت گردید');
             });
-
-            //customerGroupData GroupName ParentUniqueIdString UniqueIdString
-
-
         }
     }
 })();

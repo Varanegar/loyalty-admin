@@ -19,18 +19,18 @@
                 controller: "userscontroller",
                 authorize: true,
             })
-           .when("/userManager/edit/:uid?", {
+           .when("/userManager/edit/:uid?", { 
                templateUrl: "partials/userManager/editUser.htm",
                controller: "usereditcontroller",
                authorize: true,
            })
-            .when("/userManager/permissions/", {
+           .when("/userManager/permissions", {
                 templateUrl: "partials/userManager/permissions.htm",
                 controller: "permissionscontroller",
                 authorize: true,
             })
            .when("/customer/list", {
-               templateUrl: "partials/customer/customers.html",
+                templateUrl: "partials/customer/customers.html",
                controller: "customercontroller",
            })
            .when("/customer/edit/:uid?", {
@@ -53,12 +53,13 @@
                 templateUrl: "partials/card/cardGroup.html",
                 controller: "cardGroupController",
             })
-           .when("/customers/groups", {
+           .when("/customer/groups", {
                templateUrl: "partials/customer/group.htm",
                controller: "customergroupcontroller",
                authorize: true,
            })
            .otherwise({
                redirectTo: "/",
+
            })
        });

@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="content/images/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="http://localhost:38539/content/images/favicon.ico" />
-    
+
     <link href="content/css/bootstrap.css" rel="stylesheet" />
     <link href="content/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="content/css/bootstrap-rtl.min.css" rel="stylesheet" />
@@ -29,6 +29,7 @@
 <body data-ng-app="membersApp" data-ng-controller="maincontroller">
     <!--<toaster-container toaster-options="{'time-out': 5000, 'position-class': 'toast-bottom-full-width'}"></toaster-container>-->
     <toaster-container toaster-options="{'close-button':false,'newest-on-top': true,'progress-bar': true,'position-class':'toast-bottom-left','prevent-duplicates':true,'on-click':null,'show-duration': '300','hide-duration':'1000','time-out':'5000','extended-time-out':'1000','show-easing':'swing','hide-easing':'linear','show-method':'fadeIn','hide-method':'fadeOut'}"></toaster-container>
+
     <div class="navbar navbar-inverse navbar-fixed-top header-menu">
         <div class="container">
             <div class="navbar-header">
@@ -48,6 +49,8 @@
                         <a href="#" data-ng-click="logout()" class="glyphicon glyphicon-log-out"> خروج </a>
                     </li>
                 </ul>
+
+                <!--<menu menus='menus' location='pull-left'></menu>-->
             </div>
         </div>
     </div>
@@ -73,6 +76,7 @@
             </div>
         </div>
     </div>
+
     <script src="scripts/jquery/jquery-2.2.4.min.js"></script>
 
     <script src="scripts/angularjs/angular.js"></script>
@@ -104,7 +108,7 @@
             rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
         }
     </script>
-
+    <script src="app/directives/MenuDirective.js"></script>
     <script src="app/app.js"></script>
     <script src="app/configs/routeConfig.js"></script>
 
