@@ -1,137 +1,170 @@
-﻿<!DOCTYPE html>
+﻿<form name="editCustomer" data-ng-controller="editCustomerController" role="form">
+    <div id="div-edit-customer" class="k-rtl">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات عمومی</a></li>
+            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-history">سابقه فعالیت</a></li>
+            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-financial-history">سابقه فعالیت مالی</a></li>
+            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-activity-history">سابقه فعالیت مشتری</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="customer-general-info" class="tab-pane active">
+                <br />
+                <label class="radio-inline">
+                    <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
+                           name="customerType" ng-value="personTypeId" autocomplete="off" checked> شخص
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="customer.customerType" ng-checked="customer.customerType"
+                           name="customerType" ng-value="companyTypeId" autocomplete="off"> شرکت
+                </label>
+                <div class="form-group">
+                    <label for="firstname">نام:</label>
+                    <input ng-model="customer.firstName" id="firstname" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="lastname">نام خانوادگی:</label>
+                    <input ng-model="customer.lastName" id="lastname" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="companyName">نام شرکت:</label>
+                    <input ng-model="customer.companyName" id="companyName" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="mobileNumber">شماره موبایل:</label>
+                    <input ng-model="customer.mobile" id="mobileNumber" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">شماره کارت:</label>
+                    <input ng-model="customer.currentCardNo" id="cardNumber" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="cardGroup">گروه کارت:</label>
+                    <select ng-model="customer.currentCardSetId" id="cardGroup" class="form-control">
+                        <option ng-repeat="cg in cardSets" value="{{cg.uniqueId}}">{{cg.loyaltyCardSetName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="customerCode">کد مشتری:</label>
+                    <input ng-model="customer.customerCode" id="customerCode" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="nationalCode">شماره ملی:</label>
+                    <input ng-model="customer.nationalCode" id="nationalCode" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="mobileNumber">شماره موبایل:</label>
+                    <input ng-model="customer.mobile" id="mobileNumber" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="email">آدرس ایمیل:</label>
+                    <input ng-model="customer.email" id="email" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">شماره تلفن:</label>
+                    <input ng-model="customer.phone" id="phone" type="text" class="form-control" />
+                </div>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country">کشور:</label>
+                                <select id="country" class="form-control" ng-change="onCountryChanged()"
+                                        ng-model="customer.regionLevel1Id">
+                                    <option ng-repeat="c in countries" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">شهر:</label>
+                                <select id="city" class="form-control" ng-change="onCityChanged()"
+                                        ng-model="customer.regionLevel2Id">
+                                    <option ng-repeat="c in cities" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="region">منطقه:</label>
+                                <select id="region" class="form-control" ng-change="onRegionChanged()"
+                                        ng-model="customer.regionLevel3Id">
+                                    <option ng-repeat="c in regions" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="district">محله:</label>
+                                <select id="district" class="form-control"
+                                        ng-model="customer.regionLevel4Id">
+                                    <option ng-repeat="c in districts" value="{{c.uniqueId}}">{{c.groupName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <link rel="shortcut icon" type="image/x-icon" href="content/images/favicon.ico" />
-    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:38539/content/images/favicon.ico" />
+                <div class="form-group">
+                    <label for="address">شرح آدرس:</label>
+                    <input id="address" type="text" class="form-control" ng-model="customer.mainStreet" />
+                </div>
+                <div class="form-group">
+                    <label for="postalCode">کد پستی:</label>
+                    <input id="postalCode" type="text" class="form-control" ng-model="customer.postalCode" />
+                </div>
+                <div class="form-group">
+                    <label for="mobileNumber">گروه مشتری:</label>
+                    <select id="mobileNumber" class="form-control" ng-model="customer.customerGroupId">
+                        <option ng-repeat="g in customerGroups" value="{{g.uniqueId}}">{{g.groupName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mobileNumber">سطح مشتری:</label>
+                    <select id="mobileNumber" class="form-control" ng-model="customer.currentTierId">
+                        <option ng-repeat="t in tiers" value="{{t.uniqueId}}">{{t.tierName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reagent">نام معرف:</label>
+                    <select id="reagent" class="form-control" ng-model="customer.reagentId" />
+                </div>
 
-    <link href="content/css/bootstrap.css" rel="stylesheet" />
-    <link href="content/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="content/css/bootstrap-rtl.min.css" rel="stylesheet" />
-    <!--http://angular-ui.github.io/-->
-    <link href="content/css/ui-bootstrap-csp.css" rel="stylesheet" />
-    <link href="content/toaster/toaster.min.css" rel="stylesheet" />
-    <link href="content/css/ADM-dateTimePicker.min.css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="content/KendoUI/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="content/KendoUI/kendo.rtl.min.css" />
-    <link rel="stylesheet" href="content/KendoUI/kendo.material.min.css" />
-    <link rel="stylesheet" href="content/KendoUI/kendo.material.mobile.min.css" />
-
-    <link href="content/css/site.css" rel="stylesheet" />
-
-    <title>مدیریت باشگاه مشتریان</title>
-</head>
-
-<body data-ng-app="membersApp" data-ng-controller="maincontroller">
-    <!--<toaster-container toaster-options="{'time-out': 5000, 'position-class': 'toast-bottom-full-width'}"></toaster-container>-->
-    <toaster-container toaster-options="{'close-button':false,'newest-on-top': true,'progress-bar': true,'position-class':'toast-bottom-left','prevent-duplicates':true,'on-click':null,'show-duration': '300','hide-duration':'1000','time-out':'5000','extended-time-out':'1000','show-easing':'swing','hide-easing':'linear','show-method':'fadeIn','hide-method':'fadeOut'}"></toaster-container>
-
-    <div class="navbar navbar-inverse navbar-fixed-top header-menu">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#/" class="navbar-brand">مدیریت باشگاه مشتریان</a>
+                <div class="form-group">
+                    <label class="checkbox" for="getNews">
+                        دریافت خبرنامه:
+                        <input type="checkbox" id="getNews" ng-model="customer.getNews" />
+                    </label>
+                    <label class="checkbox" for="getMessage">
+                        دریافت پیامک تبلیغاتی:
+                        <input type="checkbox" id="getMessage" ng-model="customer.getMessage" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="pBirthDay">تاریخ تولد:</label>
+                    <adm-dtp id="pBirthDay" ng-model="customer.pBirthDay"></adm-dtp>
+                    <!--<input id="pBirthDay" ng-model="customer.pBirthDay" type="text" class="form-control" />-->
+                </div>
+                <div class="form-group">
+                    <label for="pGraduateDate">تاریخ فارغ التحصیلی:</label>
+                    <adm-dtp id="pGraduateDate" ng-model="customer.pGraduateDate"></adm-dtp>
+                    <!--<input id="pGraduateDate" ng-model="customer.pGraduateDate" type="text" class="form-control" />-->
+                </div>
+                <div class="form-group">
+                    <label for="pMarriageDate">تاریخ ازدواج:</label>
+                    <adm-dtp id="pMarriageDate" ng-model="customer.pMarriageDate"></adm-dtp>
+                    <!--<input id="pMarriageDate" ng-model="customer.pMarriageDate" type="text" class="form-control" />-->
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
+                    <a href="javascript:void(0);" class="btn btn-danger" ng-click="customers();">انصراف</a>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li data-ng-show="showlogin()"><a href="#login" class="glyphicon glyphicon-log-in"> ورود </a></li>
-                    <!--<li><a href="#customer/list" data-ng-show="!(showlogin())">مشتریان</a></li>-->
-                    <li class="exit-menu-item" data-ng-show="!(showlogin())">
-                        <a href="#" data-ng-click="logout()" class="glyphicon glyphicon-log-out"> خروج </a>
-                    </li>
-                </ul>
-
-                <!--<menu menus='menus' location='pull-left'></menu>-->
+            <div id="customer-history" class="tab-pane">
+                <kendo-grid options="customerActivityGridOptions"></kendo-grid>
+            </div>
+            <div id="customer-financial-history" class="tab-pane">
+                <kendo-grid options="customerFinancialActivityGridOptions"></kendo-grid>
+            </div>
+            <div id="customer-activity-history" class="tab-pane">
+                <kendo-grid options="customerActivityHistoryGridOptions"></kendo-grid>
             </div>
         </div>
     </div>
-
-    <div class="container body-content">
-        <div class="row">
-            <div class="col-md-12">
-                <!--به مدیریت باشگاه مشتریان خوش آمدید-->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div ng-view></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <hr />
-                <footer>
-                    <p>&copy; {{dateNow}} - باشگاه مشتریان</p>
-                </footer>
-            </div>
-        </div>
-    </div>
-
-    <script src="scripts/jquery/jquery-2.2.4.min.js"></script>
-
-    <script src="scripts/angularjs/angular.js"></script>
-    <script src="scripts/angularjs/angular-route.js"></script>
-    <script src="scripts/angularjs/angular-cookies.min.js"></script>
-    <script src="scripts/angularjs/angular-animate.js"></script>
-    <script src="scripts/angularjs/i18n/angular-locale_fa-ir.js"></script>
-    <script src="scripts/angularjs/angular-ui/ui-bootstrap.min.js"></script>
-    <script src="scripts/angularjs/angular-ui/ui-bootstrap-tpls.min.js"></script>
-
-    <script src="scripts/toaster/toaster.min.js"></script>
-    <script src="scripts/ADM-dateTimePicker.min.js"></script>
-
-    <script src="scripts/bootstrap/bootstrap.min.js"></script>
-
-    <script src="scripts/kendo/kendo.all.min.js"></script>
-    <script src="scripts/kendo/kendo.messages.fa-IR.js"></script>
-    <script src="scripts/kendo/kendo.angular.min.js"></script>
-
-    <script type="text/javascript">
-        var rowNumber = 0;
-        var resetRowNumber = function (e) {
-            rowNumber = 0;
-        }
-        var renderNumber = function (data) {
-            return rowNumber += 1;
-        }
-        var onGridDataBinding = function () {
-            rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
-        }
-    </script>
-    <script src="app/directives/MenuDirective.js"></script>
-    <script src="app/app.js"></script>
-    <script src="app/configs/routeConfig.js"></script>
-
-    <script src="app/services/authenticationService.js"></script>
-
-    <script src="app/services/callapi.js"></script>
-    <script src="app/services/callapiAnonymously.js"></script>
-
-    <script src="app/controllers/maincontroller.js"></script>
-    <script src="app/controllers/logincontroller.js"></script>
-    <script src="app/controllers/restorePasswordcontroller.js"></script>
-    <script src="app/controllers/signupcontroller.js"></script>
-
-    <script src="app/controllers/userscontroller.js"></script>
-    <script src="app/controllers/usereditcontroller.js"></script>
-    <script src="app/controllers/permissionscontroller.js"></script>
-
-    <script src="app/controllers/customer/customercontroller.js"></script>
-    <script src="app/controllers/customer/editCustomerController.js"></script>
-    <script src="app/controllers/customer/editCustomerQuickController.js"></script>
-
-    <script src="app/controllers/card/cardController.js"></script>
-    <script src="app/controllers/card/editCardController.js"></script>
-
-    <script src="app/controllers/customergroupcontroller.js"></script>
-</body>
-</html>
+</form>
