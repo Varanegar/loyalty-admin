@@ -43,7 +43,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li data-ng-show="showlogin()"><a href="#login" class="glyphicon glyphicon-log-in"> ورود </a></li>
-                    <!--<li><a href="#customer/list" data-ng-show="!(showlogin())">مشتریان</a></li>-->
                     <li class="exit-menu-item" data-ng-show="!(showlogin())">
                         <a href="#" data-ng-click="logout()" class="glyphicon glyphicon-log-out"> خروج </a>
                     </li>
@@ -131,6 +130,8 @@
 
     <script src="app/controllers/card/cardController.js"></script>
     <script src="app/controllers/card/editCardController.js"></script>
+    <script src="app/controllers/card/cardGroupController.js"></script>
+    <script src="app/controllers/card/editCardGroupController.js"></script>
 
     <script src="app/controllers/customergroupcontroller.js"></script>
 </body>

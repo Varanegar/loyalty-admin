@@ -49,6 +49,14 @@
                templateUrl: "partials/card/cards.html",
                controller: "cardController",
            })
+            .when("/cardGroup/", {
+                templateUrl: "partials/card/cardGroup.html",
+                controller: "cardGroupController",
+            })
+            .when("/cardGroup/edit/:uid?", {
+                templateUrl: "partials/card/editCardGroup.html",
+                controller: "editCardGroupController",
+            })
            .when("/customer/groups", {
                templateUrl: "partials/customer/group.htm",
                controller: "customergroupcontroller",

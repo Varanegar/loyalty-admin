@@ -67,7 +67,10 @@
             customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
             customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
             customerCardSaveUrl: baseBackendUrl + '/api/loyalty/cards/save',
+
             cardSetUrl: baseBackendUrl + '/api/loyalty/cardsets',
+            saveCardSetUrl: baseBackendUrl + '/api/loyalty/cardsets/save',
+            cardSetByIdUrl: baseBackendUrl + '/api/loyalty/cards/bycardsetid/compress',
 
             customerGroupsUrl: baseBackendUrl + '/api/loyalty/customer/customergroups',
             customerGroupSaveUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/save',
@@ -79,6 +82,7 @@
                 customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 3 },
                 customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 4 },
                 customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 5 },
+                cardgrouplist: {url: '/#/cardGroup/', title: 'گروه کارت', order: 6 }
             }
         };
 
@@ -217,6 +221,7 @@
                         { resource: 'customerGroups' },
                         { resource: 'customerList' },
                         { resource: 'customerQuickAdd' },
+                        { resource: 'cardgrouplist' }
                     ];
                 }
                 res.data.forEach(function (itm) {
