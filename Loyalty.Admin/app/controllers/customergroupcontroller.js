@@ -143,7 +143,7 @@
         }
 
         $scope.save = function () {
-            debugger
+            
             var model = []
             $scope.pendingGroups.forEach(function (itm) {
                 model.push({

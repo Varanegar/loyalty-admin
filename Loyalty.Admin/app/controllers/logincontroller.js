@@ -40,6 +40,8 @@
 
                 $scope.flLoading = false;
 
+                $rootScope.refreshMenu();
+
                 $location.path('/');
 
             }, function (fail) {

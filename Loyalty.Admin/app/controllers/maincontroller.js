@@ -9,10 +9,10 @@
 
     function maincontroller($rootScope, $scope, $http, $location, callApi, authenticationService) {
 
-        (function initController() {
-            if ($rootScope.token() !== '')
-                $rootScope.refreshMenu();
-        })();
+        //(function initController() {
+        //    if ($rootScope.token() !== '')
+        //        $rootScope.refreshMenu();
+        //})();
 
         $scope.title = 'maincontroller';
         $scope.dateNow = new Date().getFullYear();
@@ -29,9 +29,11 @@
             $location.path("/");
         }
 
-       
-
-
+        $scope.refreshMenu = function () {
+            
+            if ($rootScope.token() !== '')
+                $rootScope.refreshMenu();
+        }
 
         //$scope.menus = {
         //    "current": "index",

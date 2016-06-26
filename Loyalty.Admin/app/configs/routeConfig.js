@@ -10,10 +10,10 @@
                templateUrl: "partials/restorePassword.htm",
                controller: "restorePasswordcontroller"
            })
-           .when("/signup", {
-               templateUrl: "partials/signup.htm",
-               controller: "signupcontroller"
-           })
+           //.when("/signup", {
+           //    templateUrl: "partials/signup.htm",
+           //    controller: "signupcontroller"
+           //})
            .when("/userManager", {
                templateUrl: "partials/userManager/users.htm",
                controller: "userscontroller",
