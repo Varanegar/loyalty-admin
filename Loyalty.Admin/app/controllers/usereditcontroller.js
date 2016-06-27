@@ -41,7 +41,7 @@
                 $rootScope.showError('', 'رمز و تکرار آن برابر نیست');
                 return;
             }
-
+            
             callApi.call($rootScope.urls.saveUserUrl, 'post', {
                 user: JSON.stringify({
                     uniqueId: $scope.userId,
@@ -53,7 +53,7 @@
                     email: $scope.email,
                     mobile: $scope.mobile,
                 })
-            }, function (res) {
+            }, function (res) {                
                 $rootScope.showSuccess('اطلاعات ذخیره گردید');
 
                 $location.path('/userManager');

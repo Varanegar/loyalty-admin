@@ -1,24 +1,20 @@
 ﻿<script type="text/x-kendo-template" id="toolbar-template">
     <div class="toolbar">
-        <button type="button" data-ng-click="addUser()" class="k-button k-button-icontext add-user">
+        <button type="button" data-ng-click="addUser()" class="k-button k-button-icontext">
             <span class="k-icon k-add"></span>افزودن
         </button>
 
-        <button type="button" data-ng-click="showEdit()" class="k-button k-button-icontext add-user">
-            <span class="k-icon k-add"></span>ویرایش
+        <button type="button" data-ng-click="showEdit()" class="k-button k-button-icontext">
+            <span class="k-icon k-edit"></span>ویرایش
+        </button>
+
+        <button type="button" data-ng-click="delete()" class="k-button k-button-icontext">
+            <span class="k-icon k-delete"></span>حذف
         </button>
     </div>
 </script>
 
 <div ng-controller="userscontroller" class="k-rtl">
-
     <kendo-grid options="userGridOptions" k-on-change="selectingUser(data, dataItem, columns)"></kendo-grid>
-
-    <hr />
-    <div class="row">
-        <div class="col-xs-5">
-            <adm-dtp ng-model='testDate'></adm-dtp>
-        </div>
-    </div>
 </div>
 

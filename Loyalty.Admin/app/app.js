@@ -47,9 +47,9 @@
 
             sendPassCodeUrl: baseBackendUrl + '/api/identityAccounts/SendPassCode',
             resetPasswordByCodeUrl: baseBackendUrl + '/api/identityAccounts/ResetPasswordByCode',
-            signupUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
+            //signupUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
             usersUrl: baseBackendUrl + '/api/accounts/users',
-
+            removeUserUrl: baseBackendUrl + '/api/accounts/user/delete',
             userUrl: baseBackendUrl + '/api/accounts/getUser',
             saveUserUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
 
@@ -75,6 +75,9 @@
 
             customerGroupsUrl: baseBackendUrl + '/api/loyalty/customer/customergroups',
             customerGroupSaveUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/save',
+            removeCustomerGroupUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/delete',
+
+            customersSearchUrl: baseBackendUrl + '/api/loyalty/customer/customers/search/bycodeorcard',
 
             myWebpages: baseBackendUrl + '/api/accounts/myWebpages',
             pages: {
@@ -83,7 +86,8 @@
                 customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 3 },
                 customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 4 },
                 customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 5 },
-                cardgrouplist: {url: '/#/cardGroup/', title: 'گروه کارت', order: 6 }
+                cardgrouplist: {url: '/#/cardGroup/', title: 'گروه کارت', order: 6 },
+                test: {url: '/#/test/', title: 'تست', order: 7 }
             }
         };
 
@@ -222,7 +226,9 @@
                         { resource: 'customerGroups' },
                         { resource: 'customerList' },
                         { resource: 'customerQuickAdd' },
-                        { resource: 'cardgrouplist' }
+                        { resource: 'cardgrouplist' },
+                        { resource: 'test' },
+
                     ];
                 }
                 res.data.forEach(function (itm) {

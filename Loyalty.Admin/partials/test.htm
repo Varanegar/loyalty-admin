@@ -1,0 +1,39 @@
+﻿<div ng-controller="testcontroller" class="k-rtl">
+    <div class="row">
+        <div class="col-xs-5">
+            <adm-dtp ng-model='testDate'></adm-dtp>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="demo-section k-content">
+        <div class="box-col">
+            <h4>کد یا موبایل مشتری:</h4>
+            <input kendo-auto-complete class="form-control" style="width:400px" ng-model="searchTerm" k-options="customerOptions" />
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <select kendo-combo-box
+                    k-options="userComboOptions"
+                    ng-model="selectedUserId"
+                    k-on-change="onSelectUser(kendoEvent)"
+                    style="width: 100%"></select>
+        </div>
+    </div>
+    <h4>{{selectedUserId}}</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <select kendo-multi-select k-options="userMultiSelectOptions" k-ng-model="selectedIds"></select>
+        </div>
+    </div>
+    <hr />
+    <button type="button" class="btn btn-success" ng-click="show()">show</button>
+</div>
+
