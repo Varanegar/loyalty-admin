@@ -74,11 +74,28 @@
 
         $scope.selectedUser = '';
         $scope.selectingUser = function (data, dataItem, columns) {
-            $scope.selectedUser = dataItem;           
+            $scope.selectedUser = dataItem;
         };
 
         $scope.showEdit = function (e) {
-            $location.path('/userManager/edit/' + $scope.selectedUser.id);
+            if ($scope.selectedUser)
+                $location.path('/userManager/edit/' + $scope.selectedUser.id);
+            else
+                $rootScope.showError('', 'لطفا ابتدا کاربر موردنظر را انتخاب نمایید');
         }
+
+        $scope.delete = function () {
+            
+            if ($scope.selectedUser) {
+                callApi.call($rootScope.urls.removeUserUrl + "/" + $scope.selectedUser.id, 'POST', {
+                    id: $scope.selectedUser.id
+                }, function (response) {
+                    $rootScope.showSuccess('', 'کاربر مورد نظر حذف گردید');
+                });
+            }
+            else
+                $rootScope.showError('', 'لطفا ابتدا کاربر موردنظر را انتخاب نمایید');
+        }
+
     }
 })();

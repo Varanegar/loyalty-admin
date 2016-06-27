@@ -47,9 +47,9 @@
 
             sendPassCodeUrl: baseBackendUrl + '/api/identityAccounts/SendPassCode',
             resetPasswordByCodeUrl: baseBackendUrl + '/api/identityAccounts/ResetPasswordByCode',
-            signupUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
+            //signupUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
             usersUrl: baseBackendUrl + '/api/accounts/users',
-
+            removeUserUrl: baseBackendUrl + '/api/accounts/user/delete',
             userUrl: baseBackendUrl + '/api/accounts/getUser',
             saveUserUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
 
@@ -74,6 +74,7 @@
 
             customerGroupsUrl: baseBackendUrl + '/api/loyalty/customer/customergroups',
             customerGroupSaveUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/save',
+            removeCustomerGroupUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/delete',
 
             customersSearchUrl: baseBackendUrl + '/api/loyalty/customer/customers/search/bycodeorcard',
 

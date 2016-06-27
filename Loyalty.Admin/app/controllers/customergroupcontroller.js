@@ -11,8 +11,9 @@
         $scope.customergroups = [];
         $scope.selectedItem = '';
         $scope.groupName = '';
-
+        $scope.flgUpdate = false;
         $scope.pendingGroups = [];
+        $scope.root = '';
 
         var trvRead = function (e) {
             var id = e.data.uniqueId || "";
@@ -20,6 +21,13 @@
             e.success($.grep($scope.customergroups, function (x) {
                 return x.parentUniqueIdString == id;
             }));
+        }
+
+        $scope.treeRefresh = function () {
+            callApi.call($rootScope.urls.customerGroupsUrl, 'POST', null, function (response) {
+                $scope.customergroups = response.data;
+                $scope.tree.dataSource.read();
+            });
         }
 
         $scope.customerGroupsOptions = {
@@ -35,7 +43,8 @@
                                 trvRead(e);
 
                                 //select the root node
-                                $scope.tree.select($scope.tree.findByText($scope.tree.root[0].textContent));
+                                $scope.root = $scope.tree.findByText($scope.tree.root[0].innerText.trim());
+                                $scope.tree.select($scope.root);
                             });
                         else
                             trvRead(e);
@@ -78,7 +87,7 @@
 
             if (items.length > 0 || pendingItems.length > 0) {
                 $rootScope.showError('', 'نام وارد شده تکراری است');
-
+                $scope.groupName = '';
                 return true;
             }
             return false
@@ -105,7 +114,16 @@
             if (pendingItem != null)
                 removeFromPendingList(pendingItem);
             else {
-                //todo: remove from server!
+                //remove from server!
+                var removedGroup = [{
+                    UniqueIdString: $scope.selectedItem.uniqueId,
+                    ParentUniqueIdString: $scope.selectedItem.parentUniqueIdString,
+                    GroupName: $scope.selectedItem.groupName,
+                }];
+
+                callApi.call($rootScope.urls.removeCustomerGroupUrl, 'POST', { customerGroupData: removedGroup }, function (response) {
+                    $rootScope.showSuccess('', 'گروه حذف گردید');
+                });
             }
 
             var array = item.parent();
@@ -114,7 +132,7 @@
 
             $scope.selectedItem = $scope.customergroups[0];
             //select the root node
-            $scope.tree.select($scope.tree.findByText($scope.tree.root[0].textContent));
+            $scope.tree.select($scope.root);
         };
 
         function getFromPendingList(item) {
@@ -142,8 +160,7 @@
             $scope.pendingGroups.splice(pendingIndex, 1);
         }
 
-        $scope.save = function () {
-            
+        function insertGroup() {
             var model = []
             $scope.pendingGroups.forEach(function (itm) {
                 model.push({
@@ -155,7 +172,42 @@
 
             callApi.call($rootScope.urls.customerGroupSaveUrl, 'POST', { customerGroupData: model }, function (response) {
                 $rootScope.showSuccess('', 'اطلاعات ثبت گردید');
+                $scope.pendingGroups = [];
             });
+        }
+        function updateGroup() {
+            var model = [{
+                UniqueIdString: $scope.selectedItem.uniqueId,
+                ParentUniqueIdString: $scope.selectedItem.parentUniqueIdString,
+                GroupName: $scope.groupName,
+            }];
+
+            callApi.call($rootScope.urls.customerGroupSaveUrl, 'POST', { customerGroupData: model }, function (response) {
+                $rootScope.showSuccess('', 'اطلاعات ذخیره گردید');
+                $scope.flgUpdate = false;
+                $scope.groupName = '';
+                $scope.pendingGroups = [];
+                $scope.tree.select($scope.root);
+
+                $scope.treeRefresh();
+            });
+        }
+        $scope.save = function () {
+            if ($scope.flgUpdate == true)
+                updateGroup();
+            else
+                insertGroup();
+        }
+
+        $scope.edit = function (item) {
+            if (item.parentUniqueIdString == "") {
+                $rootScope.showError('', 'شما مجاز به ویرایش این آیتم نمی باشید!');
+                return;
+            }
+            $scope.flgUpdate = true;
+            $scope.pendingGroups.push($scope.selectedItem);
+
+            $scope.groupName = item.groupName;
         }
     }
 })();

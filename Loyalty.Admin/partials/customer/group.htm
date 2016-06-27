@@ -10,6 +10,7 @@
 
         <div class="col-xs-6 box-col" ng-show="selectedItem">
             <button class="k-button" ng-disabled="groupName=='' || selectedItem==''" ng-click="addBelow(selectedItem)">افزودن</button>
+            <button class="k-button" ng-disabled="selectedItem==''" ng-click="edit(selectedItem)">ویرایش</button>
             <button class="k-button" ng-click="remove(selectedItem)">حذف</button> | 
             <button type="button" data-ng-click="save()" ng-disabled="pendingGroups.length == 0" class="btn btn-success">
                 <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ثبت

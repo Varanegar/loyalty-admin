@@ -16,5 +16,24 @@
 
     <hr />
 
+    <div class="row">
+        <div class="col-xs-12">
+            <select kendo-combo-box
+                    k-options="userComboOptions"
+                    ng-model="selectedUserId"
+                    k-on-change="onSelectUser(kendoEvent)"
+                    style="width: 100%"></select>
+        </div>
+    </div>
+    <h4>{{selectedUserId}}</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <select kendo-multi-select k-options="userMultiSelectOptions" k-ng-model="selectedIds"></select>
+        </div>
+    </div>
+    <hr />
+    <button type="button" class="btn btn-success" ng-click="show()">show</button>
 </div>
 
