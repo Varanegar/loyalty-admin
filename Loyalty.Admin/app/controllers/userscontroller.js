@@ -80,7 +80,5 @@
         $scope.showEdit = function (e) {
             $location.path('/userManager/edit/' + $scope.selectedUser.id);
         }
-
-        $scope.testDate = '';
     }
 })();

@@ -62,6 +62,11 @@
                controller: "customergroupcontroller",
                authorize: true,
            })
+           .when("/test", {
+               templateUrl: "partials/test.htm",
+               controller: "testcontroller",
+               authorize: true,
+           })
            .otherwise({
                redirectTo: "/",
 
