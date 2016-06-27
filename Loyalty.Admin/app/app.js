@@ -64,10 +64,11 @@
             customerSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
             customerQuickSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
             customerGroupListUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/compress',
+            customerReagentFindUrl: baseBackendUrl + '/api/loyalty/customer/customers/search/bycodeorcard',
+
             customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
             customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
             customerCardSaveUrl: baseBackendUrl + '/api/loyalty/cards/save',
-
             cardSetUrl: baseBackendUrl + '/api/loyalty/cardsets',
             saveCardSetUrl: baseBackendUrl + '/api/loyalty/cardsets/save',
             cardSetByIdUrl: baseBackendUrl + '/api/loyalty/cards/bycardsetid/compress',

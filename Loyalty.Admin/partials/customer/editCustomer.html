@@ -39,9 +39,19 @@
                 </div>
                 <div class="form-group">
                     <label for="cardGroup">گروه کارت:</label>
-                    <select ng-model="customer.currentCardSetId" id="cardGroup" class="form-control">
+                    <select kendo-combo-box
+                            k-placeholder="'گروه کارت مورد نظر راانتخاب نمایید'"
+                            k-data-text-field="'loyaltyCardSetName'"
+                            k-data-value-field="'uniqueId'"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-min-length="3"
+                            k-data-source="cardSetDataSource"
+                            ng-model="customer.currentCardSetId"
+                            style="width: 100%"></select>
+                    <!--<select ng-model="customer.currentCardSetId" id="cardGroup" class="form-control">
                         <option ng-repeat="cg in cardSets" value="{{cg.uniqueId}}">{{cg.loyaltyCardSetName}}</option>
-                    </select>
+                    </select>-->
                 </div>
                 <div class="form-group">
                     <label for="customerCode">کد مشتری:</label>
@@ -69,33 +79,72 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="country">کشور:</label>
-                                <select id="country" class="form-control" ng-change="onCountryChanged()"
-                                        ng-model="customer.regionLevel1Id">
-                                    <option ng-repeat="c in countries" value="{{c.uniqueId}}">{{c.groupName}}</option>
-                                </select>
+                                <select kendo-combo-box
+                                        k-placeholder="'کشور مورد نظر راانتخاب نمایید'"
+                                        k-data-text-field="'groupName'"
+                                        k-data-value-field="'uniqueId'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-min-length="3"
+                                        k-data-source="regionLevel1DataSource"
+                                        ng-model="customer.regionLevel1Id"
+                                        k-on-change="onCountryChanged(kendoEvent)"
+                                        style="width: 100%"></select>
                             </div>
                             <div class="form-group">
                                 <label for="city">شهر:</label>
-                                <select id="city" class="form-control" ng-change="onCityChanged()"
+                                <select kendo-combo-box
+                                        k-placeholder="'شهر مورد نظر راانتخاب نمایید'"
+                                        k-data-text-field="'groupName'"
+                                        k-data-value-field="'uniqueId'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-min-length="3"
+                                        k-data-source="regionLevel2DataSource"
+                                        ng-model="customer.regionLevel2Id"
+                                        k-on-change="onCityChanged(kendoEvent)"
+                                        style="width: 100%"></select>
+                                <!--<select id="city" class="form-control" ng-change="onCityChanged()"
                                         ng-model="customer.regionLevel2Id">
                                     <option ng-repeat="c in cities" value="{{c.uniqueId}}">{{c.groupName}}</option>
-                                </select>
+                                </select>-->
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="region">منطقه:</label>
-                                <select id="region" class="form-control" ng-change="onRegionChanged()"
+                                <select kendo-combo-box
+                                        k-placeholder="'منطقه مورد نظر راانتخاب نمایید'"
+                                        k-data-text-field="'groupName'"
+                                        k-data-value-field="'uniqueId'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-min-length="3"
+                                        k-data-source="regionLevel3DataSource"
+                                        ng-model="customer.regionLevel3Id"
+                                        k-on-change="onRegionChanged(kendoEvent)"
+                                        style="width: 100%"></select>
+                                <!--<select id="region" class="form-control" ng-change="onRegionChanged()"
                                         ng-model="customer.regionLevel3Id">
                                     <option ng-repeat="c in regions" value="{{c.uniqueId}}">{{c.groupName}}</option>
-                                </select>
+                                </select>-->
                             </div>
                             <div class="form-group">
                                 <label for="district">محله:</label>
-                                <select id="district" class="form-control"
+                                <select kendo-combo-box
+                                        k-placeholder="'محله مورد نظر راانتخاب نمایید'"
+                                        k-data-text-field="'groupName'"
+                                        k-data-value-field="'uniqueId'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-min-length="3"
+                                        k-data-source="regionLevel4DataSource"
+                                        ng-model="customer.regionLevel4Id"
+                                        style="width: 100%"></select>
+                                <!--<select id="district" class="form-control"
                                         ng-model="customer.regionLevel4Id">
                                     <option ng-repeat="c in districts" value="{{c.uniqueId}}">{{c.groupName}}</option>
-                                </select>
+                                </select>-->
                             </div>
                         </div>
                     </div>
@@ -110,16 +159,36 @@
                     <input id="postalCode" type="text" class="form-control" ng-model="customer.postalCode" />
                 </div>
                 <div class="form-group">
-                    <label for="mobileNumber">گروه مشتری:</label>
-                    <select id="mobileNumber" class="form-control" ng-model="customer.customerGroupId">
+                    <label for="">گروه مشتری:</label>
+                    <select kendo-combo-box
+                            k-placeholder="'گروه مشتری مورد نظر راانتخاب نمایید'"
+                            k-data-text-field="'groupName'"
+                            k-data-value-field="'uniqueId'"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-min-length="3"
+                            k-data-source="customerGroupDataSource"
+                            ng-model="customer.customerGroupId"
+                            style="width: 100%"></select>
+                    <!--<select id="mobileNumber" class="form-control" ng-model="customer.customerGroupId">
                         <option ng-repeat="g in customerGroups" value="{{g.uniqueId}}">{{g.groupName}}</option>
-                    </select>
+                    </select>-->
                 </div>
                 <div class="form-group">
                     <label for="mobileNumber">سطح مشتری:</label>
-                    <select id="mobileNumber" class="form-control" ng-model="customer.currentTierId">
+                    <select kendo-combo-box
+                            k-placeholder="'سطح مشتری مورد نظر راانتخاب نمایید'"
+                            k-data-text-field="'tierName'"
+                            k-data-value-field="'uniqueId'"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-min-length="3"
+                            k-data-source="customerTierDataSource"
+                            ng-model="customer.currentTierId"
+                            style="width: 100%"></select>
+                    <!--<select id="mobileNumber" class="form-control" ng-model="customer.currentTierId">
                         <option ng-repeat="t in tiers" value="{{t.uniqueId}}">{{t.tierName}}</option>
-                    </select>
+                    </select>-->
                 </div>
                 <div class="form-group">
                     <label for="reagent">نام معرف:</label>
