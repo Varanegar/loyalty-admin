@@ -307,6 +307,24 @@
             $location.path('/customer/list');
         };
 
+// reagent 
+        $scope.reagentSearchTerm = '';
+        $scope.selectedReagent = '';
+
+        $scope.customersDataSource = {
+            serverFiltering: true,
+            transport: {
+                read:
+                    function (e) {
+                        callApi.call($rootScope.urls.customersSearchUrl, 'Post', {
+                            searchTerm: $scope.reagentSearchTerm
+                        }, function (response) {
+                            e.success(response.data)
+                        });
+                    }
+            }
+        };
+
         $scope.reagentOptions = {
             dataSource: $scope.customersDataSource,
             dataTextField: "customerName",
@@ -316,8 +334,11 @@
             placeholder: "کد یا موبایل مشتری",
             select: function (e) {
                 var dataItem = this.dataItem(e.item.index());
-                $scope.customer.reagentId = dataItem.uniqueId;
-                //$scope.selectedCustomer = dataItem;
+                $scope.selectedReagent = dataItem;
+                if(dataItem)
+                    $scope.customer.reagentId = dataItem.uniqueId;
+                else
+                    $scope.customer.reagentId = null;
             },
             template: 'نام: #: customerName#, کدمشتری: #: customerCode#, موبایل: #: mobile#',
         };
