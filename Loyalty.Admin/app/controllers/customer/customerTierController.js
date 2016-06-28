@@ -5,9 +5,9 @@
         .module('membersApp')
         .controller('customerTierController', customerTierController);
 
-    customerTierController.$inject = ['$scope', '$http', '$rootScope', '$location', '$routeParams', 'authenticationService', 'callApi', 'callApiAnonymouslyService'];
+    customerTierController.$inject = ['$scope', '$http', '$rootScope', '$location', '$confirm', '$confirmModalDefaults', '$routeParams', 'authenticationService', 'callApi', 'callApiAnonymouslyService'];
 
-    function customerTierController($scope, $http, $rootScope, $location, $routeParams, authenticationService, callApi, callApiAnonymouslyService) {
+    function customerTierController($scope, $http, $rootScope, $location, $confirm, $confirmModalDefaults, $routeParams, authenticationService, callApi, callApiAnonymouslyService) {
 
         // data source
         var tiersDataSource = new kendo.data.DataSource({
@@ -84,6 +84,8 @@
                 $rootScope.showError('خطا', 'لطفا یک سطح مشتری انتخاب کنید.');
                 return;
             }
+
+            $location.path('/tiers/edit/' + $scope.selectedTier.uniqueId);
         };
 
         $scope.removeTier = function () {
@@ -91,10 +93,20 @@
                 $rootScope.showError('خطا', 'لطفا یک سطح مشتری انتخاب کنید.');
                 return;
             }
-        };
 
-        (function initController() {
+            $confirm({ name: $scope.selectedTier.tierName }, { templateUrl: 'partials/deleteModal.html' })
+                .then(function () {
+                    // ok button clicked
+                    callApi.call($rootScope.urls.tierDeleteUrl, 'POST', JSON.stringify({ loyaltyTierListData: [{ uniqueId: $scope.selectedTier.uniqueId }] }),
+                        function (response) {
+                            tiersDataSource.read();
+                        }, function (response) {
+                            console.log(response);
+                        });
+                }, function () { /* cancel button clicked */ });
 
-        })();
+            ($scope.initialize = function () {
+            })();
+        }
     }
 })();

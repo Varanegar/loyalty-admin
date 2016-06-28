@@ -6,14 +6,14 @@
      'ngAnimate',
      'ngRoute',
      'ngCookies',
-
+     'ui.bootstrap',
      // Custom modules
 
      // 3rd Party Modules
      'kendo.directives',
      'toaster',
-     'ADM-dateTimePicker',
-
+     'angular-confirm',
+     'ADM-dateTimePicker'
     ]);
 
     app.run(function ($rootScope, $cookieStore, $location, toaster, callApi) {
@@ -83,7 +83,7 @@
 
             tierListUrl: baseBackendUrl + '/api/loyalty/tiers/',
             tierSaveUrl: baseBackendUrl + '/api/loyalty/tiers/save',
-            tierByIdUrl: baseBackendUrl + '/api/loyalty/tiers/',
+            tierByIdUrl: baseBackendUrl + '/api/loyalty/tiers/byid',
             tierDeleteUrl: baseBackendUrl + '/api/loyalty/tiers/delete',
 
             groupsUrl: baseBackendUrl + '/api/loyalty/usergroup/load',
