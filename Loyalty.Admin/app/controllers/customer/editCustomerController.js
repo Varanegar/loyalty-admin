@@ -443,14 +443,14 @@
                     id: "id",
                     fields: {
                         id: { editable: false, nullable: true },
-                        date: { editable: false },
-                        transaction: { editable: false },
-                        realPrice: { editable: false },
-                        unrealPrice: { editable: false },
+                        transactionPDate: { editable: false },
+                        transactionDesc: { editable: false },
+                        netAmount: { editable: false },
+                        amount: { editable: false },
                         discount: { editable: false },
-                        location: { editable: false },
+                        placeDesc: { editable: false },
                         user: { editable: false },
-                        terminal: { editable: false },
+                        terminalDesc: { editable: false },
                         description: { editable: false }
                     }
                 }
@@ -480,14 +480,14 @@
             dataBinding: onGridDataBinding,
             columns: [
                 { field: "rowNo", title: "#", width: 70, template: "#: renderNumber(data) #", filterable: false, },
-                { field: "date", title: "تاریخ", width: 200 },
-                { field: "transaction", title: "تراکنش", width: 250 },
-                { field: "realPrice", title: "مبلغ خالص", width: 150 },
-                { field: "unrealPrice", title: "مبلغ ناخالص", width: 150 },
+                { field: "transactionPDate", title: "تاریخ", width: 200 },
+                { field: "transactionDesc", title: "تراکنش", width: 250 },
+                { field: "netAmount", title: "مبلغ خالص", width: 150 },
+                { field: "amount", title: "مبلغ ناخالص", width: 150 },
                 { field: "discount", title: "تخفیف", width: 150 },
-                { field: "location", title: "مکان", width: 150 },
+                { field: "placeDesc", title: "مکان", width: 150 },
                 { field: "user", title: "کاربر", width: 150 },
-                { field: "terminal", title: "ترمینال", width: 150 },
+                { field: "terminalDesc", title: "ترمینال", width: 150 },
                 { field: "description", title: "توضیحات", width: 150 }
             ]
         };
