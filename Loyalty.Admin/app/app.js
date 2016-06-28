@@ -52,7 +52,7 @@
             removeUserUrl: baseBackendUrl + '/api/accounts/user/delete',
             userUrl: baseBackendUrl + '/api/accounts/getUser',
             saveUserUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
-            profileUrl: baseBackendUrl + '/api/loyalty/user/profile',
+            profileUrl: baseBackendUrl + '/api/identityAccounts/profile',
             changePasswordUrl: baseBackendUrl + '/api/identityAccounts/ChangePassword',
 
             permissionCatalogsUrl: baseBackendUrl + '/api/accounts/permissionCatalogs',
@@ -66,7 +66,7 @@
             customerSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
             customerQuickSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
             customerGroupListUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/compress',
-            customerReagentFindUrl: baseBackendUrl + '/api/loyalty/customer/customers/search/bycodeorcard',
+            customerReagentFindUrl: baseBackendUrl + '/api/loyalty/customer/search/bycodeormobile',
 
             customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
             customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
@@ -79,7 +79,7 @@
             customerGroupSaveUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/save',
             removeCustomerGroupUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/delete',
 
-            customersSearchUrl: baseBackendUrl + '/api/loyalty/customer/customers/search/bycodeorcard',
+            customersSearchUrl: baseBackendUrl + '/api/loyalty/customer/search/bycodeormobile',
 
             tierListUrl: baseBackendUrl + '/api/loyalty/tiers/',
             tierSaveUrl: baseBackendUrl + '/api/loyalty/tiers/save',
@@ -237,7 +237,6 @@
                         { resource: 'customerQuickAdd' },
                         { resource: 'cardgrouplist' },
                         { resource: 'test' },
-
                     ];
                 }
                 res.data.forEach(function (itm) {
@@ -248,7 +247,7 @@
                         var title = $rootScope.urls.pages[itm.resource.toLowerCase()].title;
 
                         var order = $rootScope.urls.pages[itm.resource.toLowerCase()].order;
-
+                        
                         $(".header-menu .navbar-nav .exit-menu-item").before('<li class="pages-lnk" data-order=' + order + '><a href="' + url + '">' + title + '</a></li>');
                     }
                 });

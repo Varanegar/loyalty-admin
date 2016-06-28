@@ -91,6 +91,5 @@
            })
            .otherwise({
                redirectTo: "/",
-
            })
        });

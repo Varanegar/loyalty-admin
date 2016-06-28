@@ -41,15 +41,18 @@
                 </button>
                 <a href="#/" class="navbar-brand">مدیریت باشگاه مشتریان</a>
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li data-ng-show="showlogin()"><a href="#login" class="glyphicon glyphicon-log-in"> ورود </a></li>
-                    <li data-ng-show="!(showlogin())">
+
+                    <li data-order='0' data-ng-show="!(showlogin())">
                         <a href="#/profile" class="navbar-brand">
                             <span> <img src="content/images/profile.png" width="32" height="32" /> {{user.fullname}}</span>
                         </a>
                     </li>
-                    <li class="exit-menu-item" data-ng-show="!(showlogin())">
+
+                    <li class="exit-menu-item" data-order='15' data-ng-show="!(showlogin())">
                         <a href="#" data-ng-click="logout()" class="glyphicon glyphicon-log-out"> خروج </a>
                     </li>
                 </ul>
@@ -112,6 +115,7 @@
             rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
         }
     </script>
+
     <script src="app/directives/MenuDirective.js"></script>
     <script src="app/app.js"></script>
     <script src="app/configs/routeConfig.js"></script>
@@ -122,13 +126,13 @@
     <script src="app/services/callapiAnonymously.js"></script>
 
     <script src="app/controllers/maincontroller.js"></script>
-    <script src="app/controllers/logincontroller.js"></script>
-    <script src="app/controllers/restorePasswordcontroller.js"></script>
-    <script src="app/controllers/signupcontroller.js"></script>
+    <script src="app/controllers/userManager/logincontroller.js"></script>
+    <script src="app/controllers/userManager/restorePasswordcontroller.js"></script>
+    <script src="app/controllers/userManager/signupcontroller.js"></script>
 
-    <script src="app/controllers/userscontroller.js"></script>
-    <script src="app/controllers/usereditcontroller.js"></script>
-    <script src="app/controllers/permissionscontroller.js"></script>
+    <script src="app/controllers/userManager/userscontroller.js"></script>
+    <script src="app/controllers/userManager/usereditcontroller.js"></script>
+    <script src="app/controllers/userManager/permissionscontroller.js"></script>
 
     <script src="app/controllers/customer/customercontroller.js"></script>
     <script src="app/controllers/customer/editCustomerController.js"></script>
@@ -141,9 +145,9 @@
     <script src="app/controllers/card/cardGroupController.js"></script>
     <script src="app/controllers/card/editCardGroupController.js"></script>
 
-    <script src="app/controllers/customergroupcontroller.js"></script>
+    <script src="app/controllers/customer/customergroupcontroller.js"></script>
 
     <script src="app/controllers/testcontroller.js"></script>
-    <script src="app/controllers/profilecontroller.js"></script>
+    <script src="app/controllers/userManager/profilecontroller.js"></script>
 </body>
 </html>
