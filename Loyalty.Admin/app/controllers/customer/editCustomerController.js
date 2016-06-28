@@ -369,14 +369,14 @@
             requestEnd: $rootScope.onGridRequestEnd,
             schema: {
                 model: {
-                    id: "id",
+                    id: "uniqueId",
                     fields: {
-                        id: { editable: false, nullable: true },
-                        date: { editable: false },
-                        action: { editable: false },
-                        location: { editable: false },
-                        user: { editable: false },
-                        terminal: { editable: false },
+                        uniqueId: { editable: false, nullable: true },
+                        activityPDate: { editable: false },
+                        activityDesc: { editable: false },
+                        placeDesc: { editable: false },
+                        userId: { editable: false },
+                        terminalDesc: { editable: false },
                         description: { editable: false }
                     }
                 }
@@ -400,17 +400,16 @@
                 }
             },
             pageable: true,
-            toolbar: null,
             height: 500,
             //editable: false,
             dataBinding: onGridDataBinding,
             columns: [
                 { field: "rowNo", title: "#", width: 70, template: "#: renderNumber(data) #", filterable: false, },
-                { field: "date", title: "تاریخ", width: 200 },
-                { field: "action", title: "اقدام", width: 250 },
-                { field: "location", title: "مکان", width: 150 },
-                { field: "user", title: "کاربر", width: 150 },
-                { field: "terminal", title: "ترمینال", width: 150 },
+                { field: "activityPDate", title: "تاریخ", width: 200 },
+                { field: "activityDesc", title: "اقدام", width: 250 },
+                { field: "placeDesc", title: "مکان", width: 150 },
+                { field: "userId", title: "کاربر", width: 150 },
+                { field: "terminalDesc", title: "ترمینال", width: 150 },
                 { field: "description", title: "توضیحات", width: 150 }
             ]
         };
@@ -424,7 +423,7 @@
                                 customerId: $routeParams.uid
                             }
                         }), function (response) {
-                            //console.log(response.data);
+                            console.log(response.data);
                             e.success(response.data)
                         }, function (response) {
                             //console.log(response);
@@ -474,7 +473,6 @@
                 }
             },
             pageable: true,
-            toolbar: null,
             height: 500,
             //editable: false,
             dataBinding: onGridDataBinding,
@@ -498,7 +496,7 @@
                     callApi.call($rootScope.urls.customerNonFinancialHistoryUrl, 'POST', JSON.stringify({
                         customerNonMonetaryHistoryData: { customerId: $routeParams.uid }
                     }), function (response) {
-                        //console.log(response.data);
+                        console.log(response.data);
                         e.success(response.data)
                     }, function (response) {
                         //console.log(response);
@@ -514,15 +512,15 @@
             requestEnd: $rootScope.onGridRequestEnd,
             schema: {
                 model: {
-                    id: "id",
+                    id: "uniqueId",
                     fields: {
-                        id: { editable: false, nullable: true },
-                        date: { editable: false },
-                        feature: { editable: false },
-                        initial: { editable: false },
-                        incremental: { editable: false },
-                        decremental: { editable: false },
-                        final: { editable: false }
+                        uniqueId: { editable: false, nullable: true },
+                        transactionPDate: { editable: false },
+                        description: { editable: false },
+                        firstValue: { editable: false },
+                        increaseValue: { editable: false },
+                        decreaseValue: { editable: false },
+                        finalValue: { editable: false }
                     }
                 }
             }
@@ -545,18 +543,17 @@
                 }
             },
             pageable: true,
-            toolbar: null,
             height: 500,
             //editable: false,
             dataBinding: onGridDataBinding,
             columns: [
                 { field: "rowNo", title: "#", width: 70, template: "#: renderNumber(data) #", filterable: false, },
-                { field: "date", title: "تاریخ", width: 200 },
-                { field: "feature", title: "ویژگی برنامه", width: 250 },
-                { field: "initial", title: "مقدار اولیه", width: 150 },
-                { field: "incremental", title: "مقدار افزایشی", width: 150 },
-                { field: "decremental", title: "مقدار کاهشی", width: 150 },
-                { field: "final", title: "مقدار نهایی", width: 150 }
+                { field: "transactionPDate", title: "تاریخ", width: 200 },
+                { field: "description", title: "ویژگی برنامه", width: 250 },
+                { field: "firstValue", title: "مقدار اولیه", width: 150 },
+                { field: "increaseValue", title: "مقدار افزایشی", width: 150 },
+                { field: "decreaseValue", title: "مقدار کاهشی", width: 150 },
+                { field: "finalValue", title: "مقدار نهایی", width: 150 }
             ]
         };
 
@@ -579,7 +576,7 @@
                 callApi.call($rootScope.urls.customerByIdUrl, 'POST', { customerId: $routeParams.uid }, function (response) {
                     //console.log(response);
                     if (response.data.length > 0)
-                    $scope.customer = response.data[0];
+                        $scope.customer = response.data[0];
                 }, function () { });
                 customerActivityDataSource.read();
                 customerFinancialActivityDataSource.read();
