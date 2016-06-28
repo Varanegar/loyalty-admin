@@ -1,1 +1,27 @@
-﻿
+﻿<script type="text/x-kendo-template" id="toolbar-template">
+    <div class="toolbar">
+        <button type="button" data-ng-click="add()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>افزودن
+        </button>
+
+        <button type="button" data-ng-click="edit()" class="k-button k-button-icontext">
+            <span class="k-icon k-edit"></span>ویرایش
+        </button>
+
+        <button type="button" data-ng-click="delete()" class="k-button k-button-icontext">
+            <span class="k-icon k-delete"></span>حذف
+        </button>
+        |
+        <button type="button" data-ng-click="groupUsers()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>کاربران
+        </button>
+        <button type="button" data-ng-click="groupPermissions()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>مجوزها
+        </button>
+    </div>
+</script>
+
+<div ng-controller="groupscontroller" class="k-rtl">
+    <kendo-grid options="groupsGridOptions" k-on-change="selectingGroups(data, dataItem, columns)"></kendo-grid>
+</div>
+

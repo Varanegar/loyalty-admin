@@ -86,16 +86,20 @@
             tierByIdUrl: baseBackendUrl + '/api/loyalty/tiers/',
             tierDeleteUrl: baseBackendUrl + '/api/loyalty/tiers/delete',
 
+            groupsUrl: baseBackendUrl + '/api/loyalty/usergroup/load',
+            removeGroupUrl: baseBackendUrl + '/api/loyalty/usergroup/delete',
+
             myWebpages: baseBackendUrl + '/api/accounts/myWebpages',
             pages: {
                 usermanagement: { url: '/#/userManager', title: 'مدیریت کاربران', order: 1 },
                 permission: { url: '/#/userManager/permissions', title: 'مجوز دسترسی', order: 2 },
-                customertiers: { url: '/#/tiers/list', title: 'سطح مشتریان', order: 3 },
-                customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 4 },
-                customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 5 },
-                customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 6 },
-                cardgrouplist: { url: '/#/cardGroup/', title: 'گروه کارت', order: 7 },
-                test: { url: '/#/test/', title: 'تست', order: 8 }
+                groups: { url: '/#/groups', title: 'گروه کاربری', order: 3 },
+                customertiers: { url: '/#/tiers/list', title: 'سطح مشتریان', order: 4 },
+                customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 5 },
+                customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 6 },
+                customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 7 },
+                cardgrouplist: { url: '/#/cardGroup/', title: 'گروه کارت', order: 8 },
+                test: { url: '/#/test/', title: 'تست', order: 9 }
             }
         };
 
@@ -218,7 +222,7 @@
         }
 
         $rootScope.sortHeaderMenu = function () {
-            var $wrapper = $('.header-menu ul.navbar-nav');
+            var $wrapper = $('.header-menu ul.navbar-nav .menu');
 
             $wrapper.find('li').sort(function (a, b) {
                 return +a.dataset.order - +b.dataset.order;
@@ -226,11 +230,12 @@
         };
         $rootScope.refreshMenu = function () {
             callApi.call($rootScope.urls.myWebpages, "POST", {}, function (res) {
-                //Todo: beecaaaz server has no record! :D
+                //beecaaaz server has no record! :D
                 if (res.data && res.data.length == 0) {
                     res.data = [
                         { resource: 'userManagement' },
                         { resource: 'permission' },
+                        { resource: 'groups' },
                         { resource: 'customerTiers' },
                         { resource: 'customerGroups' },
                         { resource: 'customerList' },
@@ -239,6 +244,7 @@
                         { resource: 'test' },
                     ];
                 }
+                var strmenu = '';
                 res.data.forEach(function (itm) {
                     if (itm.action !== '' && itm.action !== 'List') {
 
@@ -247,11 +253,11 @@
                         var title = $rootScope.urls.pages[itm.resource.toLowerCase()].title;
 
                         var order = $rootScope.urls.pages[itm.resource.toLowerCase()].order;
-                        
-                        $(".header-menu .navbar-nav .exit-menu-item").before('<li class="pages-lnk" data-order=' + order + '><a href="' + url + '">' + title + '</a></li>');
+
+                        strmenu += '<li class="pages-lnk" data-order=' + order + '><a href="' + url + '">' + title + '</a></li>';
                     }
                 });
-
+                $(".header-menu .navbar-nav.menu").html(strmenu);
                 $rootScope.sortHeaderMenu()
             });
         }

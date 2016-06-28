@@ -89,6 +89,11 @@
                controller: "profilecontroller",
                authorize: true,
            })
+           .when("/groups", {
+               templateUrl: "partials/groupManager/groups.htm",
+               controller: "groupscontroller",
+               authorize: true,
+           })
            .otherwise({
                redirectTo: "/",
            })
