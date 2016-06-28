@@ -1,0 +1,20 @@
+﻿<script type="text/x-kendo-template" id="customers-toolbar-template">
+    <div class="toolbar">
+        <button type="button" data-ng-click="addTier()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>افزودن
+        </button>
+        <button type="button" data-ng-click="editTier()" class="k-button k-button-icontext">
+            <span class="k-icon k-edit"></span>ویرایش
+        </button>
+        <button type="button" data-ng-click="removeTier()" class="k-button k-button-icontext">
+            <span class="k-icon"></span>حذف
+        </button>
+    </div>
+</script>
+
+<div id="div-customers" class="k-rtl">
+
+    <div class="row">
+        <kendo-grid options="tierGridOptions" k-on-change="selectingTier(data, dataItem, columns)"></kendo-grid>
+    </div>
+</div>

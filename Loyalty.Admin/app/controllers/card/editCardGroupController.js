@@ -8,8 +8,37 @@
     editCardGroupController.$inject = ['$scope', '$http', '$rootScope', '$routeParams', '$location', 'callApi', 'authenticationService', 'callApiAnonymouslyService'];
     function editCardGroupController($scope, $http, $rootScope, $routeParams, $location, callApi, authenticationService, callApiAnonymouslyService) {
 
+        $scope.generateTypes = [
+            { typeName: 'سریالی', id: 'AEBC1016-A309-440D-A9AE-DADA3D33D8D8', key: 'serial' },
+            { typeName: 'دستی', id: 'E6559D55-FC64-4E2A-A82B-2CFFE940199B', key: 'manual' }
+        ];
+
+        $scope.isManualGenerateModeSelected = function () {
+            for (var i = 0; i < $scope.generateTypes.length; i++) {
+                if ($scope.generateTypes[i].key == 'manual' &&
+                    $scope.cardSet.loyaltyCardSetGenerateTypeId == $scope.generateTypes[i].id)
+                    return true;
+            }
+
+            return false;
+        }
+
         $scope.cardSet = {
-            loyaltyCardSetGenerateTypeId: "aebc1016-a309-440d-a9ae-dada3d33d8d8"
+
+        };
+
+        $scope.cardSetGenerateTypeDataSource = {
+            transport: {
+                read: function (e) {
+                    callApi.call($rootScope.urls.usersUrl, 'GET', null, function success(response) {
+                        e.success(response.data);
+                        if (response.data)
+                            $scope.selectedUser = response.data[0].id;
+                    }, function error(response) {
+                        console.log(response);
+                    });
+                },
+            }
         };
 
         $scope.save = function () {
@@ -36,6 +65,12 @@
                 }, function (error) { });
             } else {
                 // new mode
+                for (var i = 0; i < $scope.generateTypes.length; i++) {
+                    if ($scope.generateTypes[i].key == 'serial') {
+                        $scope.cardSet.loyaltyCardSetGenerateTypeId = $scope.generateTypes[i].id;
+                        break;
+                    }
+                }
             }
 
         })();

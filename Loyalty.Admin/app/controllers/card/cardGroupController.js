@@ -69,7 +69,7 @@
                 { field: "loyaltyCardSetCode", title: "کد گروه", width: 200 },
                 { field: "loyaltyCardSetName", title: "نام گروه", width: 200 },
                 { field: "initialtext", title: "متن اولیه", width: 200 },
-                { field: "seed", title: "شروع", width: 200 },
+                { field: "seed", title: "گام افزایشی", width: 200 },
                 { field: "currentNo", title: "شماره فعلی", width: 200 },
                 //{ command: { text: "ویرایش", click: $scope.showEdit }, title: " ", width: "180px" }
             ]

@@ -67,18 +67,150 @@
         $scope.companyTypeId = '770803A2-3F46-48D1-98D2-2D656F6297DD';
 
         $scope.countries = [];
+        $scope.regionLevel1DataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    $scope.getRegions(null, function (countries) {
+                        $scope.countries = countries.data;
+                        e.success($scope.countries);
+                    });
+                },
+            }
+        });
+
         $scope.cities = [];
+        $scope.regionLevel2DataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    $scope.getRegions($scope.customer.regionLevel1Id, function (cities) {
+                        $scope.cities = cities.data;
+                        e.success(cities.data);
+                        if (cities.data.length > 0) {
+                            $scope.customer.regionLevel2Id = cities.data[0].uniqueId;
+                            if ($scope.regions.length == 0)
+                                $scope.onCityChanged();
+                        }
+                    });
+                },
+            }
+        });
+
         $scope.regions = [];
+        $scope.regionLevel3DataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    $scope.getRegions($scope.customer.regionLevel2Id, function (regions) {
+                        $scope.regions = regions.data;
+                        e.success(regions.data);
+                        if (regions.data.length > 0)
+                            $scope.customer.regionLevel3Id = regions.data[0].uniqueId;
+                    });
+                },
+            }
+        });
+
         $scope.districts = [];
+        $scope.regionLevel4DataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    $scope.getRegions($scope.customer.regionLevel3Id, function (districts) {
+                        $scope.districts = districts.data;
+                        e.success(districts.data);
+                        if (districts.data.length > 0)
+                            $scope.customer.regionLevel4Id = districts.data[0].uniqueId;
+                    });
+                },
+            }
+        });
+
+
         $scope.tiers = [];
+        $scope.customerTierDataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    callApi.call($rootScope.urls.customerTierListUrl, 'POST', null,
+                        function (response) {
+                            $scope.tiers = response.data;
+                            e.success(response.data);
+                            if ($scope.customer && !$scope.customer.currentTierId && response.data.length > 0) {
+                                $scope.customer.currentTierId = response.data[0].uniqueId;
+                            }
+                        },
+                        function (error) {
+                            console.log('error while trying to fetch tier data.');
+                            console.log('error detail: ' + error);
+                        });
+                },
+            }
+        });
 
         $scope.cardSets = [];
+        $scope.cardSetDataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    callApi.call($rootScope.urls.cardSetUrl, 'POST', null,
+                        function (response) {
+                            $scope.cardSets = response.data;
+                            e.success(response.data);
+                            if ($scope.customer && !$scope.customer.currentCardSetId && response.data.length > 0) {
+                                $scope.customer.currentCardSetId = response.data[0].uniqueId;
+                            }
+                        },
+                        function (error) {
+                            console.log('error while trying to fetch region data. parentId: ' + parentId);
+                            console.log('error detail: ' + error);
+                        });
+                },
+            }
+        });
+
         $scope.customerGroups = [];
+        $scope.customerGroupDataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    callApi.call($rootScope.urls.customerGroupListUrl, 'POST', null,
+                        function (response) {
+                            $scope.customerGroups = response.data;
+                            e.success(response.data);
+                            if ($scope.customer && !$scope.customer.customerGroupId && response.data.length > 0) {
+                                $scope.customer.customerGroupId = response.data[0].uniqueId;
+                            }
+                        },
+                        function (error) {
+                            console.log('error while trying to fetch region data. parentId: ' + parentId);
+                            console.log('error detail: ' + error);
+                        });
+                },
+            }
+        });
+
+        $scope.customerReagentDataSource = new kendo.data.DataSource({
+            transport: {
+                read: function (e) {
+                    callApi.call($rootScope.urls.customerReagentFindUrl, 'POST', { searchTerm: $('').val() },
+                        function (response) {
+                            $scope.tiers = response.data;
+                            e.success(response.data);
+                            if ($scope.customer && !$scope.customer.reagentId && response.data.length > 0) {
+                                $scope.customer.reagentId = response.data[0].uniqueId;
+                            }
+                        },
+                        function (error) {
+                            console.log('error while trying to fetch tier data.');
+                            console.log('error detail: ' + error);
+                        });
+                },
+            }
+        });
+
         $scope.flLoading = false;
 
         $scope.onCountryChanged = function () {
             $scope.getRegions($scope.customer.regionLevel1Id, function (cities) {
                 $scope.cities = cities.data;
+                $scope.regionLevel2DataSource.read();
+                $scope.regionLevel3DataSource.read();
+                $scope.regionLevel4DataSource.read();
                 if (cities.data.length > 0) {
                     $scope.customer.regionLevel2Id = cities.data[0].uniqueId;
                     if ($scope.regions.length == 0)
@@ -90,6 +222,8 @@
         $scope.onCityChanged = function () {
             $scope.getRegions($scope.customer.regionLevel2Id, function (regions) {
                 $scope.regions = regions.data;
+                $scope.regionLevel3DataSource.read();
+                $scope.regionLevel4DataSource.read();
                 if (regions.data.length > 0) {
                     $scope.customer.regionLevel3Id = regions.data[0].uniqueId;
                     if ($scope.districts.length == 0)
@@ -101,6 +235,7 @@
         $scope.onRegionChanged = function () {
             $scope.getRegions($scope.customer.regionLevel3Id, function (districts) {
                 $scope.districts = districts.data;
+                $scope.regionLevel4DataSource.read();
                 if (districts.data.length > 0)
                     $scope.customer.regionLevel4Id = districts.data[0].uniqueId;
             });
@@ -172,6 +307,41 @@
             $location.path('/customer/list');
         };
 
+// reagent 
+        $scope.reagentSearchTerm = '';
+        $scope.selectedReagent = '';
+
+        $scope.customersDataSource = {
+            serverFiltering: true,
+            transport: {
+                read:
+                    function (e) {
+                        callApi.call($rootScope.urls.customersSearchUrl, 'Post', {
+                            searchTerm: $scope.reagentSearchTerm
+                        }, function (response) {
+                            e.success(response.data)
+                        });
+                    }
+            }
+        };
+
+        $scope.reagentOptions = {
+            dataSource: $scope.customersDataSource,
+            dataTextField: "customerName",
+            minLength: 2,
+            delay: 500,
+            filter: "contains",
+            placeholder: "کد یا موبایل مشتری",
+            select: function (e) {
+                var dataItem = this.dataItem(e.item.index());
+                $scope.selectedReagent = dataItem;
+                if(dataItem)
+                    $scope.customer.reagentId = dataItem.uniqueId;
+                else
+                    $scope.customer.reagentId = null;
+            },
+            template: 'نام: #: customerName#, کدمشتری: #: customerCode#, موبایل: #: mobile#',
+        };
 
         var customerActivityDataSource = new kendo.data.DataSource({
             transport: {

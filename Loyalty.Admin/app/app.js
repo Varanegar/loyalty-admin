@@ -54,7 +54,7 @@
             saveUserUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
             profileUrl: baseBackendUrl + '/api/loyalty/user/profile',
             changePasswordUrl: baseBackendUrl + '/api/identityAccounts/ChangePassword',
-            
+
             permissionCatalogsUrl: baseBackendUrl + '/api/accounts/permissionCatalogs',
             permissionCatalogsOfUserUrl: baseBackendUrl + '/api/accounts/getPersmissionCatalogsOfUser',
             savePermissionCatalogsUrl: baseBackendUrl + '/api/accounts/savePermissionCatalogs',
@@ -66,10 +66,11 @@
             customerSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
             customerQuickSaveUrl: baseBackendUrl + '/api/loyalty/customer/saveSingle',
             customerGroupListUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/compress',
+            customerReagentFindUrl: baseBackendUrl + '/api/loyalty/customer/customers/search/bycodeorcard',
+
             customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
             customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
             customerCardSaveUrl: baseBackendUrl + '/api/loyalty/cards/save',
-
             cardSetUrl: baseBackendUrl + '/api/loyalty/cardsets',
             saveCardSetUrl: baseBackendUrl + '/api/loyalty/cardsets/save',
             cardSetByIdUrl: baseBackendUrl + '/api/loyalty/cards/bycardsetid/compress',
@@ -80,15 +81,21 @@
 
             customersSearchUrl: baseBackendUrl + '/api/loyalty/customer/customers/search/bycodeorcard',
 
+            tierListUrl: baseBackendUrl + '/api/loyalty/tiers/',
+            tierSaveUrl: baseBackendUrl + '/api/loyalty/tiers/save',
+            tierByIdUrl: baseBackendUrl + '/api/loyalty/tiers/',
+            tierDeleteUrl: baseBackendUrl + '/api/loyalty/tiers/delete',
+
             myWebpages: baseBackendUrl + '/api/accounts/myWebpages',
             pages: {
                 usermanagement: { url: '/#/userManager', title: 'مدیریت کاربران', order: 1 },
                 permission: { url: '/#/userManager/permissions', title: 'مجوز دسترسی', order: 2 },
-                customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 3 },
-                customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 4 },
-                customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 5 },
-                cardgrouplist: { url: '/#/cardGroup/', title: 'گروه کارت', order: 6 },
-                test: { url: '/#/test/', title: 'تست', order: 7 }
+                customertiers: { url: '/#/tiers/list', title: 'سطح مشتریان', order: 3 },
+                customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 4 },
+                customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 5 },
+                customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 6 },
+                cardgrouplist: { url: '/#/cardGroup/', title: 'گروه کارت', order: 7 },
+                test: { url: '/#/test/', title: 'تست', order: 8 }
             }
         };
 
@@ -224,6 +231,7 @@
                     res.data = [
                         { resource: 'userManagement' },
                         { resource: 'permission' },
+                        { resource: 'customerTiers' },
                         { resource: 'customerGroups' },
                         { resource: 'customerList' },
                         { resource: 'customerQuickAdd' },

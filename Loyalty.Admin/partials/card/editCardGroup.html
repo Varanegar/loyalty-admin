@@ -9,16 +9,22 @@
             <input id="cardGroupCode" ng-model="cardSet.loyaltyCardSetCode" class="form-control" />
         </div>
         <div class="form-group">
-            <label for="initialText">متن اولیه:</label>
-            <input id="initialText" ng-model="cardSet.initialtext" class="form-control" />
+            <label for="cardGroupType">نوع گروه کارت:</label>
+            <select id="cardGroupType" ng-model="cardSet.loyaltyCardSetGenerateTypeId" class="form-control">
+                <option ng-repeat="c in generateTypes" value="{{c.id}}">{{c.typeName}}</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="seed">شروع:</label>
-            <input id="seed" ng-model="cardSet.seed" type="number" class="form-control" />
+            <label for="initialText">متن اولیه:</label>
+            <input id="initialText" ng-model="cardSet.initialtext" class="form-control" ng-disabled="(isManualGenerateModeSelected())" />
+        </div>
+        <div class="form-group">
+            <label for="seed">گام افزایشی:</label>
+            <input id="seed" ng-model="cardSet.seed" type="number" class="form-control" ng-disabled="(isManualGenerateModeSelected())" />
         </div>
         <div class="form-group">
             <label for="currentNo">شماره فعلی:</label>
-            <input id="currentNo" ng-model="cardSet.currentNo" type="number" class="form-control" />
+            <input id="currentNo" ng-model="cardSet.currentNo" type="number" class="form-control" ng-disabled="(isManualGenerateModeSelected())" />
         </div>
         <div class="form-group">
             <button type="button" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
