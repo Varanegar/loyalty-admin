@@ -1,0 +1,51 @@
+﻿<form id="changePasswordForm" ng-controller="profilecontroller" class="k-rtl">
+
+    <div class="row">
+        <div class="col-xs-6"><span>نام: {{user.fullName}}</span></div>
+        <div class="col-xs-6"><span>نام کاربری: {{user.userName}}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6"><span>ایمیل: {{user.email}}</span></div>
+        <div class="col-xs-6"><span>موبایل: {{user.mobile}}</span></div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <input class="form-control" type="password" data-ng-model="oldPassword" placeholder="رمزعبور قدیم" required />
+
+            <span style="color:red" ng-show="changePasswordForm.oldPassword.$dirty && oldPassword.password.$invalid">
+                <span ng-show="changePasswordForm.oldPassword.$error.required">لطفا رمزعبور را وارد نمایید</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <input class="form-control" type="password" data-ng-model="password" placeholder="رمزعبور" required />
+
+            <span style="color:red" ng-show="changePasswordForm.password.$dirty && changePasswordForm.password.$invalid">
+                <span ng-show="changePasswordForm.password.$error.required">لطفا رمزعبور را وارد نمایید</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <input class="form-control" type="password" data-ng-model="confirmPassword" placeholder="تکرار رمزعبور" required />
+
+            <span style="color:red" ng-show="changePasswordForm.confirmPassword.$dirty && changePasswordForm.confirmPassword.$invalid">
+                <span ng-show="changePasswordForm.confirmPassword.$error.required">لطفا تکرار رمزعبور را وارد نمایید</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" data-ng-click="changePass()" ng-disabled="changePasswordForm.$invalid || flLoading" class="btn btn-success btn-lg">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ثبت
+            </button>
+        </div>
+    </div>
+</form>

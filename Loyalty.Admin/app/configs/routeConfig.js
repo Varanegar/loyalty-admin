@@ -67,6 +67,11 @@
                controller: "testcontroller",
                authorize: true,
            })
+           .when("/profile", {
+               templateUrl: "partials/profile.htm",
+               controller: "profilecontroller",
+               authorize: true,
+           })
            .otherwise({
                redirectTo: "/",
 

@@ -94,6 +94,7 @@
             dataTextField: "userName",
             dataValueField: "id",
             valuePrimitive: true,
+            autoClose: false,
             autoBind: false,
             dataSource: {
                 //serverFiltering: true,

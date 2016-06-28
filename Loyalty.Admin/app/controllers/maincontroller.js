@@ -9,10 +9,7 @@
 
     function maincontroller($rootScope, $scope, $http, $location, callApi, authenticationService) {
 
-        //(function initController() {
-        //    if ($rootScope.token() !== '')
-        //        $rootScope.refreshMenu();
-        //})();
+        $scope.user = $rootScope.currentUser;
 
         $scope.title = 'maincontroller';
         $scope.dateNow = new Date().getFullYear();
@@ -30,7 +27,7 @@
         }
 
         $scope.refreshMenu = function () {
-            
+
             if ($rootScope.token() !== '')
                 $rootScope.refreshMenu();
         }

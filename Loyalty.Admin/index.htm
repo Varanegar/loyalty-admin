@@ -32,6 +32,7 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top header-menu">
         <div class="container">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -43,6 +44,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li data-ng-show="showlogin()"><a href="#login" class="glyphicon glyphicon-log-in"> ورود </a></li>
+                    <li data-ng-show="!(showlogin())">
+                        <a href="#/profile" class="navbar-brand">
+                            <span> <img src="content/images/profile.png" width="32" height="32" /> {{user.fullname}}</span>
+                        </a>
+                    </li>
                     <li class="exit-menu-item" data-ng-show="!(showlogin())">
                         <a href="#" data-ng-click="logout()" class="glyphicon glyphicon-log-out"> خروج </a>
                     </li>
@@ -136,5 +142,6 @@
     <script src="app/controllers/customergroupcontroller.js"></script>
 
     <script src="app/controllers/testcontroller.js"></script>
+    <script src="app/controllers/profilecontroller.js"></script>
 </body>
 </html>

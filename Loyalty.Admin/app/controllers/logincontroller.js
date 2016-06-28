@@ -42,6 +42,8 @@
 
                 $rootScope.refreshMenu();
 
+                $rootScope.getCurrentUserinfo();
+
                 $location.path('/');
 
             }, function (fail) {

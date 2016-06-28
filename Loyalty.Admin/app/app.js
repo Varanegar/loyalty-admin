@@ -52,7 +52,9 @@
             removeUserUrl: baseBackendUrl + '/api/accounts/user/delete',
             userUrl: baseBackendUrl + '/api/accounts/getUser',
             saveUserUrl: baseBackendUrl + '/api/identityAccounts/saveUser',
-
+            profileUrl: baseBackendUrl + '/api/loyalty/user/profile',
+            changePasswordUrl: baseBackendUrl + '/api/identityAccounts/ChangePassword',
+            
             permissionCatalogsUrl: baseBackendUrl + '/api/accounts/permissionCatalogs',
             permissionCatalogsOfUserUrl: baseBackendUrl + '/api/accounts/getPersmissionCatalogsOfUser',
             savePermissionCatalogsUrl: baseBackendUrl + '/api/accounts/savePermissionCatalogs',
@@ -85,8 +87,8 @@
                 customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 3 },
                 customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 4 },
                 customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 5 },
-                cardgrouplist: {url: '/#/cardGroup/', title: 'گروه کارت', order: 6 },
-                test: {url: '/#/test/', title: 'تست', order: 7 }
+                cardgrouplist: { url: '/#/cardGroup/', title: 'گروه کارت', order: 6 },
+                test: { url: '/#/test/', title: 'تست', order: 7 }
             }
         };
 
@@ -244,6 +246,13 @@
                 });
 
                 $rootScope.sortHeaderMenu()
+            });
+        }
+
+        $rootScope.currentUser = '';
+        $rootScope.getCurrentUserinfo = function () {
+            callApi.call($rootScope.urls.profileUrl, "POST", null, function (res) {
+                $rootScope.currentUser = res.data;
             });
         }
     });
