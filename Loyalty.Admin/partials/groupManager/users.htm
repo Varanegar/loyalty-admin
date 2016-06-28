@@ -1,1 +1,17 @@
-﻿
+﻿<div ng-controller="groupUserscontroller" class="k-rtl">
+    <h4>نام گروه: {{groupName}}</h4>
+    <div class="row">
+        <div class="col-xs-12">
+            <select kendo-multi-select k-options="userMultiSelectOptions" k-ng-model="selectedUserIds"></select>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <button type="button" data-ng-click="save()" ng-disabled="groupform.$invalid || flLoading" class="btn btn-success">
+            <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ثبت
+        </button>
+        <button type="button" data-ng-click="cancel()" class="btn btn-warning">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> انصراف
+        </button>
+    </div>
+</div>

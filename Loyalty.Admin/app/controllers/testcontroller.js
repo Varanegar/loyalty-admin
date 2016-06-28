@@ -128,5 +128,23 @@
         $scope.show = function () {
             console.log($scope.selectedIds);
         }
+
+        var defaultCallback = function (e) {
+            debugger
+        }
+        //$scope.showConfirm = function () {
+        //    $('#myLinkToConfirm').confirmModal({
+        //        confirmTitle: 'سفارشی',
+        //        confirmMessage: 'آیا مایل به انجام این کار می باشید؟',
+        //        confirmOk: 'انجام',
+        //        confirmCancel: 'انصراف',
+        //        confirmDirection: 'rtl',
+        //        confirmStyle: 'primary',
+        //        confirmCallback: defaultCallback,
+        //        confirmDismiss: true,
+        //        confirmAutoOpen: false
+        //    });
+
+        //}
     }
 })();

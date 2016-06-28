@@ -87,6 +87,7 @@
             tierDeleteUrl: baseBackendUrl + '/api/loyalty/tiers/delete',
 
             groupsUrl: baseBackendUrl + '/api/loyalty/usergroup/load',
+            saveGroupUrl: baseBackendUrl + '/api/loyalty/usergroup/save',
             removeGroupUrl: baseBackendUrl + '/api/loyalty/usergroup/delete',
 
             myWebpages: baseBackendUrl + '/api/accounts/myWebpages',

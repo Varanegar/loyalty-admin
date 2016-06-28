@@ -59,9 +59,7 @@
             ]
         };
 
-        $scope.add = function () {
-           // $location.path('/userManager/edit');
-        }
+        $scope.groupName = '';
 
         $scope.selectedGroup = '';
         $scope.selectingGroups = function (data, dataItem, columns) {
@@ -69,10 +67,41 @@
         };
 
         $scope.edit = function (e) {
-            //if ($scope.selectedUser)
-            //    $location.path('/groupManager/edit/' + $scope.selectedUser.id);
-            //else
-            //    $rootScope.showError('', 'لطفا ابتدا کاربر موردنظر را انتخاب نمایید');
+            if ($scope.selectedGroup != '')
+                $scope.groupName = $scope.selectedGroup.userGroupName;
+            else
+                $rootScope.showError('', 'لطفا ابتدا گروه مورد نظر را انتخاب نمایید');
+        }
+
+        var refreshGrid = function () {
+            $scope.grid.dataSource.read();
+            $scope.grid.refresh();
+        }
+
+        $scope.save = function (e) {
+            if ($scope.selectedGroup != '') {
+                $scope.selectedGroup.userGroupName = $scope.groupName;
+                callApi.call($rootScope.urls.saveGroupUrl, 'POST', {
+                    userGroupData: $scope.selectedGroup
+                }, function (response) {
+                    $rootScope.showSuccess('', 'گروه مورد نظر ذخیره گردید');
+                    $scope.groupName = '';
+                    $scope.selectedGroup = '';
+                    refreshGrid();
+                });
+            }
+            else {
+                callApi.call($rootScope.urls.saveGroupUrl, 'POST', {
+                    userGroupData: {
+                        uniqueId: $rootScope.newGuid(),
+                        userGroupName: $scope.groupName
+                    }
+                }, function (response) {
+                    $scope.groupName = '';
+                    $rootScope.showSuccess('', 'گروه مورد نظر ثبت گردید');
+                    refreshGrid();
+                });
+            }
         }
 
         $scope.delete = function () {
@@ -81,6 +110,8 @@
                     userGroupData: $scope.selectedGroup
                 }, function (response) {
                     $rootScope.showSuccess('', 'گروه مورد نظر حذف گردید');
+                    $scope.selectedGroup = '';
+                    refreshGrid();                   
                 });
             }
             else
@@ -88,11 +119,17 @@
         }
 
         $scope.groupUsers = function () {
-
+            if ($scope.selectedGroup != '')
+                $location.path(String.format('/groupUsers/{0}/{1}', $scope.selectedGroup.userGroupName, $scope.selectedGroup.uniqueId));
+            else
+                $rootScope.showError('', 'لطفا ابتدا گروه مورد نظر را انتخاب نمایید');
         }
 
         $scope.groupPermissions = function () {
-
+            if ($scope.selectedGroup != '')
+                $location.path(String.format('/groupPermissions/{0}/{1}', $scope.selectedGroup.userGroupName, $scope.selectedGroup.uniqueId));
+            else
+                $rootScope.showError('', 'لطفا ابتدا گروه مورد نظر را انتخاب نمایید');
         }
     }
 })();
