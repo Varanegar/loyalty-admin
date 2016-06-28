@@ -6,14 +6,14 @@
      'ngAnimate',
      'ngRoute',
      'ngCookies',
-
+     'ui.bootstrap',
      // Custom modules
 
      // 3rd Party Modules
      'kendo.directives',
      'toaster',
-     'ADM-dateTimePicker',
-
+     'angular-confirm',
+     'ADM-dateTimePicker'
     ]);
 
     app.run(function ($rootScope, $cookieStore, $location, toaster, callApi) {
@@ -68,6 +68,10 @@
             customerGroupListUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/compress',
             customerReagentFindUrl: baseBackendUrl + '/api/loyalty/customer/search/bycodeormobile',
 
+            customerFinancialHistoryUrl: baseBackendUrl + '/api/loyalty/customerhistory/loadmonetary',
+            customerNonFinancialHistoryUrl: baseBackendUrl + '/api/loyalty/customerhistory/loadnonmonetary',
+            customerTransactionHistoryUrl: baseBackendUrl + '/api/loyalty/customerhistory/loadtransaction',
+
             customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
             customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
             customerCardSaveUrl: baseBackendUrl + '/api/loyalty/cards/save',
@@ -83,7 +87,7 @@
 
             tierListUrl: baseBackendUrl + '/api/loyalty/tiers/',
             tierSaveUrl: baseBackendUrl + '/api/loyalty/tiers/save',
-            tierByIdUrl: baseBackendUrl + '/api/loyalty/tiers/',
+            tierByIdUrl: baseBackendUrl + '/api/loyalty/tiers/byid',
             tierDeleteUrl: baseBackendUrl + '/api/loyalty/tiers/delete',
 
             groupsUrl: baseBackendUrl + '/api/loyalty/usergroup/load',
