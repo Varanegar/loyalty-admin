@@ -187,7 +187,7 @@
         $scope.customerReagentDataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
-                    callApi.call($rootScope.urls.customerReagentFindUrl, 'POST', { searchTerm: '' },
+                    callApi.call($rootScope.urls.customerReagentFindUrl, 'POST', { searchTerm: $('').val() },
                         function (response) {
                             $scope.tiers = response.data;
                             e.success(response.data);
@@ -307,6 +307,20 @@
             $location.path('/customer/list');
         };
 
+        $scope.reagentOptions = {
+            dataSource: $scope.customersDataSource,
+            dataTextField: "customerName",
+            minLength: 2,
+            delay: 500,
+            filter: "contains",
+            placeholder: "کد یا موبایل مشتری",
+            select: function (e) {
+                var dataItem = this.dataItem(e.item.index());
+                $scope.customer.reagentId = dataItem.uniqueId;
+                //$scope.selectedCustomer = dataItem;
+            },
+            template: 'نام: #: customerName#, کدمشتری: #: customerCode#, موبایل: #: mobile#',
+        };
 
         var customerActivityDataSource = new kendo.data.DataSource({
             transport: {
