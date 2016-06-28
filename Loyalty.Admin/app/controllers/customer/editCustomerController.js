@@ -579,12 +579,18 @@
                         $scope.customer = response.data[0];
                 }, function () { });
                 customerActivityDataSource.read();
+                //$scope.activityGrid.refresh();
+
                 customerFinancialActivityDataSource.read();
+                //$scope.financialGrid.refresh();
+
                 customerActivityHistoryDataSource.read();
+                //$scope.activityHistoryGrid.refresh();
             } else {
                 // new mode
             }
 
+            alert($scope.grid);
         })();
     }
 })();

@@ -227,14 +227,15 @@
                 </div>
             </div>
             <div id="customer-history" class="tab-pane">
-                <kendo-grid options="customerActivityGridOptions"></kendo-grid>
+                <div kendo-grid="activityGrid" options="customerActivityGridOptions"></div>
             </div>
             <div id="customer-financial-history" class="tab-pane">
-                <kendo-grid options="customerFinancialActivityGridOptions"></kendo-grid>
+                <div kendo-grid="financialGrid" options="customerFinancialActivityGridOptions"></div>
             </div>
             <div id="customer-activity-history" class="tab-pane">
-                <kendo-grid options="customerActivityHistoryGridOptions"></kendo-grid>
+                <div kendo-grid="activityHistoryGrid" options="customerActivityHistoryGridOptions"></div>
             </div>
         </div>
+        <div kendo-grid="grid"></div>
     </div>
 </form>
