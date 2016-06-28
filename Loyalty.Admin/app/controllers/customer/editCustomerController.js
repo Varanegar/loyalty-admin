@@ -137,8 +137,8 @@
                             }
                         },
                         function (error) {
-                            console.log('error while trying to fetch tier data.');
-                            console.log('error detail: ' + error);
+                            //console.log('error while trying to fetch tier data.');
+                            //console.log('error detail: ' + error);
                         });
                 },
             }
@@ -157,8 +157,8 @@
                             }
                         },
                         function (error) {
-                            console.log('error while trying to fetch region data. parentId: ' + parentId);
-                            console.log('error detail: ' + error);
+                            //console.log('error while trying to fetch region data. parentId: ' + parentId);
+                            //console.log('error detail: ' + error);
                         });
                 },
             }
@@ -177,8 +177,8 @@
                             }
                         },
                         function (error) {
-                            console.log('error while trying to fetch region data. parentId: ' + parentId);
-                            console.log('error detail: ' + error);
+                            //console.log('error while trying to fetch region data. parentId: ' + parentId);
+                            //console.log('error detail: ' + error);
                         });
                 },
             }
@@ -196,8 +196,8 @@
                             }
                         },
                         function (error) {
-                            console.log('error while trying to fetch tier data.');
-                            console.log('error detail: ' + error);
+                            //console.log('error while trying to fetch tier data.');
+                            //console.log('error detail: ' + error);
                         });
                 },
             }
@@ -245,8 +245,8 @@
             callApi.call($rootScope.urls.regionByParentIdUrl, 'POST', { parentUniqueId: parentId },
                 onSuccess,
                 function (error) {
-                    console.log('error while trying to fetch region data. parentId: ' + parentId);
-                    console.log('error detail: ' + error);
+                    //console.log('error while trying to fetch region data. parentId: ' + parentId);
+                    //console.log('error detail: ' + error);
                 });
         };
 
@@ -259,8 +259,8 @@
                     }
                 },
                 function (error) {
-                    console.log('error while trying to fetch region data. parentId: ' + parentId);
-                    console.log('error detail: ' + error);
+                    //console.log('error while trying to fetch region data. parentId: ' + parentId);
+                    //console.log('error detail: ' + error);
                 });
         };
 
@@ -273,8 +273,8 @@
                     }
                 },
                 function (error) {
-                    console.log('error while trying to fetch tier data.');
-                    console.log('error detail: ' + error);
+                    //console.log('error while trying to fetch tier data.');
+                    //console.log('error detail: ' + error);
                 });
         };
 
@@ -287,8 +287,8 @@
                     }
                 },
                 function (error) {
-                    console.log('error while trying to fetch region data. parentId: ' + parentId);
-                    console.log('error detail: ' + error);
+                    //console.log('error while trying to fetch region data. parentId: ' + parentId);
+                    //console.log('error detail: ' + error);
                 });
         };
 
@@ -307,7 +307,7 @@
             $location.path('/customer/list');
         };
 
-// reagent 
+        // reagent 
         $scope.reagentSearchTerm = '';
         $scope.selectedReagent = '';
 
@@ -335,7 +335,7 @@
             select: function (e) {
                 var dataItem = this.dataItem(e.item.index());
                 $scope.selectedReagent = dataItem;
-                if(dataItem)
+                if (dataItem)
                     $scope.customer.reagentId = dataItem.uniqueId;
                 else
                     $scope.customer.reagentId = null;
@@ -346,12 +346,18 @@
         var customerActivityDataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
-                    //callApi.call($rootScope.urls.customersUrl, 'POST', null, function (response) {
-                    //    console.log(response.data);
-                    //    e.success(response.data)
-                    //}, function (response) {
-                    //    console.log(response);
-                    //});
+                    callApi.call($rootScope.urls.customerTransactionHistoryUrl, 'POST', {
+                        customerTransactionHistoryData:
+                            {
+                                customerId: $routeParams.uid,
+                                loyaltyValueTypeId: 'F84E6BCC-10D0-49FC-A9D8-F6DC9E8F15A0'
+                            }
+                    }, function (response) {
+                        //console.log(response.data);
+                        e.success(response.data)
+                    }, function (response) {
+                        //console.log(response);
+                    });
                 },
                 parameterMap: function (options, operation) {
                     if (operation == "read")
@@ -412,12 +418,17 @@
         var customerFinancialActivityDataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
-                    //callApi.call($rootScope.urls.customersUrl, 'POST', null, function (response) {
-                    //    console.log(response.data);
-                    //    e.success(response.data)
-                    //}, function (response) {
-                    //    console.log(response);
-                    //});
+                    callApi.call($rootScope.urls.customerFinancialHistoryUrl, 'POST', JSON.stringify(
+                        {
+                            customerMonetaryHistoryData: {
+                                customerId: $routeParams.uid
+                            }
+                        }), function (response) {
+                            //console.log(response.data);
+                            e.success(response.data)
+                        }, function (response) {
+                            //console.log(response);
+                        });
                 },
                 parameterMap: function (options, operation) {
                     if (operation == "read")
@@ -484,12 +495,14 @@
         var customerActivityHistoryDataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
-                    //callApi.call($rootScope.urls.customersUrl, 'POST', null, function (response) {
-                    //    console.log(response.data);
-                    //    e.success(response.data)
-                    //}, function (response) {
-                    //    console.log(response);
-                    //});
+                    callApi.call($rootScope.urls.customerNonFinancialHistoryUrl, 'POST', JSON.stringify({
+                        customerNonMonetaryHistoryData: { customerId: $routeParams.uid }
+                    }), function (response) {
+                        //console.log(response.data);
+                        e.success(response.data)
+                    }, function (response) {
+                        //console.log(response);
+                    });
                 },
                 parameterMap: function (options, operation) {
                     if (operation == "read")
@@ -564,9 +577,13 @@
             if ($routeParams.uid) {
                 // edit mode
                 callApi.call($rootScope.urls.customerByIdUrl, 'POST', { customerId: $routeParams.uid }, function (response) {
-                    console.log(response);
-                    $scope.customer = response.data;
+                    //console.log(response);
+                    if (response.data.length > 0)
+                    $scope.customer = response.data[0];
                 }, function () { });
+                customerActivityDataSource.read();
+                customerFinancialActivityDataSource.read();
+                customerActivityHistoryDataSource.read();
             } else {
                 // new mode
             }

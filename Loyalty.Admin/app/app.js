@@ -68,6 +68,10 @@
             customerGroupListUrl: baseBackendUrl + '/api/loyalty/customer/customergroups/compress',
             customerReagentFindUrl: baseBackendUrl + '/api/loyalty/customer/search/bycodeormobile',
 
+            customerFinancialHistoryUrl: baseBackendUrl + '/api/loyalty/customerhistory/loadmonetary',
+            customerNonFinancialHistoryUrl: baseBackendUrl + '/api/loyalty/customerhistory/loadnonmonetary',
+            customerTransactionHistoryUrl: baseBackendUrl + '/api/loyalty/customerhistory/loadtransaction',
+
             customerTierListUrl: baseBackendUrl + '/api/loyalty/tiers',
             customerCardsUrl: baseBackendUrl + '/api/loyalty/cards/bycustomerid',
             customerCardSaveUrl: baseBackendUrl + '/api/loyalty/cards/save',
