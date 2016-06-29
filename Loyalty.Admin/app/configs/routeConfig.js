@@ -94,6 +94,11 @@
                controller: "groupscontroller",
                authorize: true,
            })
+            .when("/region", {
+                templateUrl: "partials/region/regions.html",
+                controller: "regionController",
+                authorize: true,
+            })
            .when("/groupUsers/:gname/:gid", {
                templateUrl: "partials/groupManager/users.htm",
                controller: "groupUserscontroller",
