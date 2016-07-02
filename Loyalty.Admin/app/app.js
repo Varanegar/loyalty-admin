@@ -113,7 +113,7 @@
                 customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 6 },
                 customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 7 },
                 cardgrouplist: { url: '/#/cardGroup/', title: 'گروه کارت', order: 8 },
-                test: { url: '/#/test/', title: 'تست', order: 9 }
+                rules: { url: '/#/rules/', title: 'قوانین', order: 9 }
             }
         };
 
@@ -255,7 +255,7 @@
                         { resource: 'customerList' },
                         { resource: 'customerQuickAdd' },
                         { resource: 'cardgrouplist' },
-                        { resource: 'test' },
+                        { resource: 'rules' },
                     ];
                 }
                 var strmenu = '';
