@@ -94,6 +94,15 @@
             saveGroupUrl: baseBackendUrl + '/api/loyalty/usergroup/save',
             removeGroupUrl: baseBackendUrl + '/api/loyalty/usergroup/delete',
 
+
+            rulesUrl: baseBackendUrl + '/api/loyalty/',
+            ruleTypesUrl: baseBackendUrl + '/api/loyalty/ruletype/load/',
+            ruleGroupsUrl: baseBackendUrl + '/api/loyalty/rulegroup/load/',
+
+            valueTypesUrl: baseBackendUrl + '/api/loyalty/valuetypeattribute/load',
+            triggersUrl: baseBackendUrl + '/api/loyalty/triggers/load',
+            triggerTypesUrl: baseBackendUrl + '/api/loyalty/triggers/loadtypes/',
+
             myWebpages: baseBackendUrl + '/api/accounts/myWebpages',
             pages: {
                 usermanagement: { url: '/#/userManager', title: 'مدیریت کاربران', order: 1 },

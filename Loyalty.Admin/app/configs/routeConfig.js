@@ -109,6 +109,16 @@
                controller: "groupPermissionsController",
                authorize: true,
            })
+           .when("/rules/", {
+                templateUrl: "partials/rule/rules.html",
+                controller: "rulesController",
+                authorize: true,
+           })
+            .when("/rules/edit/:uid?", {
+                templateUrl: "partials/rule/editRule.html",
+                controller: "editRuleController",
+                authorize: true,
+            })
            .otherwise({
                redirectTo: "/",
            })

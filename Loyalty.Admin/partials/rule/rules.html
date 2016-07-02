@@ -1,0 +1,33 @@
+﻿<script type="text/x-kendo-template" id="rules-toolbar-template">
+    <div class="toolbar">
+        <button type="button" data-ng-click="addRule()" class="k-button k-button-icontext">
+            <span class="k-icon k-add"></span>جدید
+        </button>
+        <button type="button" data-ng-click="editRule()" class="k-button k-button-icontext">
+            <span class="k-icon k-edit"></span>ویرایش
+        </button>
+        <button type="button" data-ng-click="removeRule()" class="k-button k-button-icontext">
+            <span class="k-icon"></span>حذف
+        </button>
+        <button type="button" data-ng-click="" class="k-button k-button-icontext">
+            <span class="k-icon"></span>ارسال فایل اکسل
+        </button>
+        <button type="button" data-ng-click="" class="k-button k-button-icontext">
+            <span class="k-icon"></span>چاپ
+        </button>
+        <button type="button" data-ng-click="" class="k-button k-button-icontext">
+            <span class="k-icon"></span>کپی
+        </button>
+        <button type="button" data-ng-click="" class="k-button k-button-icontext">
+            <span class="k-icon"></span>غیرفعال سازی
+        </button>
+    </div>
+</script>
+
+<div id="div-rules" class="k-rtl">
+    <h4>لیست قوانین</h4>
+    <br />
+    <div class="row">
+        <kendo-grid options="ruleGridOptions" k-on-change="selectingRule(data, dataItem, columns)"></kendo-grid>
+    </div>
+</div>

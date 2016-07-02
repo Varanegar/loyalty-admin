@@ -1,0 +1,191 @@
+﻿<form name="editRule" data-ng-controller="editRuleController" role="form">
+    <div id="div-edit-rule" class="k-rtl">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" data-target="#rule-properties">مشخصات</a></li>
+            <li><a data-toggle="tab" data-target="#rule-conditions">شرایط</a></li>
+            <li><a data-toggle="tab" data-target="#rule-results">نتایج</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="rule-properties" class="tab-pane active">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="cardGroup">کد</label>
+                        <input type="text" name="code" ng-model="rule.code" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ruleName">عنوان قانون:</label>
+                        <input type="text" name="ruleName" ng-model="rule.name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cardGroup">گروه قانون:</label>
+                        <select kendo-combo-box
+                                k-placeholder="'گروه قانون مورد نظر راانتخاب نمایید'"
+                                k-data-text-field="'loyaltyRuleGroupName'"
+                                k-data-value-field="'uniqueId'"
+                                k-filter="'contains'"
+                                k-auto-bind="false"
+                                k-min-length="3"
+                                k-data-source="ruleGroupDataSource"
+                                ng-model="rule.groupId"
+                                style="width: 100%"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rulePriority">نوع:</label>
+                        <select kendo-combo-box
+                                k-placeholder="'نوع قانون مورد نظر راانتخاب نمایید'"
+                                k-data-text-field="'loyaltyRuleTypeName'"
+                                k-data-value-field="'uniqueId'"
+                                k-filter="'contains'"
+                                k-auto-bind="false"
+                                k-min-length="3"
+                                k-data-source="ruleTypeDataSource"
+                                ng-model="rule.typeId"
+                                style="width: 100%"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>شرط دارد:</label>
+                        <div class="radio">
+                            <label for="ruleStatus">شرط دارد<input type="checkbox" name="hasCondition" ng-model="rule.hasCondition" /></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="triggerGroup">گروه محرک:</label>
+                        <select kendo-combo-box
+                                k-placeholder="'گروه محرک مورد نظر راانتخاب نمایید'"
+                                k-data-text-field="'loyaltyTriggerTypeName'"
+                                k-data-value-field="'uniqueId'"
+                                k-filter="'contains'"
+                                k-auto-bind="false"
+                                k-min-length="3"
+                                k-data-source="triggerTypesDataSource"
+                                ng-model="rule.triggerGroupId"
+                                style="width: 100%"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="trigger">محرک اجرا:</label>
+                        <select kendo-multi-select
+                                k-options="triggerOptions"
+                                ng-model="selectedTriggerId"
+                                k-on-change="onSelectUser(kendoEvent)"
+                                style="width: 100%"></select>
+                    </div>
+                </div>
+            </div>
+            <div id="rule-conditions" class="tab-pane">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="triggerGroup">ویژگی:</label>
+                        <select kendo-combo-box
+                                k-placeholder="'ویژگی مورد نظر را انتخاب نمایید'"
+                                k-data-text-field="'loyaltyValueTypeAttributeName'"
+                                k-data-value-field="'uniqueId'"
+                                k-filter="'contains'"
+                                k-auto-bind="false"
+                                k-min-length="3"
+                                k-data-source="valueTypesDataSource"
+                                ng-model="rule.triggerGroupId"
+                                style="width: 100%"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="trigger">گروه کالا:</label>
+                        <select kendo-multi-select
+                                k-options="productGroupOptions"
+                                style="width: 100%"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="trigger">کالا:</label>
+                        <select kendo-multi-select
+                                k-options="productOptions"
+                                style="width: 100%"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <div>
+                        <kendo-grid options="rangesGridOptions"></kendo-grid>
+                    </div>
+                </div>
+            </div>
+            <div id="rule-results" class="tab-pane">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="ruleType">نوع</label>
+                        <select name="ruleType" ng-model="selectedTypeKey" class="form-control">
+                            <option selected>لطفا نوع مورد نظر را انتخاب کنید.</option>
+                            <option value="1">افزودن مقدار ثابت</option>
+                            <option value="2">کاهش مقدار ثابت</option>
+                            <option value="3">افزودن درصد ثابت</option>
+                            <option value="4">کاهش درصد ثابت</option>
+                            <option value="5">تغییر سطح مشتری</option>
+                            <option value="6">تنظیم مجدد</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="fixedValue">مقدار ثابت</label>
+                        <input ng-disabled="!(selectedTypeKey =='1' || selectedTypeKey == '2')" type="text" name="fixedValue" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ruleType">منبع درصد</label>
+                        <select ng-disabled="!(selectedTypeKey =='3' || selectedTypeKey == '4')"
+                                kendo-combo-box
+                                k-placeholder="'نوع مورد نظر راانتخاب نمایید'"
+                                k-data-text-field="'loyaltyRuleGroupName'"
+                                k-data-value-field="'uniqueId'"
+                                k-filter="'contains'"
+                                k-auto-bind="false"
+                                k-min-length="3"
+                                k-data-source="ruleGroupDataSource"
+                                ng-model="rule.groupId"
+                                style="width: 100%"></select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ruleType">از/به ویژگی:</label>
+                        <select ng-disabled="!(selectedTypeKey =='1' || selectedTypeKey == '2' || selectedTypeKey =='6')"
+                                kendo-combo-box
+                                k-placeholder="'ویژگی مورد نظر راانتخاب نمایید'"
+                                k-data-text-field="'loyaltyRuleGroupName'"
+                                k-data-value-field="'uniqueId'"
+                                k-filter="'contains'"
+                                k-auto-bind="false"
+                                k-min-length="3"
+                                k-data-source="ruleGroupDataSource"
+                                ng-model="rule.groupId"
+                                style="width: 100%"></select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ruleType">سطح جدید</label>
+                        <select ng-disabled="!(selectedTypeKey =='5')"
+                                kendo-combo-box
+                                k-placeholder="'سطح جدید مورد نظر راانتخاب نمایید'"
+                                k-data-text-field="'loyaltyRuleGroupName'"
+                                k-data-value-field="'uniqueId'"
+                                k-filter="'contains'"
+                                k-auto-bind="false"
+                                k-min-length="3"
+                                k-data-source="ruleGroupDataSource"
+                                ng-model="rule.groupId"
+                                style="width: 100%"></select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="newValue">مقدار جدید</label>
+                        <input type="text" name="newValue" class="form-control" ng-disabled="!(selectedTypeKey =='6')" />
+                    </div>
+                    <div class="form-group">
+                        <label for="validDays">مدت اعتبار</label>
+                        <input type="text" name="validDays" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-default" ng-click="save();">ذخیره</button>
+            <a href="javascript:void(0);" class="btn btn-danger" ng-click="rules();">انصراف</a>
+        </div>
+    </div>
+</form>
