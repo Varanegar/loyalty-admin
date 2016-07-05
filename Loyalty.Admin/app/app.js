@@ -111,7 +111,7 @@
                 customertiers: { url: '/#/tiers/list', title: 'سطح مشتریان', order: 4 },
                 customergroups: { url: '/#/customer/groups', title: 'گروه مشتریان', order: 5 },
                 customerlist: { url: '/#/customer/list', title: 'مشتریان', order: 6 },
-                customerquickadd: { url: '/#/customer/addQuick', title: 'ثبت سریع', order: 7 },
+                customerquickadd: { url: '/#/customer/addQuick', title: 'معرفی سریع مشتری', order: 7 },
                 cardgrouplist: { url: '/#/cardGroup/', title: 'گروه کارت', order: 8 },
                 rules: { url: '/#/rules/', title: 'قوانین', order: 9 }
             }
@@ -297,6 +297,7 @@
     //https://github.com/AmirkabirDataMiners/ADM-dateTimePicker
     app.config(['ADMdtpProvider', function (ADMdtp) {
         ADMdtp.setOptions({
+            dtpType: 'date',
             calType: 'jalali',
             format: 'YYYY/MM/DD',
             autoClose: true,

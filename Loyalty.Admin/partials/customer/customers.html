@@ -1,8 +1,5 @@
 ﻿<script type="text/x-kendo-template" id="customers-toolbar-template">
     <div class="toolbar">
-        <button type="button" data-ng-click="addQuickCustomer()" class="k-button k-button-icontext">
-            <span class="k-icon k-add"></span>افزودن مشتری سریع
-        </button>
         <button type="button" data-ng-click="addCustomer()" class="k-button k-button-icontext">
             <span class="k-icon k-add"></span>افزودن
         </button>
@@ -27,6 +24,7 @@
 <div id="div-customers" class="k-rtl">
 
     <div class="row">
+        <h4>لیست مشتریان</h4>
         <kendo-grid options="customerGridOptions" k-on-change="selectingCustomer(data, dataItem, columns)"></kendo-grid>
     </div>
 </div>

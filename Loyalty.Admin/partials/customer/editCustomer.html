@@ -1,10 +1,10 @@
 ﻿<form name="editCustomer" data-ng-controller="editCustomerController" role="form">
     <div id="div-edit-customer" class="k-rtl">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات عمومی</a></li>
-            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-history">سابقه فعالیت</a></li>
-            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-financial-history">سابقه فعالیت مالی</a></li>
-            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-activity-history">سابقه فعالیت مشتری</a></li>
+            <li class="active"><a data-toggle="tab" data-target="#customer-general-info">مشخصات مشتری</a></li>
+            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-history">فعالیت غیرمالی</a></li>
+            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-financial-history">فعالیت مالی</a></li>
+            <li ng-show="isEditMode();"><a data-toggle="tab" data-target="#customer-activity-history">فعالیت باشگاهی</a></li>
         </ul>
         <div class="tab-content">
             <div id="customer-general-info" class="tab-pane active">
@@ -60,10 +60,6 @@
                 <div class="form-group">
                     <label for="nationalCode">شماره ملی:</label>
                     <input ng-model="customer.nationalCode" id="nationalCode" type="text" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="mobileNumber">شماره موبایل:</label>
-                    <input ng-model="customer.mobile" id="mobileNumber" type="text" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="email">آدرس ایمیل:</label>
@@ -208,17 +204,17 @@
                 </div>
                 <div class="form-group">
                     <label for="pBirthDay">تاریخ تولد:</label>
-                    <adm-dtp id="pBirthDay" ng-model="customer.pBirthDay"></adm-dtp>
+                    <adm-dtp options="{dtpType: 'date'}" id="pBirthDay" ng-model="customer.pBirthDay"></adm-dtp>
                     <!--<input id="pBirthDay" ng-model="customer.pBirthDay" type="text" class="form-control" />-->
                 </div>
                 <div class="form-group">
                     <label for="pGraduateDate">تاریخ فارغ التحصیلی:</label>
-                    <adm-dtp id="pGraduateDate" ng-model="customer.pGraduateDate"></adm-dtp>
+                    <adm-dtp options="{dtpType: 'date'}" id="pGraduateDate" ng-model="customer.pGraduateDate"></adm-dtp>
                     <!--<input id="pGraduateDate" ng-model="customer.pGraduateDate" type="text" class="form-control" />-->
                 </div>
                 <div class="form-group">
                     <label for="pMarriageDate">تاریخ ازدواج:</label>
-                    <adm-dtp id="pMarriageDate" ng-model="customer.pMarriageDate"></adm-dtp>
+                    <adm-dtp options="{dtpType: 'date'}" id="pMarriageDate" ng-model="customer.pMarriageDate"></adm-dtp>
                     <!--<input id="pMarriageDate" ng-model="customer.pMarriageDate" type="text" class="form-control" />-->
                 </div>
                 <div class="form-group">

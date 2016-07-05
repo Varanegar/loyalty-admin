@@ -66,58 +66,41 @@
         $scope.personTypeId = 'F8A0E103-CBB0-40EA-BF80-E2DBC552EE3C';
         $scope.companyTypeId = '770803A2-3F46-48D1-98D2-2D656F6297DD';
 
-        $scope.countries = [];
         $scope.regionLevel1DataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
                     $scope.getRegions(null, function (countries) {
-                        $scope.countries = countries.data;
                         e.success($scope.countries);
                     });
                 },
             }
         });
 
-        $scope.cities = [];
         $scope.regionLevel2DataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
                     $scope.getRegions($scope.customer.regionLevel1Id, function (cities) {
-                        $scope.cities = cities.data;
                         e.success(cities.data);
-                        if (cities.data.length > 0) {
-                            $scope.customer.regionLevel2Id = cities.data[0].uniqueId;
-                            if ($scope.regions.length == 0)
-                                $scope.onCityChanged();
-                        }
                     });
                 },
             }
         });
 
-        $scope.regions = [];
         $scope.regionLevel3DataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
                     $scope.getRegions($scope.customer.regionLevel2Id, function (regions) {
-                        $scope.regions = regions.data;
                         e.success(regions.data);
-                        if (regions.data.length > 0)
-                            $scope.customer.regionLevel3Id = regions.data[0].uniqueId;
                     });
                 },
             }
         });
 
-        $scope.districts = [];
         $scope.regionLevel4DataSource = new kendo.data.DataSource({
             transport: {
                 read: function (e) {
                     $scope.getRegions($scope.customer.regionLevel3Id, function (districts) {
-                        $scope.districts = districts.data;
                         e.success(districts.data);
-                        if (districts.data.length > 0)
-                            $scope.customer.regionLevel4Id = districts.data[0].uniqueId;
                     });
                 },
             }
@@ -206,39 +189,18 @@
         $scope.flLoading = false;
 
         $scope.onCountryChanged = function () {
-            $scope.getRegions($scope.customer.regionLevel1Id, function (cities) {
-                $scope.cities = cities.data;
-                $scope.regionLevel2DataSource.read();
-                $scope.regionLevel3DataSource.read();
-                $scope.regionLevel4DataSource.read();
-                if (cities.data.length > 0) {
-                    $scope.customer.regionLevel2Id = cities.data[0].uniqueId;
-                    if ($scope.regions.length == 0)
-                        $scope.onCityChanged();
-                }
-            });
+            $scope.regionLevel2DataSource.read();
+            $scope.regionLevel3DataSource.read();
+            $scope.regionLevel4DataSource.read();
         }
 
         $scope.onCityChanged = function () {
-            $scope.getRegions($scope.customer.regionLevel2Id, function (regions) {
-                $scope.regions = regions.data;
-                $scope.regionLevel3DataSource.read();
-                $scope.regionLevel4DataSource.read();
-                if (regions.data.length > 0) {
-                    $scope.customer.regionLevel3Id = regions.data[0].uniqueId;
-                    if ($scope.districts.length == 0)
-                        $scope.onRegionChanged();
-                }
-            });
+            $scope.regionLevel3DataSource.read();
+            $scope.regionLevel4DataSource.read();
         }
 
         $scope.onRegionChanged = function () {
-            $scope.getRegions($scope.customer.regionLevel3Id, function (districts) {
-                $scope.districts = districts.data;
-                $scope.regionLevel4DataSource.read();
-                if (districts.data.length > 0)
-                    $scope.customer.regionLevel4Id = districts.data[0].uniqueId;
-            });
+            $scope.regionLevel4DataSource.read();
         }
 
         $scope.getRegions = function (parentId, onSuccess) {
@@ -558,39 +520,34 @@
         };
 
 
-        (function initController() {
-            $scope.flLoading = true;
+        // init country drop down
+        $scope.getRegions(null, function (countries) {
+            $scope.countries = countries.data;
+            if ($scope.customer.regionLevel1Id)
+                $scope.onCountryChanged();
+        });
 
-            // init country drop down
-            $scope.getRegions(null, function (countries) {
-                $scope.countries = countries.data;
-                //$scope.getRegions()
-            });
+        $scope.getCustomerGroups();
+        $scope.getCardGroups();
+        $scope.getCustomerTiers();
 
-            $scope.getCustomerGroups();
-            $scope.getCardGroups();
-            $scope.getCustomerTiers();
+        if ($routeParams.uid) {
+            // edit mode
+            callApi.call($rootScope.urls.customerByIdUrl, 'POST', { customerId: $routeParams.uid }, function (response) {
+                //console.log(response);
+                if (response.data.length > 0)
+                    $scope.customer = response.data[0];
+            }, function () { });
+            //customerActivityDataSource.read();
+            //$scope.activityGrid.refresh();
 
-            if ($routeParams.uid) {
-                // edit mode
-                callApi.call($rootScope.urls.customerByIdUrl, 'POST', { customerId: $routeParams.uid }, function (response) {
-                    //console.log(response);
-                    if (response.data.length > 0)
-                        $scope.customer = response.data[0];
-                }, function () { });
-                customerActivityDataSource.read();
-                //$scope.activityGrid.refresh();
+            //customerFinancialActivityDataSource.read();
+            //$scope.financialGrid.refresh();
 
-                customerFinancialActivityDataSource.read();
-                //$scope.financialGrid.refresh();
-
-                customerActivityHistoryDataSource.read();
-                //$scope.activityHistoryGrid.refresh();
-            } else {
-                // new mode
-            }
-
-            alert($scope.grid);
-        })();
+            //customerActivityHistoryDataSource.read();
+            //$scope.activityHistoryGrid.refresh();
+        } else {
+            // new mode
+        }
     }
 })();
